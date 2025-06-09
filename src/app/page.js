@@ -20,12 +20,13 @@ export default function Home() {
 
   return (
     <main>
-      <h1>FindPalco is Live!</h1>
+      <h1 className="bg-">FindPalco is Live!</h1>
       <ul>
         {rows.map((row) => (
           <li key={row.id}>{row.name}</li>
         ))}
       </ul>
+      <div className="text-white p-4 bg-amber-400">Hello Tailwind!</div>
     </main>
   );
 }
