@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import supabase from "@/lib/supabaseClient";
+import Image from "next/image";
 
 export default function Home() {
   const [rows, setRows] = useState([]);
@@ -20,13 +21,24 @@ export default function Home() {
 
   return (
     <main>
-      <h1 className="bg-">FindPalco is Live!</h1>
-      <ul>
-        {rows.map((row) => (
-          <li key={row.id}>{row.name}</li>
-        ))}
-      </ul>
-      <div className="text-white p-4 bg-amber-400">Hello Tailwind!</div>
+      <header className="bg-[var(--color-palco)] px-6 py-4 shadow-md">
+        <div className="max-w-screen-xl mx-auto flex items-center gap-4">
+          <Image
+            src="/palco-logo.png"
+            alt="Palco logo"
+            width={120}
+            height={120}
+            className="h-20 w-auto rounded-md shadow-lg bg-[var(--color-palco-light)]"
+            priority
+          />
+          <div className="text-[var(--color-palco-soft)]">
+            <h1 className="text-2xl font-bold leading-tight">FindPalco</h1>
+            <p className="text-sm font-medium text-[var(--color-palco-accent)]">
+              Connect Beyond Travel
+            </p>
+          </div>
+        </div>
+      </header>
     </main>
   );
 }

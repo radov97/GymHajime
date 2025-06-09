@@ -1,26 +1,21 @@
 @import "tailwindcss";
 
+/* ===== Global Color Palette ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-palco: #923b14; /* primary dark brown from logo */
+  --color-palco-dark: #602914; /* deep earthy tone */
+  --color-palco-light: #ffd197; /* warm soft orange for highlights */
+  --color-palco-accent: #ff8b3d; /* strong call-to-action orange */
+  --color-palco-soft: #fff4df; /* background cream tone */
+  --color-palco-black: #2b1c14; /* deeper text/border contrast */
+
+  --color-background: var(--color-palco-soft);
+  --color-foreground: var(--color-palco-dark);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ===== Global Base Styles ===== */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: sans-serif;
 }
