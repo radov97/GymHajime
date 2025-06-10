@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "/src/styles/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +15,7 @@ export const metadata = {
   title: "FindPalco",
   description: "Connect Beyond Travel",
   icons: {
-    icon: "/palco-favicon.png",
+    icon: "/favicon.png",
   },
 };
 
