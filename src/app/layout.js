@@ -1,11 +1,8 @@
+import "./../styles/globals.css";
+import Header from "@/components/Header";
 import { Geist, Geist_Mono } from "next/font/google";
-import "/src/styles/globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -14,9 +11,6 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "FindPalco",
   description: "Connect Beyond Travel",
-  icons: {
-    icon: "/favicon.png",
-  },
 };
 
 export default function RootLayout({ children }) {
@@ -25,6 +19,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>
