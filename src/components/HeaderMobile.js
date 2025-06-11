@@ -10,6 +10,7 @@ export default function HeaderMobile() {
           width={48}
           height={48}
           className="h-12 w-auto rounded shadow bg-[var(--color-palco-light)]"
+          priority
         />
         <span className="text-sm text-[var(--color-palco-soft)] font-semibold">
           FindPalco
