@@ -79,7 +79,7 @@ export default function InputPalco({
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-600 hover:text-black"
+            className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-600 hover:text-black cursor-pointer"
             disabled={disabled}
           >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}

@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
-import Link from 'next/link';
+import LinkPalco from './LinkPalco';
 
 export default function Header() {
   const t = useTranslations('header');
@@ -20,27 +20,16 @@ export default function Header() {
             priority
           />
           <div className="text-[var(--color-palco-soft)]">
-            <h1 className="text-2xl font-bold leading-tight">FindPalco</h1>
-            <p className="text-sm font-medium text-[var(--color-palco-accent)]">
+            <h1 className="text-2xl font-bold leading-tight cursor-default">FindPalco</h1>
+            <p className="text-sm font-medium text-[var(--color-palco-accent)] cursor-default">
               {t('header-tagline')}
             </p>
           </div>
         </div>
 
         <div className="flex gap-4 text-[var(--color-palco-soft)]">
-          <Link
-            href={`/${locale}/login`}
-            className="text-[var(--color-palco-light)] text-sm font-semibold px-3 py-1 rounded-md transition-all duration-200 ease-in-out hover:text-[17px] hover:bg-[var(--color-palco-accent)] hover:text-[var(--color-palco-black)]"
-          >
-            {t('login')}
-          </Link>
-
-          <Link
-            href={`/${locale}/signup`}
-            className="text-[var(--color-palco-light)] text-sm font-semibold px-3 py-1 rounded-md transition-all duration-200 ease-in-out hover:text-[17px] hover:bg-[var(--color-palco-accent)] hover:text-[var(--color-palco-black)]"
-          >
-            {t('signup')}
-          </Link>
+          <LinkPalco href={`/${locale}/login`} text={t('login')} />
+          <LinkPalco href={`/${locale}/signup`} text={t('signup')} />
         </div>
       </div>
     </header>

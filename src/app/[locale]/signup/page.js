@@ -42,10 +42,10 @@ export default function SignUpPage() {
 
   return (
     <div className="max-w-md mx-auto p-8 mt-8 bg-white shadow rounded">
-      <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center">
+      <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
         {t('new-account')}
       </h2>
-      <p className="mb-4 text-sm text-gray-600 text-center">{t('sign-up-info')}</p>
+      <p className="mb-4 text-sm text-gray-600 text-center cursor-default">{t('sign-up-info')}</p>
 
       <button
         onClick={signInWithGoogle}
@@ -92,7 +92,7 @@ export default function SignUpPage() {
       </ClientOnly>
       {error && <p className="text-red-600 mt-4">{error}</p>}
 
-      <p className="mt-4 text-sm text-center">
+      <p className="mt-4 text-sm text-center cursor-default">
         {t('already-have-account')}{' '}
         <Link
           href={`/${locale}/login`}
