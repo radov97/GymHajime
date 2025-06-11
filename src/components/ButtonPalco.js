@@ -12,7 +12,7 @@ export default function ButtonPalco({
   className = '',
   ...props
 }) {
-  const baseStyles = 'w-full font-semibold py-2 rounded hover:opacity-90 transition';
+  const baseStyles = 'w-full font-semibold py-2 rounded transition';
   const getRankStyles = (rank) => {
     switch (rank) {
       case ButtonRank.Primary:
@@ -24,11 +24,13 @@ export default function ButtonPalco({
     }
   };
 
+  const isInteractive = !disabled && !loading;
+
   const computedClasses = [
     baseStyles,
     getRankStyles(rank),
     className,
-    disabled ? 'opacity-60 cursor-not-allowed' : '',
+    isInteractive ? 'cursor-pointer hover:opacity-90' : 'opacity-60 cursor-not-allowed',
   ].join(' ');
 
   return (
