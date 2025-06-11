@@ -1,4 +1,5 @@
 # FindPalco
+
 🌍 FindPalco – Bridging Travelers & Locals Through Shared Experiences
 
 🧭 Introduction

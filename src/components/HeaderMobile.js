@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function HeaderMobile() {
   return (
@@ -12,9 +12,7 @@ export default function HeaderMobile() {
           className="h-12 w-auto rounded shadow bg-[var(--color-palco-light)]"
           priority
         />
-        <span className="text-sm text-[var(--color-palco-soft)] font-semibold">
-          FindPalco
-        </span>
+        <span className="text-sm text-[var(--color-palco-soft)] font-semibold">FindPalco</span>
       </div>
     </header>
   );

@@ -1,9 +1,9 @@
-"use client";
-import Image from "next/image";
-import { useTranslations } from "next-intl";
+'use client';
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 export default function Header() {
-  const t = useTranslations("header");
+  const t = useTranslations('header');
 
   return (
     <header className="bg-[var(--color-palco)] px-6 py-4 shadow-md">
@@ -19,7 +19,7 @@ export default function Header() {
         <div className="text-[var(--color-palco-soft)]">
           <h1 className="text-2xl font-bold leading-tight">FindPalco</h1>
           <p className="text-sm font-medium text-[var(--color-palco-accent)]">
-            {t("header-tagline")}
+            {t('header-tagline')}
           </p>
         </div>
       </div>

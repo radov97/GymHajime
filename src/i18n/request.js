@@ -1,4 +1,4 @@
-import { defaultLocale } from "./i18n.js";
+import { defaultLocale } from './i18n.js';
 
 export default function getRequestConfig() {
   return {
