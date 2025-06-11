@@ -12,7 +12,7 @@ export default function ButtonPalco({
   className = '',
   ...props
 }) {
-  const baseStyles = 'w-full font-semibold py-2 rounded transition';
+  const baseStyles = 'w-full font-semibold py-2 rounded transition-all duration-200 ease-in-out';
   const getRankStyles = (rank) => {
     switch (rank) {
       case ButtonRank.Primary:
@@ -30,7 +30,9 @@ export default function ButtonPalco({
     baseStyles,
     getRankStyles(rank),
     className,
-    isInteractive ? 'cursor-pointer hover:opacity-90' : 'opacity-60 cursor-not-allowed',
+    isInteractive
+      ? 'cursor-pointer hover:opacity-90 hover:scale-[1.01] hover:shadow-md'
+      : 'opacity-60 cursor-not-allowed',
   ].join(' ');
 
   return (

@@ -8,3 +8,9 @@ export const ButtonRank = {
   Primary: 'primary',
   Secondary: 'secondary',
 };
+
+export const InputType = {
+  Text: 'text',
+  Password: 'password',
+  Email: 'email',
+};
