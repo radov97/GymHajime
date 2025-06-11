@@ -11,6 +11,7 @@ import ButtonPalco from '@/components/ButtonPalco';
 import InputPalco from '@/components/InputPalco';
 import { ButtonRank, ButtonType, InputType } from '@/lib/enums';
 import { isNotEmptyString, isValidEmail, useValidatedPassword } from '@/lib/helperFunctions';
+import FormContainerPalco from '@/components/FormContainerPalco';
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('');
@@ -101,7 +102,7 @@ export default function SignUpPage() {
     !isTyping;
 
   return (
-    <div className="max-w-md w-full mx-auto p-8 mt-8 bg-white/60 backdrop-blur-md shadow-xl rounded-2xl transition-all duration-300">
+    <FormContainerPalco>
       <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
         {t('signup.new-account')}
       </h2>
@@ -182,6 +183,6 @@ export default function SignUpPage() {
           {t('signup.sign-ip')}
         </Link>
       </p>
-    </div>
+    </FormContainerPalco>
   );
 }
