@@ -23,10 +23,10 @@ export default function InputPalco({
   const [localValue, setLocalValue] = useState(value);
 
   useEffect(() => {
+    if (!onDebouncedChange) return;
+
     const handler = setTimeout(() => {
-      if (onDebouncedChange) {
-        onDebouncedChange(localValue);
-      }
+      onDebouncedChange(localValue);
     }, debounceDelay);
 
     return () => clearTimeout(handler);

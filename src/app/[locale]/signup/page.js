@@ -6,16 +6,16 @@ import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Eye, EyeOff } from 'lucide-react';
 import ClientOnly from '@/lib/ClientOnly';
 import ButtonPalco from '@/components/ButtonPalco';
-import { ButtonRank, ButtonType } from '@/lib/enums';
+import InputPalco from '@/components/InputPalco';
+import { ButtonRank, ButtonType, InputType } from '@/lib/enums';
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+
   const [error, setError] = useState('');
   const router = useRouter();
   const locale = useLocale();
@@ -56,39 +56,37 @@ export default function SignUpPage() {
       </button>
       <ClientOnly>
         <form onSubmit={handleSignup} className="space-y-4">
-          <input
-            type="email"
+          <InputPalco
+            type={InputType.Email}
             placeholder="Email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full border p-2 rounded focus:outline-none"
+            // onDebouncedChange={handleEmailDebounced}
+            // error={hasEmailError}
+            errorText="Please enter a valid email"
           />
-          <input
-            type="text"
+
+          <InputPalco
+            type={InputType.Text}
             placeholder="Full Name"
             value={fullName}
+            required
             onChange={(e) => setFullName(e.target.value)}
-            className="w-full border p-2 rounded focus:outline-none"
+            // onDebouncedChange={handleNameDebounced}
           />
-          <div className="relative w-full">
-            <input
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full border p-2 pr-10 rounded focus:outline-none"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-600 hover:text-black"
-              aria-label="Toggle password visibility"
-            >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-            </button>
-          </div>
+
+          <InputPalco
+            type={InputType.Password}
+            placeholder="Password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            // onDebouncedChange={handlePasswordDebounced}
+            showToggle
+            // error={hasPasswordError}
+            errorText="Password must be at least 6 characters"
+          />
           <ButtonPalco text={t('sign-up')} type={ButtonType.Submit} rank={ButtonRank.Primary} />
         </form>
       </ClientOnly>
@@ -96,7 +94,10 @@ export default function SignUpPage() {
 
       <p className="mt-4 text-sm text-center">
         {t('already-have-account')}{' '}
-        <Link href={`/${locale}/login`} className="text-[var(--color-palco)] font-medium underline">
+        <Link
+          href={`/${locale}/login`}
+          className="text-[var(--color-palco)] text-sm font-medium underline transition-all duration-200 ease-in-out hover:text-[17px]"
+        >
           {t('sign-ip')}
         </Link>
       </p>

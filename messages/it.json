@@ -1,14 +1,1 @@
-{
-  "signup": {
-    "already-have-account": "Hai già un account?",
-    "new-account": "Nuovo account",
-    "sign-ip": "Registrazione",
-    "sign-up": "Iscrizione",
-    "sign-up-info": "Registrati con Google o con il tuo indirizzo email"
-  },
-  "header": {
-    "header-tagline": " Connettiti oltre il viaggio",
-    "login": "Login",
-    "signup": "Iscrizione"
-  }
-}
+{"signup":{"already-have-account":"Hai già un account?","new-account":"Nuovo account","sign-ip":"Registrazione","sign-up":"Iscrizione","sign-up-info":"Registrati con Google o con il tuo indirizzo email"},"header":{"header-tagline":" Connettiti oltre il viaggio","login":"Login","signup":"Iscrizione"}}
