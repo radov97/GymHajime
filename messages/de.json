@@ -1,1 +1,7 @@
-{"header":{"header-tagline":" Verbinden Sie sich über das Reisen hinaus"}}
+{
+  "header": {
+    "header-tagline": " Verbinden Sie sich über das Reisen hinaus",
+    "login": "Login",
+    "signup": "Melden Sie sich an"
+  }
+}

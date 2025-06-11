@@ -1,1 +1,7 @@
-{"header":{"header-tagline":" Connect Beyond Travel"}}
+{
+  "header": {
+    "header-tagline": " Connect Beyond Travel",
+    "login": "Mag-login",
+    "signup": "Mag-sign Up"
+  }
+}

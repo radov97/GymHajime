@@ -1,1 +1,7 @@
-{"header":{"header-tagline":" Connectez-vous au-delà du voyage"}}
+{
+  "header": {
+    "header-tagline": " Connectez-vous au-delà du voyage",
+    "login": "Se connecter",
+    "signup": "S'inscrire"
+  }
+}
