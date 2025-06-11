@@ -10,11 +10,20 @@ import ClientOnly from '@/lib/ClientOnly';
 import ButtonPalco from '@/components/ButtonPalco';
 import InputPalco from '@/components/InputPalco';
 import { ButtonRank, ButtonType, InputType } from '@/lib/enums';
+import { isNotEmptyString, isValidEmail, validatePassword } from '@/lib/helperFunctions';
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('');
+  const [hasEmailError, setHasEmailError] = useState(false);
+  const [emailErrorText, setEmailErrorText] = useState('');
+
   const [fullName, setFullName] = useState('');
+  const [hasFullNameError, setHasFullNameError] = useState(false);
+  const [fullNameErrorText, setFullNameErrorText] = useState('');
+
   const [password, setPassword] = useState('');
+  const [hasPasswordError, setHasPasswordError] = useState(false);
+  const [passwordErrorText, setPasswordErrorText] = useState('');
 
   const [error, setError] = useState('');
   const router = useRouter();
@@ -40,6 +49,38 @@ export default function SignUpPage() {
     await supabase.auth.signInWithOAuth({ provider: 'google' });
   }
 
+  const handleEmailDebounced = (val) => {
+    if (isValidEmail(val)) {
+      setHasEmailError(false);
+      setEmailErrorText('');
+    } else {
+      setHasEmailError(true);
+      setEmailErrorText('Please enter a valid email address.');
+    }
+  };
+
+  const handleNameDebounced = (val) => {
+    if (isNotEmptyString(val)) {
+      setHasFullNameError(false);
+      setFullNameErrorText('');
+    } else {
+      setHasFullNameError(true);
+      setFullNameErrorText('Full name cannot be empty.');
+    }
+  };
+
+  const handlePasswordDebounced = (val) => {
+    const errors = validatePassword(val);
+
+    if (errors.length === 0) {
+      setHasPasswordError(false);
+      setPasswordErrorText('');
+    } else {
+      setHasPasswordError(true);
+      setPasswordErrorText(errors[0]); // Show the first error for clarity
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto p-8 mt-8 bg-white shadow rounded">
       <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
@@ -62,9 +103,9 @@ export default function SignUpPage() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            // onDebouncedChange={handleEmailDebounced}
-            // error={hasEmailError}
-            errorText="Please enter a valid email"
+            onDebouncedChange={handleEmailDebounced}
+            error={hasEmailError}
+            errorText={emailErrorText}
           />
 
           <InputPalco
@@ -73,7 +114,9 @@ export default function SignUpPage() {
             value={fullName}
             required
             onChange={(e) => setFullName(e.target.value)}
-            // onDebouncedChange={handleNameDebounced}
+            onDebouncedChange={handleNameDebounced}
+            error={hasFullNameError}
+            errorText={fullNameErrorText}
           />
 
           <InputPalco
@@ -82,10 +125,10 @@ export default function SignUpPage() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            // onDebouncedChange={handlePasswordDebounced}
+            onDebouncedChange={handlePasswordDebounced}
             showToggle
-            // error={hasPasswordError}
-            errorText="Password must be at least 6 characters"
+            error={hasPasswordError}
+            errorText={passwordErrorText}
           />
           <ButtonPalco text={t('sign-up')} type={ButtonType.Submit} rank={ButtonRank.Primary} />
         </form>

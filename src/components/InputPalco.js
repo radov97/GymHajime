@@ -21,16 +21,17 @@ export default function InputPalco({
 }) {
   const [showPassword, setShowPassword] = useState(false);
   const [localValue, setLocalValue] = useState(value);
+  const [isDirty, setIsDirty] = useState(false);
 
   useEffect(() => {
-    if (!onDebouncedChange) return;
+    if (!onDebouncedChange || !isDirty) return;
 
     const handler = setTimeout(() => {
       onDebouncedChange(localValue);
     }, debounceDelay);
 
     return () => clearTimeout(handler);
-  }, [localValue, onDebouncedChange, debounceDelay]);
+  }, [localValue, onDebouncedChange, debounceDelay, isDirty]);
 
   useEffect(() => {
     setLocalValue(value);
@@ -66,6 +67,7 @@ export default function InputPalco({
           type={inputType}
           value={localValue}
           onChange={(e) => {
+            if (!isDirty) setIsDirty(true);
             setLocalValue(e.target.value);
             if (onChange) onChange(e);
           }}
