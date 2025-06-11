@@ -17,6 +17,7 @@ export default function InputPalco({
   className = '',
   showToggle = false,
   debounceDelay = 1000,
+  setIsTyping = () => {},
   ...props
 }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,10 +29,11 @@ export default function InputPalco({
 
     const handler = setTimeout(() => {
       onDebouncedChange(localValue);
+      setIsTyping(false);
     }, debounceDelay);
 
     return () => clearTimeout(handler);
-  }, [localValue, onDebouncedChange, debounceDelay, isDirty]);
+  }, [localValue, onDebouncedChange, debounceDelay, isDirty, setIsTyping]);
 
   useEffect(() => {
     setLocalValue(value);
@@ -69,6 +71,7 @@ export default function InputPalco({
           onChange={(e) => {
             if (!isDirty) setIsDirty(true);
             setLocalValue(e.target.value);
+            setIsTyping(true);
             if (onChange) onChange(e);
           }}
           placeholder={placeholder}

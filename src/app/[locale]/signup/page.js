@@ -25,6 +25,11 @@ export default function SignUpPage() {
   const [hasPasswordError, setHasPasswordError] = useState(false);
   const [passwordErrorText, setPasswordErrorText] = useState('');
 
+  const [isEmailTouched, setIsEmailTouched] = useState(false);
+  const [isFullNameTouched, setIsFullNameTouched] = useState(false);
+  const [isPasswordTouched, setIsPasswordTouched] = useState(false);
+
+  const [isTyping, setIsTyping] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
   const locale = useLocale();
@@ -83,6 +88,18 @@ export default function SignUpPage() {
     }
   };
 
+  const isFormValid =
+    isEmailTouched &&
+    isFullNameTouched &&
+    isPasswordTouched &&
+    !hasEmailError &&
+    !hasFullNameError &&
+    !hasPasswordError &&
+    email.trim() !== '' &&
+    fullName.trim() !== '' &&
+    password.trim() !== '' &&
+    !isTyping;
+
   return (
     <div className="max-w-md mx-auto p-8 mt-8 bg-white shadow rounded">
       <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
@@ -106,10 +123,14 @@ export default function SignUpPage() {
             placeholder={t('signup.email')}
             required
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              if (!isEmailTouched) setIsEmailTouched(true);
+              setEmail(e.target.value);
+            }}
             onDebouncedChange={handleEmailDebounced}
             error={hasEmailError}
             errorText={emailErrorText}
+            setIsTyping={setIsTyping}
           />
 
           <InputPalco
@@ -117,10 +138,14 @@ export default function SignUpPage() {
             placeholder={t('signup.full-name')}
             value={fullName}
             required
-            onChange={(e) => setFullName(e.target.value)}
+            onChange={(e) => {
+              if (!isFullNameTouched) setIsFullNameTouched(true);
+              setFullName(e.target.value);
+            }}
             onDebouncedChange={handleNameDebounced}
             error={hasFullNameError}
             errorText={fullNameErrorText}
+            setIsTyping={setIsTyping}
           />
 
           <InputPalco
@@ -128,16 +153,21 @@ export default function SignUpPage() {
             placeholder={t('signup.password')}
             required
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              if (!isPasswordTouched) setIsPasswordTouched(true);
+              setPassword(e.target.value);
+            }}
             onDebouncedChange={handlePasswordDebounced}
             showToggle
             error={hasPasswordError}
             errorText={passwordErrorText}
+            setIsTyping={setIsTyping}
           />
           <ButtonPalco
             text={t('signup.sign-up')}
             type={ButtonType.Submit}
             rank={ButtonRank.Primary}
+            disabled={!isFormValid}
           />
         </form>
       </ClientOnly>
