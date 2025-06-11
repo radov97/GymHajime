@@ -101,7 +101,7 @@ export default function SignUpPage() {
     !isTyping;
 
   return (
-    <div className="max-w-md mx-auto p-8 mt-8 bg-white shadow rounded">
+    <div className="max-w-md w-full mx-auto p-8 mt-8 bg-white/60 backdrop-blur-md shadow-xl rounded-2xl transition-all duration-300">
       <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
         {t('signup.new-account')}
       </h2>
