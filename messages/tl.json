@@ -1,1 +1,24 @@
-{"signup":{"already-have-account":"Mayroon ka nang account?","new-account":"Bagong Account","sign-ip":"Mag-sign in","sign-up":"Mag-sign Up","sign-up-info":"Mag-sign up sa Google o sa iyong email address"},"header":{"header-tagline":" Connect Beyond Travel","login":"Mag-login","signup":"Mag-sign Up"}}
+{
+  "validations": {
+    "has-email-error": "Mangyaring magpasok ng wastong email address.",
+    "has-full-name-error": "Hindi maaaring walang laman ang buong pangalan.",
+    "password-error-1": "Dapat na hindi bababa sa 8 character ang password.",
+    "password-error-2": "Ang password ay dapat magsama ng hindi bababa sa isang malaking titik.",
+    "password-error-3": "Dapat na may kasamang kahit isang espesyal na character ang password."
+  },
+  "signup": {
+    "already-have-account": "Mayroon ka nang account?",
+    "email": "Email",
+    "full-name": "Buong Pangalan",
+    "new-account": "Bagong Account",
+    "password": "Password",
+    "sign-ip": "Mag-sign in",
+    "sign-up": "Mag-sign Up",
+    "sign-up-info": "Mag-sign up sa Google o sa iyong email address"
+  },
+  "header": {
+    "header-tagline": " Connect Beyond Travel",
+    "login": "Mag-login",
+    "signup": "Mag-sign Up"
+  }
+}

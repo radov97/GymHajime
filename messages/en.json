@@ -1,1 +1,20 @@
-{"signup":{"already-have-account":"Already have an account?","new-account":"New Account","sign-ip":"Sign in","sign-up":"Sign Up","sign-up-info":"Sign up with Google or your email address"},"header":{"header-tagline":" Connect Beyond Travel","login":"Login","signup":"Sign Up"}}
+{
+  "validations": {
+    "has-email-error": "Please enter a valid email address.",
+    "has-full-name-error": "Full name cannot be empty.",
+    "password-error-1": "Password must be at least 8 characters.",
+    "password-error-2": "Password must include at least one uppercase letter.",
+    "password-error-3": "Password must include at least one special character."
+  },
+  "signup": {
+    "already-have-account": "Already have an account?",
+    "email": "Email",
+    "full-name": "Full Name",
+    "new-account": "New Account",
+    "password": "Password",
+    "sign-ip": "Sign in",
+    "sign-up": "Sign Up",
+    "sign-up-info": "Sign up with Google or your email address"
+  },
+  "header": { "header-tagline": " Connect Beyond Travel", "login": "Login", "signup": "Sign Up" }
+}

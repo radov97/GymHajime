@@ -1,1 +1,24 @@
-{"signup":{"already-have-account":"Vous avez déjà un compte ?","new-account":"Nouveau compte","sign-ip":"Se connecter","sign-up":"S'inscrire","sign-up-info":"Inscrivez-vous avec Google ou votre adresse e-mail"},"header":{"header-tagline":" Connectez-vous au-delà du voyage","login":"Se connecter","signup":"S'inscrire"}}
+{
+  "validations": {
+    "has-email-error": "S'il vous plaît, mettez une adresse email valide.",
+    "has-full-name-error": "Le nom complet ne peut pas être vide.",
+    "password-error-1": "Le mot de passe doit comporter au moins 8 caractères.",
+    "password-error-2": "Le mot de passe doit inclure au moins une lettre majuscule.",
+    "password-error-3": "Le mot de passe doit inclure au moins un caractère spécial."
+  },
+  "signup": {
+    "already-have-account": "Vous avez déjà un compte ?",
+    "email": "E-mail",
+    "full-name": "Nom et prénom",
+    "new-account": "Nouveau compte",
+    "password": "Mot de passe",
+    "sign-ip": "Se connecter",
+    "sign-up": "S'inscrire",
+    "sign-up-info": "Inscrivez-vous avec Google ou votre adresse e-mail"
+  },
+  "header": {
+    "header-tagline": " Connectez-vous au-delà du voyage",
+    "login": "Se connecter",
+    "signup": "S'inscrire"
+  }
+}

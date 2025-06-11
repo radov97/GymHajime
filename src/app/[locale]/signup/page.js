@@ -10,7 +10,7 @@ import ClientOnly from '@/lib/ClientOnly';
 import ButtonPalco from '@/components/ButtonPalco';
 import InputPalco from '@/components/InputPalco';
 import { ButtonRank, ButtonType, InputType } from '@/lib/enums';
-import { isNotEmptyString, isValidEmail, validatePassword } from '@/lib/helperFunctions';
+import { isNotEmptyString, isValidEmail, useValidatedPassword } from '@/lib/helperFunctions';
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('');
@@ -28,7 +28,9 @@ export default function SignUpPage() {
   const [error, setError] = useState('');
   const router = useRouter();
   const locale = useLocale();
-  const t = useTranslations('signup');
+  const t = useTranslations();
+
+  const validatePassword = useValidatedPassword();
 
   async function handleSignup(e) {
     e.preventDefault();
@@ -55,7 +57,7 @@ export default function SignUpPage() {
       setEmailErrorText('');
     } else {
       setHasEmailError(true);
-      setEmailErrorText('Please enter a valid email address.');
+      setEmailErrorText(t('validations.has-email-error'));
     }
   };
 
@@ -65,7 +67,7 @@ export default function SignUpPage() {
       setFullNameErrorText('');
     } else {
       setHasFullNameError(true);
-      setFullNameErrorText('Full name cannot be empty.');
+      setFullNameErrorText(t('validations.has-full-name-error'));
     }
   };
 
@@ -84,9 +86,11 @@ export default function SignUpPage() {
   return (
     <div className="max-w-md mx-auto p-8 mt-8 bg-white shadow rounded">
       <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
-        {t('new-account')}
+        {t('signup.new-account')}
       </h2>
-      <p className="mb-4 text-sm text-gray-600 text-center cursor-default">{t('sign-up-info')}</p>
+      <p className="mb-4 text-sm text-gray-600 text-center cursor-default">
+        {t('signup.sign-up-info')}
+      </p>
 
       <button
         onClick={signInWithGoogle}
@@ -99,7 +103,7 @@ export default function SignUpPage() {
         <form onSubmit={handleSignup} className="space-y-4">
           <InputPalco
             type={InputType.Email}
-            placeholder="Email"
+            placeholder={t('signup.email')}
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -110,7 +114,7 @@ export default function SignUpPage() {
 
           <InputPalco
             type={InputType.Text}
-            placeholder="Full Name"
+            placeholder={t('signup.full-name')}
             value={fullName}
             required
             onChange={(e) => setFullName(e.target.value)}
@@ -121,7 +125,7 @@ export default function SignUpPage() {
 
           <InputPalco
             type={InputType.Password}
-            placeholder="Password"
+            placeholder={t('signup.password')}
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -130,18 +134,22 @@ export default function SignUpPage() {
             error={hasPasswordError}
             errorText={passwordErrorText}
           />
-          <ButtonPalco text={t('sign-up')} type={ButtonType.Submit} rank={ButtonRank.Primary} />
+          <ButtonPalco
+            text={t('signup.sign-up')}
+            type={ButtonType.Submit}
+            rank={ButtonRank.Primary}
+          />
         </form>
       </ClientOnly>
       {error && <p className="text-red-600 mt-4">{error}</p>}
 
       <p className="mt-4 text-sm text-center cursor-default">
-        {t('already-have-account')}{' '}
+        {t('signup.already-have-account')}{' '}
         <Link
           href={`/${locale}/login`}
           className="text-[var(--color-palco)] text-sm font-medium underline transition-all duration-200 ease-in-out hover:text-[17px]"
         >
-          {t('sign-ip')}
+          {t('signup.sign-ip')}
         </Link>
       </p>
     </div>

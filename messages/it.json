@@ -1,1 +1,24 @@
-{"signup":{"already-have-account":"Hai già un account?","new-account":"Nuovo account","sign-ip":"Registrazione","sign-up":"Iscrizione","sign-up-info":"Registrati con Google o con il tuo indirizzo email"},"header":{"header-tagline":" Connettiti oltre il viaggio","login":"Login","signup":"Iscrizione"}}
+{
+  "validations": {
+    "has-email-error": "Si prega di inserire un indirizzo email valido.",
+    "has-full-name-error": "Il nome completo non può essere vuoto.",
+    "password-error-1": "La password deve contenere almeno 8 caratteri.",
+    "password-error-2": "La password deve contenere almeno una lettera maiuscola.",
+    "password-error-3": "La password deve contenere almeno un carattere speciale."
+  },
+  "signup": {
+    "already-have-account": "Hai già un account?",
+    "email": "E-mail",
+    "full-name": "Nome e cognome",
+    "new-account": "Nuovo account",
+    "password": "Password",
+    "sign-ip": "Registrazione",
+    "sign-up": "Iscrizione",
+    "sign-up-info": "Registrati con Google o con il tuo indirizzo email"
+  },
+  "header": {
+    "header-tagline": " Connettiti oltre il viaggio",
+    "login": "Login",
+    "signup": "Iscrizione"
+  }
+}
