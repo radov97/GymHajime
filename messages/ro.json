@@ -1,1 +1,14 @@
-{"header":{"header-tagline":" Conectează-te dincolo de călătorii","login":"Log in","signup":"Înregistrare"}}
+{
+  "signup": {
+    "already-have-account": "Ai deja un cont?",
+    "new-account": "Cont nou",
+    "sign-ip": "Conectare",
+    "sign-up": "Înregistrare",
+    "sign-up-info": "Înregistrează-te cu Google sau cu adresa ta de e-mail"
+  },
+  "header": {
+    "header-tagline": " Conectează-te dincolo de călătorii",
+    "login": "Log in",
+    "signup": "Înregistrare"
+  }
+}

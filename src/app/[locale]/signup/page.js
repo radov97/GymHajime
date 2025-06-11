@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import supabase from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Eye, EyeOff } from 'lucide-react';
 import ClientOnly from '@/lib/ClientOnly';
+import ButtonPalco from '@/components/ButtonPalco';
+import { ButtonRank, ButtonType } from '@/lib/enums';
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('');
@@ -17,6 +19,7 @@ export default function SignUpPage() {
   const [error, setError] = useState('');
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations('signup');
 
   async function handleSignup(e) {
     e.preventDefault();
@@ -40,11 +43,9 @@ export default function SignUpPage() {
   return (
     <div className="max-w-md mx-auto p-8 mt-8 bg-white shadow rounded">
       <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center">
-        New Account
+        {t('new-account')}
       </h2>
-      <p className="mb-4 text-sm text-gray-600 text-center">
-        Sign up with Google or your email address
-      </p>
+      <p className="mb-4 text-sm text-gray-600 text-center">{t('sign-up-info')}</p>
 
       <button
         onClick={signInWithGoogle}
@@ -88,20 +89,15 @@ export default function SignUpPage() {
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
-          <button
-            type="submit"
-            className="w-full bg-[var(--color-palco)] text-white font-semibold py-2 rounded hover:opacity-90"
-          >
-            Sign Up
-          </button>
+          <ButtonPalco text={t('sign-up')} type={ButtonType.Submit} rank={ButtonRank.Primary} />
         </form>
       </ClientOnly>
       {error && <p className="text-red-600 mt-4">{error}</p>}
 
       <p className="mt-4 text-sm text-center">
-        Already have an account?{' '}
+        {t('already-have-account')}{' '}
         <Link href={`/${locale}/login`} className="text-[var(--color-palco)] font-medium underline">
-          Sign in
+          {t('sign-ip')}
         </Link>
       </p>
     </div>

@@ -1,1 +1,14 @@
-{"header":{"header-tagline":" Connectez-vous au-delà du voyage","login":"Se connecter","signup":"S'inscrire"}}
+{
+  "signup": {
+    "already-have-account": "Vous avez déjà un compte ?",
+    "new-account": "Nouveau compte",
+    "sign-ip": "Se connecter",
+    "sign-up": "S'inscrire",
+    "sign-up-info": "Inscrivez-vous avec Google ou votre adresse e-mail"
+  },
+  "header": {
+    "header-tagline": " Connectez-vous au-delà du voyage",
+    "login": "Se connecter",
+    "signup": "S'inscrire"
+  }
+}

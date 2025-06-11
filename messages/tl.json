@@ -1,1 +1,14 @@
-{"header":{"header-tagline":" Connect Beyond Travel","login":"Mag-login","signup":"Mag-sign Up"}}
+{
+  "signup": {
+    "already-have-account": "Mayroon ka nang account?",
+    "new-account": "Bagong Account",
+    "sign-ip": "Mag-sign in",
+    "sign-up": "Mag-sign Up",
+    "sign-up-info": "Mag-sign up sa Google o sa iyong email address"
+  },
+  "header": {
+    "header-tagline": " Connect Beyond Travel",
+    "login": "Mag-login",
+    "signup": "Mag-sign Up"
+  }
+}

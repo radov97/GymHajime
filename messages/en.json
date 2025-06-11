@@ -1,1 +1,10 @@
-{"header":{"header-tagline":" Connect Beyond Travel","login":"Login","signup":"Sign Up"}}
+{
+  "signup": {
+    "already-have-account": "Already have an account?",
+    "new-account": "New Account",
+    "sign-ip": "Sign in",
+    "sign-up": "Sign Up",
+    "sign-up-info": "Sign up with Google or your email address"
+  },
+  "header": { "header-tagline": " Connect Beyond Travel", "login": "Login", "signup": "Sign Up" }
+}
