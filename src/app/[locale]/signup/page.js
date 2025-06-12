@@ -12,6 +12,7 @@ import InputPalco from '@/components/InputPalco';
 import { ButtonRank, ButtonType, InputType } from '@/lib/enums';
 import { isNotEmptyString, isValidEmail, useValidatedPassword } from '@/lib/helperFunctions';
 import FormContainerPalco from '@/components/FormContainerPalco';
+import GoogleButtonPalco from '@/components/GoogleButtonPalco';
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('');
@@ -109,14 +110,8 @@ export default function SignUpPage() {
       <p className="mb-4 text-sm text-gray-600 text-center cursor-default">
         {t('signup.sign-up-info')}
       </p>
+      <GoogleButtonPalco text={t('signup.google-button')} onClick={signInWithGoogle} />
 
-      <button
-        onClick={signInWithGoogle}
-        className="w-full flex items-center justify-center gap-2 border p-2 rounded mb-6 bg-white hover:bg-gray-50"
-      >
-        <Image src="/google-icon.png" alt="Google" width={40} height={40} />
-        Sign up with Google
-      </button>
       <ClientOnly>
         <form onSubmit={handleSignup} className="space-y-4">
           <InputPalco
