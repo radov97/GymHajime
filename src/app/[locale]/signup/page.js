@@ -5,7 +5,6 @@ import supabase from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import Image from 'next/image';
 import ClientOnly from '@/lib/ClientOnly';
 import ButtonPalco from '@/components/ButtonPalco';
 import InputPalco from '@/components/InputPalco';
