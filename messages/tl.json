@@ -17,6 +17,11 @@
     "sign-up": "Mag-sign Up",
     "sign-up-info": "Mag-sign up sa Google o sa iyong email address"
   },
+  "auth-confirmed": {
+    "continue": "Magpatuloy",
+    "email-confirmed": "Nakumpirma ang Email!",
+    "welcome-message": "Naghihintay ang iyong bagong Palco. Handa ka nang mag-explore, kumonekta, at magbahagi ng mga karanasan."
+  },
   "header": {
     "header-tagline": " Connect Beyond Travel",
     "login": "Mag-login",

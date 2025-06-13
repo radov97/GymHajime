@@ -44,7 +44,7 @@ export default function InputPalco({
     isPassword && showToggle ? (showPassword ? InputType.Text : InputType.Password) : type;
 
   const baseStyles =
-    'w-full border p-2 rounded focus:outline-none transition-all duration-200 ease-in-out';
+    'w-full border p-2 rounded focus:outline-none transition-all duration-200 ease-in-out hover:brightness-110';
   const hoverStyles = !disabled ? 'hover:shadow-md hover:scale-[1.01]' : '';
   const disabledStyles = disabled ? 'opacity-60 bg-gray-100 cursor-not-allowed' : '';
   const errorStyles =

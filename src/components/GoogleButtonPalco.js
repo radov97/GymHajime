@@ -17,7 +17,7 @@ export default function GoogleButtonPalco({
     baseStyles,
     'bg-[#fbfafb]',
     isInteractive
-      ? 'cursor-pointer hover:opacity-90 hover:scale-[1.01] hover:shadow-md'
+      ? 'cursor-pointer hover:opacity-90 hover:brightness-110 hover:scale-[1.01] hover:shadow-md'
       : 'opacity-60 cursor-not-allowed',
     'text-[var(--color-palco-dark)] border-[var(--color-palco-dark)]',
   ].join(' ');

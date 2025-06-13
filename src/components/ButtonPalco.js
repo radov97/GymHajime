@@ -4,7 +4,7 @@ import { Loader } from 'lucide-react';
 import { ButtonType, ButtonRank } from '@/lib/enums';
 
 export default function ButtonPalco({
-  type = ButtonType.Submit,
+  type = ButtonType.Button,
   text,
   rank = ButtonRank.Primary,
   disabled = false,
@@ -19,6 +19,8 @@ export default function ButtonPalco({
         return 'bg-[var(--color-palco)] text-white';
       case ButtonRank.Secondary:
         return 'bg-gray-200 text-gray-800';
+      case ButtonRank.Link:
+        return 'bg-[var(--color-palco-soft)] text-[var(--color-palco)] border border-[var(--color-palco)]';
       default:
         return '';
     }
@@ -31,7 +33,7 @@ export default function ButtonPalco({
     getRankStyles(rank),
     className,
     isInteractive
-      ? 'cursor-pointer hover:opacity-90 hover:scale-[1.01] hover:shadow-md'
+      ? 'cursor-pointer hover:opacity-90 hover:brightness-110 hover:scale-[1.01] hover:shadow-md'
       : 'opacity-60 cursor-not-allowed',
   ].join(' ');
 

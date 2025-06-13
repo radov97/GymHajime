@@ -42,13 +42,9 @@ export default async function LocaleLayout({ children, params }) {
   const messages = await loadMessages(locale);
 
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <ResponsiveHeader />
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <ResponsiveHeader />
+      {children}
+    </NextIntlClientProvider>
   );
 }

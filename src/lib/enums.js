@@ -8,6 +8,7 @@ export const ButtonType = {
 export const ButtonRank = {
   Primary: 'primary',
   Secondary: 'secondary',
+  Link: 'link',
 };
 
 export const InputType = {

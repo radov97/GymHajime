@@ -17,6 +17,11 @@
     "sign-up": "Înregistrare",
     "sign-up-info": "Înregistrează-te cu Google sau cu adresa ta de e-mail"
   },
+  "auth-confirmed": {
+    "continue": "Continua",
+    "email-confirmed": "Email confirmat!",
+    "welcome-message": "Noul tău Palco te așteaptă. Ești gata să explorezi, să te conectezi și să împărtășești experiențe."
+  },
   "header": {
     "header-tagline": " Conectează-te dincolo de călătorii",
     "login": "Log in",

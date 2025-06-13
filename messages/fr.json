@@ -17,6 +17,11 @@
     "sign-up": "S'inscrire",
     "sign-up-info": "Inscrivez-vous avec Google ou votre adresse e-mail"
   },
+  "auth-confirmed": {
+    "continue": "Continuer",
+    "email-confirmed": "E-mail confirmé !",
+    "welcome-message": "Votre nouveau Palco vous attend. Vous êtes prêt à explorer, à vous connecter et à partager vos expériences."
+  },
   "header": {
     "header-tagline": " Connectez-vous au-delà du voyage",
     "login": "Se connecter",

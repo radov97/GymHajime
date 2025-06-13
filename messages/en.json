@@ -17,5 +17,10 @@
     "sign-up": "Sign Up",
     "sign-up-info": "Sign up with Google or your email address"
   },
+  "auth-confirmed": {
+    "continue": "Continue",
+    "email-confirmed": "Email Confirmed!",
+    "welcome-message": "Your new Palco awaits. You are all set to explore, connect, and share experiences."
+  },
   "header": { "header-tagline": " Connect Beyond Travel", "login": "Login", "signup": "Sign Up" }
 }

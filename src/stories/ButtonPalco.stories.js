@@ -56,6 +56,16 @@ Secondary.args = {
   onClick: () => console.log('Secondary button clicked'),
 };
 
+export const Link = Template.bind({});
+Link.args = {
+  text: 'Redirect me to ...',
+  rank: ButtonRank.Link,
+  type: ButtonType.Button,
+  loading: false,
+  disabled: false,
+  onClick: () => console.log('Secondary button clicked'),
+};
+
 export const Loading = Template.bind({});
 Loading.args = {
   text: 'Loading...',
