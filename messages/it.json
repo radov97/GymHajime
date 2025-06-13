@@ -15,6 +15,7 @@
     "password": "Password",
     "sign-ip": "Registrazione",
     "sign-up": "Iscrizione",
+    "signup-error": "Si è verificato un errore. Riprova più tardi.",
     "sign-up-info": "Registrati con Google o con il tuo indirizzo email"
   },
   "auth-confirmed": {

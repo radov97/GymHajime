@@ -15,6 +15,7 @@
     "password": "Password",
     "sign-ip": "Mag-sign in",
     "sign-up": "Mag-sign Up",
+    "signup-error": "Nagkaproblema. Pakisubukang muli sa ilang sandali.",
     "sign-up-info": "Mag-sign up sa Google o sa iyong email address"
   },
   "auth-confirmed": {

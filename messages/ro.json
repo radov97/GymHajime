@@ -15,6 +15,7 @@
     "password": "Parolă",
     "sign-ip": "Conectare",
     "sign-up": "Înregistrare",
+    "signup-error": "Ceva nu a mers bine. Vă rugăm să încercați din nou în scurt timp.",
     "sign-up-info": "Înregistrează-te cu Google sau cu adresa ta de e-mail"
   },
   "auth-confirmed": {

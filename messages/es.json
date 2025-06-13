@@ -15,6 +15,7 @@
     "password": "Contraseña",
     "sign-ip": "Iniciar sesión",
     "sign-up": "Inscribirse",
+    "signup-error": "Algo salió mal. Inténtalo de nuevo en breve.",
     "sign-up-info": "Regístrate con Google o tu dirección de correo electrónico"
   },
   "auth-confirmed": {

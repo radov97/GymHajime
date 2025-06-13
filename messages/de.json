@@ -15,6 +15,7 @@
     "password": "Passwort",
     "sign-ip": "anmelden",
     "sign-up": "Melden Sie sich an",
+    "signup-error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es in Kürze noch einmal.",
     "sign-up-info": "Mit Google oder Ihrer E-Mail-Adresse anmelden"
   },
   "auth-confirmed": {

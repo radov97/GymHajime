@@ -31,7 +31,8 @@ export default function SignUpPage() {
   const [isPasswordTouched, setIsPasswordTouched] = useState(false);
 
   const [isTyping, setIsTyping] = useState(false);
-  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations();
@@ -40,17 +41,28 @@ export default function SignUpPage() {
 
   async function handleSignup(e) {
     e.preventDefault();
+    setIsLoading(true);
+    setError(false);
+
+    const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/auth/confirmed`;
 
     const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
+        emailRedirectTo: redirectUrl,
         data: { full_name: fullName },
       },
     });
 
-    if (error) setError(error.message);
-    else router.push(`/${locale}/login`); // or redirect with locale
+    setIsLoading(false);
+
+    if (error) {
+      console.error(error.message);
+      setError(true);
+    } else {
+      router.push(`/${locale}/login`);
+    }
   }
 
   async function signInWithGoogle() {
@@ -163,10 +175,11 @@ export default function SignUpPage() {
             type={ButtonType.Submit}
             rank={ButtonRank.Primary}
             disabled={!isFormValid}
+            loading={isLoading}
           />
         </form>
       </ClientOnly>
-      {error && <p className="text-red-600 mt-4">{error}</p>}
+      {error && <p className="text-red-600 mt-4">{t('signup.signup-error')}</p>}
 
       <p className="mt-4 text-sm text-center cursor-default">
         {t('signup.already-have-account')}{' '}

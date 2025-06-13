@@ -15,6 +15,7 @@
     "password": "Mot de passe",
     "sign-ip": "Se connecter",
     "sign-up": "S'inscrire",
+    "signup-error": "Une erreur s'est produite. Veuillez réessayer prochainement.",
     "sign-up-info": "Inscrivez-vous avec Google ou votre adresse e-mail"
   },
   "auth-confirmed": {

@@ -15,6 +15,7 @@
     "password": "Password",
     "sign-ip": "Sign in",
     "sign-up": "Sign Up",
+    "signup-error": "Something went wrong. Please try again shortly.",
     "sign-up-info": "Sign up with Google or your email address"
   },
   "auth-confirmed": {

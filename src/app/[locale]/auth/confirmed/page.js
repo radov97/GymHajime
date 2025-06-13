@@ -2,23 +2,25 @@
 
 import ButtonPalco from '@/components/ButtonPalco';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { ButtonRank } from '@/lib/enums';
 import { useEffect } from 'react';
 
 export default function LocaleConfirmedPage() {
   const t = useTranslations('auth-confirmed');
   const router = useRouter();
+  const locale = useLocale();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push('/'); // or '/dashboard' when ready
-    }, 4000);
+      router.push(`/${locale}/login`);
+    }, 10000);
 
     return () => clearTimeout(timer);
-  }, [router]);
+  }, [router, locale]);
+
   const handleContinue = () => {
-    router.push('/');
+    router.push(`/${locale}/login`);
   };
 
   return (
