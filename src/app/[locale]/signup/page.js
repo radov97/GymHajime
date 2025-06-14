@@ -185,7 +185,7 @@ export default function SignUpPage() {
         {t('signup.already-have-account')}{' '}
         <Link
           href={`/${locale}/login`}
-          className="text-[var(--color-palco)] text-sm font-medium underline transition-all duration-200 ease-in-out hover:text-[17px]"
+          className="text-[var(--color-palco)] text-sm font-medium hover:underline"
         >
           {t('signup.sign-ip')}
         </Link>

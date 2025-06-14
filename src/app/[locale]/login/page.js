@@ -7,6 +7,11 @@ import InputPalco from '@/components/InputPalco';
 import ButtonPalco from '@/components/ButtonPalco';
 import GoogleButtonPalco from '@/components/GoogleButtonPalco';
 import Link from 'next/link';
+import { ButtonRank, ButtonType, InputType } from '@/lib/enums';
+import { isNotEmptyString } from '@/lib/helperFunctions';
+import { useLocale, useTranslations } from 'next-intl';
+import FormContainerPalco from '@/components/FormContainerPalco';
+import ClientOnly from '@/lib/ClientOnly';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -15,6 +20,8 @@ export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const errorParam = searchParams.get('error');
+  const locale = useLocale();
+  const t = useTranslations('login');
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -32,56 +39,69 @@ export default function LoginPage() {
     setLoading(false);
   };
 
+  async function signInWithGoogle() {
+    // await supabase.auth.signInWithOAuth({ provider: 'google' });
+    // check here what to do
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#fbfafb] px-4">
-      <div className="w-full max-w-md p-8 bg-white shadow-md rounded-xl text-center">
-        <h1 className="text-3xl font-bold mb-2">Sign in</h1>
-        <p className="text-gray-600 mb-6">Hey there... Welcome back!</p>
+    <FormContainerPalco>
+      <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
+        {t('login')}
+      </h2>
+      <p className="mb-4 text-sm text-gray-600 text-center cursor-default">
+        {t('welcome-message')}
+      </p>
+      <GoogleButtonPalco text={t('google-sign-in')} onClick={signInWithGoogle} />
 
-        <GoogleButtonPalco className="mb-6" />
-
+      <ClientOnly>
         <form onSubmit={handleLogin} className="space-y-4">
           <InputPalco
-            label="Email"
-            type="email"
+            type={InputType.Email}
+            placeholder={t('email')}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <InputPalco
-            label="Password"
-            type="password"
+            type={InputType.Password}
+            placeholder={t('password')}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            showToggle
           />
 
-          <div className="text-right text-sm">
-            <button
-              type="button"
-              onClick={() => {
-                // TODO: Open your modal logic here
-              }}
-              className="text-blue-600 hover:underline focus:outline-none"
-            >
-              Forgot your password?
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => {
+              // TODO: Open your modal logic here
+            }}
+            className="text-[var(--color-palco)] text-sm font-medium hover:underline text-left cursor-pointer"
+          >
+            {t('forgot-password')}
+          </button>
 
-          <ButtonPalco type="submit" text="Sign in" loading={loading} className="mt-2" />
+          <ButtonPalco
+            type={ButtonType.Submit}
+            rank={ButtonRank.Primary}
+            text={t('login')}
+            loading={loading}
+            className="mt-2"
+          />
         </form>
+      </ClientOnly>
+      {errorParam && <p className="text-red-600 mt-4">{decodeURIComponent(errorParam)}</p>}
 
-        <p className="mt-6 text-sm text-gray-700">
-          New User?{' '}
-          <Link href="/signup" className="text-blue-700 font-semibold hover:underline">
-            Sign Up
-          </Link>
-        </p>
-
-        {errorParam && (
-          <p className="mt-4 text-sm text-red-500">{decodeURIComponent(errorParam)}</p>
-        )}
-      </div>
-    </div>
+      <p className="mt-4 text-sm text-center cursor-default">
+        {t('new-user')}{' '}
+        <Link
+          href={`/${locale}/signup`}
+          className="text-[var(--color-palco)] text-sm font-medium hover:underline"
+        >
+          {t('sign-up')}
+        </Link>
+      </p>
+    </FormContainerPalco>
   );
 }

@@ -1,1 +1,37 @@
-{"validations":{"has-email-error":"Please enter a valid email address.","has-full-name-error":"Full name cannot be empty.","password-error-1":"Password must be at least 8 characters.","password-error-2":"Password must include at least one uppercase letter.","password-error-3":"Password must include at least one special character."},"signup":{"already-have-account":"Already have an account?","email":"Email","full-name":"Full Name","google-button":"Sign up with Google","new-account":"New Account","password":"Password","sign-ip":"Sign in","sign-up":"Sign Up","signup-error":"Something went wrong. Please try again shortly.","sign-up-info":"Sign up with Google or your email address"},"auth-confirmed":{"continue":"Continue","email-confirmed":"Email Confirmed!","welcome-message":"Your new Palco awaits. You are all set to explore, connect, and share experiences."},"header":{"header-tagline":" Connect Beyond Travel","login":"Login","signup":"Sign Up"}}
+{
+  "validations": {
+    "has-email-error": "Please enter a valid email address.",
+    "has-full-name-error": "Full name cannot be empty.",
+    "password-error-1": "Password must be at least 8 characters.",
+    "password-error-2": "Password must include at least one uppercase letter.",
+    "password-error-3": "Password must include at least one special character."
+  },
+  "signup": {
+    "already-have-account": "Already have an account?",
+    "email": "Email",
+    "full-name": "Full Name",
+    "google-button": "Sign up with Google",
+    "new-account": "New Account",
+    "password": "Password",
+    "sign-ip": "Sign in",
+    "sign-up": "Sign Up",
+    "signup-error": "Something went wrong. Please try again shortly.",
+    "sign-up-info": "Sign up with Google or your email address"
+  },
+  "auth-confirmed": {
+    "continue": "Continue",
+    "email-confirmed": "Email Confirmed!",
+    "welcome-message": "Your new Palco awaits. You are all set to explore, connect, and share experiences."
+  },
+  "login": {
+    "email": "Email",
+    "forgot-password": "Forgot your password?",
+    "google-sign-in": "Sign in with Google",
+    "login": "Login",
+    "new-user": " New User?",
+    "password": "Password",
+    "sign-up": "Sign up",
+    "welcome-message": "Hey there... Welcome back!"
+  },
+  "header": { "header-tagline": " Connect Beyond Travel", "login": "Login", "signup": "Sign Up" }
+}
