@@ -179,7 +179,7 @@ export default function SignUpPage() {
           />
         </form>
       </ClientOnly>
-      {error && <p className="text-red-600 mt-4">{t('signup.signup-error')}</p>}
+      {error && <p className="text-red-600 mt-4">{t('validations.signup-error')}</p>}
 
       <p className="mt-4 text-sm text-center cursor-default">
         {t('signup.already-have-account')}{' '}

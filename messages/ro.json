@@ -2,10 +2,12 @@
   "validations": {
     "has-email-error": "Vă rugăm să introduceți o adresă de email validă.",
     "has-full-name-error": "Numele complet nu poate fi gol.",
+    "login-error-email-not-confirmed": "Vă rugăm să vă verificați adresa de e-mail pentru a continua. Verificați inbox-ul sau folderul de spam pentru linkul de confirmare.",
+    "login-error-invalid-credentials": "Adresă de e-mail sau parolă incorectă. Vă rugăm să încercați din nou. Asigurați-vă că aveți majuscule dezactivate.",
     "password-error-1": "Parola trebuie să aibă cel puțin 8 caractere.",
     "password-error-2": "Parola trebuie să includă cel puțin o literă mare.",
     "password-error-3": "Parola trebuie să includă cel puțin un caracter special.",
-    "password-error-4": "Parola nu poate fi lăsată goală."
+    "signup-error": "Ceva nu a mers bine. Vă rugăm să încercați din nou în scurt timp."
   },
   "signup": {
     "already-have-account": "Ai deja un cont?",
@@ -16,7 +18,6 @@
     "password": "Parolă",
     "sign-ip": "Conectare",
     "sign-up": "Înregistrare",
-    "signup-error": "Ceva nu a mers bine. Vă rugăm să încercați din nou în scurt timp.",
     "sign-up-info": "Înregistrează-te cu Google sau cu adresa ta de e-mail"
   },
   "auth-confirmed": {

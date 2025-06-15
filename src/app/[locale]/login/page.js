@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import supabase from '@/lib/supabaseClient';
 import InputPalco from '@/components/InputPalco';
 import ButtonPalco from '@/components/ButtonPalco';
 import GoogleButtonPalco from '@/components/GoogleButtonPalco';
 import Link from 'next/link';
-import { ButtonRank, ButtonType, InputType } from '@/lib/enums';
-import { isNotEmptyString, isValidEmail, useValidatedPassword } from '@/lib/helperFunctions';
+import { ButtonRank, ButtonType, InputType, LoginFailureCodes } from '@/lib/enums';
+import { isValidEmail, useValidatedPassword } from '@/lib/helperFunctions';
 import { useLocale, useTranslations } from 'next-intl';
 import FormContainerPalco from '@/components/FormContainerPalco';
 import ClientOnly from '@/lib/ClientOnly';
@@ -26,10 +26,9 @@ export default function LoginPage() {
 
   const [isTyping, setIsTyping] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loginErrorText, setLoginErrorText] = useState('');
 
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const errorParam = searchParams.get('error');
   const locale = useLocale();
   const t = useTranslations();
   const validatePassword = useValidatedPassword();
@@ -68,14 +67,25 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setLoginErrorText('');
 
     const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
-      console.error(error.message);
-      alert('Something went wrong. Please try again later.');
+      switch (error.code) {
+        case LoginFailureCodes.EmailNotConfirmed:
+          setLoginErrorText(t('validations.login-error-email-not-confirmed'));
+          break;
+        case LoginFailureCodes.InvalidCredentials:
+          setLoginErrorText(t('validations.login-error-invalid-credentials'));
+          break;
+        default:
+          console.error(error.message);
+          setLoginErrorText(t('validations.signup-error'));
+          break;
+      }
     } else {
-      router.push('/');
+      router.push(`/${locale}`); // go to dashboard when ready
     }
 
     setLoading(false);
@@ -147,7 +157,7 @@ export default function LoginPage() {
         </form>
       </ClientOnly>
 
-      {errorParam && <p className="text-red-600 mt-4">{decodeURIComponent(errorParam)}</p>}
+      {loginErrorText && <p className="text-red-600 mt-4">{loginErrorText}</p>}
 
       <p className="mt-4 text-sm text-center cursor-default">
         {t('login.new-user')}{' '}

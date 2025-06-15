@@ -2,10 +2,12 @@
   "validations": {
     "has-email-error": "Mangyaring magpasok ng wastong email address.",
     "has-full-name-error": "Hindi maaaring walang laman ang buong pangalan.",
+    "login-error-email-not-confirmed": "Paki-verify ang iyong email upang magpatuloy. Tingnan ang iyong inbox o folder ng spam para sa link ng kumpirmasyon.",
+    "login-error-invalid-credentials": "Maling email o password. Pakisubukang muli. Tiyaking naka-off ang iyong caps lock.",
     "password-error-1": "Dapat na hindi bababa sa 8 character ang password.",
     "password-error-2": "Ang password ay dapat magsama ng hindi bababa sa isang malaking titik.",
     "password-error-3": "Dapat na may kasamang kahit isang espesyal na character ang password.",
-    "password-error-4": "Hindi maaaring walang laman ang password."
+    "signup-error": "Nagkaproblema. Pakisubukang muli sa ilang sandali."
   },
   "signup": {
     "already-have-account": "Mayroon ka nang account?",
@@ -16,7 +18,6 @@
     "password": "Password",
     "sign-ip": "Mag-sign in",
     "sign-up": "Mag-sign Up",
-    "signup-error": "Nagkaproblema. Pakisubukang muli sa ilang sandali.",
     "sign-up-info": "Mag-sign up sa Google o sa iyong email address"
   },
   "auth-confirmed": {

@@ -2,10 +2,12 @@
   "validations": {
     "has-email-error": "Si prega di inserire un indirizzo email valido.",
     "has-full-name-error": "Il nome completo non può essere vuoto.",
+    "login-error-email-not-confirmed": "Verifica il tuo indirizzo email per continuare. Controlla la posta in arrivo o la cartella spam per il link di conferma.",
+    "login-error-invalid-credentials": "Email o password errate. Riprova. Assicurati che il Blocco Maiuscole sia disattivato.",
     "password-error-1": "La password deve contenere almeno 8 caratteri.",
     "password-error-2": "La password deve contenere almeno una lettera maiuscola.",
     "password-error-3": "La password deve contenere almeno un carattere speciale.",
-    "password-error-4": "La password non può essere vuota."
+    "signup-error": "Si è verificato un errore. Riprova più tardi."
   },
   "signup": {
     "already-have-account": "Hai già un account?",
@@ -16,7 +18,6 @@
     "password": "Password",
     "sign-ip": "Registrazione",
     "sign-up": "Iscrizione",
-    "signup-error": "Si è verificato un errore. Riprova più tardi.",
     "sign-up-info": "Registrati con Google o con il tuo indirizzo email"
   },
   "auth-confirmed": {

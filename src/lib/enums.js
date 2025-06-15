@@ -16,3 +16,8 @@ export const InputType = {
   Password: 'password',
   Email: 'email',
 };
+
+export const LoginFailureCodes = {
+  EmailNotConfirmed: 'email_not_confirmed',
+  InvalidCredentials: 'invalid_credentials',
+};
