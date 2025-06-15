@@ -1,1 +1,44 @@
-{"validations":{"has-email-error":"Si prega di inserire un indirizzo email valido.","has-full-name-error":"Il nome completo non può essere vuoto.","login-error-email-not-confirmed":"Verifica il tuo indirizzo email per continuare. Controlla la posta in arrivo o la cartella spam per il link di conferma.","login-error-invalid-credentials":"Email o password errate. Riprova. Assicurati che il Blocco Maiuscole sia disattivato.","password-error-1":"La password deve contenere almeno 8 caratteri.","password-error-2":"La password deve contenere almeno una lettera maiuscola.","password-error-3":"La password deve contenere almeno un carattere speciale.","signup-error":"Si è verificato un errore. Riprova più tardi."},"signup":{"already-have-account":"Hai già un account?","email":"E-mail","full-name":"Nome e cognome","google-button":"Registrati con Google","new-account":"Nuovo account","password":"Password","sign-ip":"Registrazione","sign-up":"Iscrizione","sign-up-info":"Registrati con Google o con il tuo indirizzo email"},"auth-confirmed":{"continue":"Continuare","email-confirmed":"Email confermata!","welcome-message":"Il tuo nuovo Palco ti aspetta. Sei pronto per esplorare, connetterti e condividere esperienze."},"login":{"email":"E-mail","forgot-password":"Hai dimenticato la password?","google-sign-in":"Accedi con Google","login":"Login","new-user":" Nuovo utente?","password":"Password","sign-up":"Iscrizione","welcome-message":"Ciao... Bentornati!"},"header":{"header-tagline":" Connettiti oltre il viaggio","login":"Login","signup":"Iscrizione"}}
+{
+  "validations": {
+    "has-email-error": "Si prega di inserire un indirizzo email valido.",
+    "has-full-name-error": "Il nome completo non può essere vuoto.",
+    "login-error-email-not-confirmed": "Verifica il tuo indirizzo email per continuare. Controlla la posta in arrivo o la cartella spam per il link di conferma.",
+    "login-error-invalid-credentials": "Email o password errate. Riprova. Assicurati che il Blocco Maiuscole sia disattivato.",
+    "password-error-1": "La password deve contenere almeno 8 caratteri.",
+    "password-error-2": "La password deve contenere almeno una lettera maiuscola.",
+    "password-error-3": "La password deve contenere almeno un carattere speciale.",
+    "signup-error": "Si è verificato un errore. Riprova più tardi."
+  },
+  "signup": {
+    "already-have-account": "Hai già un account?",
+    "email": "E-mail",
+    "full-name": "Nome e cognome",
+    "google-button": "Registrati con Google",
+    "new-account": "Nuovo account",
+    "password": "Password",
+    "sign-ip": "Registrazione",
+    "sign-up": "Iscrizione",
+    "sign-up-info": "Registrati con Google o con il tuo indirizzo email"
+  },
+  "auth-confirmed": {
+    "continue": "Continuare",
+    "email-confirmed": "Email confermata!",
+    "signing-you-in": "Accesso in corso...",
+    "welcome-message": "Il tuo nuovo Palco ti aspetta. Sei pronto per esplorare, connetterti e condividere esperienze."
+  },
+  "login": {
+    "email": "E-mail",
+    "forgot-password": "Hai dimenticato la password?",
+    "google-sign-in": "Accedi con Google",
+    "login": "Login",
+    "new-user": " Nuovo utente?",
+    "password": "Password",
+    "sign-up": "Iscrizione",
+    "welcome-message": "Ciao... Bentornati!"
+  },
+  "header": {
+    "header-tagline": " Connettiti oltre il viaggio",
+    "login": "Login",
+    "signup": "Iscrizione"
+  }
+}

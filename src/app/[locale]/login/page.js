@@ -94,7 +94,7 @@ export default function LoginPage() {
   async function signInWithGoogle() {
     setLoading(true);
     setLoginErrorText('');
-    const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}`; // go to dashboard when ready
+    const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/auth/callback`; // go to dashboard when ready
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',

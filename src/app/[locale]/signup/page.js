@@ -66,7 +66,21 @@ export default function SignUpPage() {
   }
 
   async function signInWithGoogle() {
-    await supabase.auth.signInWithOAuth({ provider: 'google' });
+    setIsLoading(true);
+    setError(false);
+    const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/auth/callback`; // go to dashboard when ready
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: redirectUrl,
+      },
+    });
+
+    if (error) {
+      console.error('Google sign up error:', error.message);
+      setError(true);
+    }
+    setIsLoading(false);
   }
 
   const handleEmailDebounced = (val) => {
