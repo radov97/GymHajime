@@ -9,7 +9,7 @@ export default function ModalPopupPalco({ isOpen, children, title, buttons = [] 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <FormContainerPalco className="bg-[var(--color-palco-soft)]" noBg={true}>
+      <FormContainerPalco className="bg-[var(--color-palco-modal-bg)]" noBg={true}>
         {title && (
           <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-left cursor-default">
             {title}

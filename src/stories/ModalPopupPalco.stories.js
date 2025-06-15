@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import ModalPopupPalco from '../components/ModalPopupPalco';
 import { ButtonRank, ButtonType } from '@/lib/enums';
+import InputPalco from '@/components/InputPalco';
 
 export default {
   title: 'ModalPopupPalco',
@@ -42,10 +43,11 @@ export function Default() {
         <p className="text-sm text-gray-600 mb-2">
           Enter your email to receive a password reset link.
         </p>
-        <input
+        <InputPalco
           type="email"
           placeholder="you@example.com"
-          className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+          className="text-sm"
+          onChange={() => {}}
         />
       </ModalPopupPalco>
     </>
