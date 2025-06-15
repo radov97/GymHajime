@@ -8,7 +8,7 @@
   --color-palco-accent: #ff8b3d; /* strong call-to-action orange */
   --color-palco-soft: #fff4df; /* background cream tone */
   --color-palco-black: #2b1c14; /* deeper text/border contrast */
-  --color-palco-modal-bg: #ffd27d;
+  --color-palco-modal-bg: #ffe0a4;
 
   --color-background: var(--color-palco-soft);
   --color-foreground: var(--color-palco-dark);
