@@ -4,7 +4,8 @@
     "has-full-name-error": "Le nom complet ne peut pas être vide.",
     "password-error-1": "Le mot de passe doit comporter au moins 8 caractères.",
     "password-error-2": "Le mot de passe doit inclure au moins une lettre majuscule.",
-    "password-error-3": "Le mot de passe doit inclure au moins un caractère spécial."
+    "password-error-3": "Le mot de passe doit inclure au moins un caractère spécial.",
+    "password-error-4": "Le mot de passe ne peut pas être vide."
   },
   "signup": {
     "already-have-account": "Vous avez déjà un compte ?",

@@ -4,7 +4,8 @@
     "has-full-name-error": "Hindi maaaring walang laman ang buong pangalan.",
     "password-error-1": "Dapat na hindi bababa sa 8 character ang password.",
     "password-error-2": "Ang password ay dapat magsama ng hindi bababa sa isang malaking titik.",
-    "password-error-3": "Dapat na may kasamang kahit isang espesyal na character ang password."
+    "password-error-3": "Dapat na may kasamang kahit isang espesyal na character ang password.",
+    "password-error-4": "Hindi maaaring walang laman ang password."
   },
   "signup": {
     "already-have-account": "Mayroon ka nang account?",

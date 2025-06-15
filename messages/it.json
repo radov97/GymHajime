@@ -4,7 +4,8 @@
     "has-full-name-error": "Il nome completo non può essere vuoto.",
     "password-error-1": "La password deve contenere almeno 8 caratteri.",
     "password-error-2": "La password deve contenere almeno una lettera maiuscola.",
-    "password-error-3": "La password deve contenere almeno un carattere speciale."
+    "password-error-3": "La password deve contenere almeno un carattere speciale.",
+    "password-error-4": "La password non può essere vuota."
   },
   "signup": {
     "already-have-account": "Hai già un account?",

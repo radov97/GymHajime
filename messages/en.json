@@ -4,7 +4,8 @@
     "has-full-name-error": "Full name cannot be empty.",
     "password-error-1": "Password must be at least 8 characters.",
     "password-error-2": "Password must include at least one uppercase letter.",
-    "password-error-3": "Password must include at least one special character."
+    "password-error-3": "Password must include at least one special character.",
+    "password-error-4": "Password cannot be empty."
   },
   "signup": {
     "already-have-account": "Already have an account?",

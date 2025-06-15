@@ -4,7 +4,8 @@
     "has-full-name-error": "Numele complet nu poate fi gol.",
     "password-error-1": "Parola trebuie să aibă cel puțin 8 caractere.",
     "password-error-2": "Parola trebuie să includă cel puțin o literă mare.",
-    "password-error-3": "Parola trebuie să includă cel puțin un caracter special."
+    "password-error-3": "Parola trebuie să includă cel puțin un caracter special.",
+    "password-error-4": "Parola nu poate fi lăsată goală."
   },
   "signup": {
     "already-have-account": "Ai deja un cont?",
