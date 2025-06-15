@@ -92,7 +92,22 @@ export default function LoginPage() {
   };
 
   async function signInWithGoogle() {
-    await supabase.auth.signInWithOAuth({ provider: 'google' });
+    setLoading(true);
+    setLoginErrorText('');
+    const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}`; // go to dashboard when ready
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: redirectUrl,
+      },
+    });
+
+    if (error) {
+      console.error('Google login error:', error.message);
+      setLoginErrorText(t('validations.signup-error'));
+    }
+    setLoading(false);
   }
 
   return (
