@@ -12,6 +12,7 @@ import { isValidEmail, useValidatedPassword } from '@/lib/helperFunctions';
 import { useLocale, useTranslations } from 'next-intl';
 import FormContainerPalco from '@/components/FormContainerPalco';
 import ClientOnly from '@/lib/ClientOnly';
+import ModalPopupPalco from '@/components/ModalPopupPalco';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -27,6 +28,7 @@ export default function LoginPage() {
   const [isTyping, setIsTyping] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loginErrorText, setLoginErrorText] = useState('');
+  const [showForgotModal, setShowForgotModal] = useState(false);
 
   const router = useRouter();
   const locale = useLocale();
@@ -111,78 +113,104 @@ export default function LoginPage() {
   }
 
   return (
-    <FormContainerPalco>
-      <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
-        {t('login.login')}
-      </h2>
-      <p className="mb-4 text-sm text-gray-600 text-center cursor-default">
-        {t('login.welcome-message')}
-      </p>
-      <GoogleButtonPalco text={t('login.google-sign-in')} onClick={signInWithGoogle} />
+    <>
+      <FormContainerPalco>
+        <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
+          {t('login.login')}
+        </h2>
+        <p className="mb-4 text-sm text-gray-600 text-center cursor-default">
+          {t('login.welcome-message')}
+        </p>
+        <GoogleButtonPalco text={t('login.google-sign-in')} onClick={signInWithGoogle} />
 
-      <ClientOnly>
-        <form onSubmit={handleLogin} className="space-y-4">
-          <InputPalco
-            type={InputType.Email}
-            placeholder={t('login.email')}
-            value={email}
-            onChange={(e) => {
-              if (!isEmailTouched) setIsEmailTouched(true);
-              setEmail(e.target.value);
-            }}
-            onDebouncedChange={handleEmailDebounced}
-            error={hasEmailError}
-            errorText={emailErrorText}
-            required
-            setIsTyping={setIsTyping}
-          />
-          <InputPalco
-            type={InputType.Password}
-            placeholder={t('login.password')}
-            value={password}
-            onChange={(e) => {
-              if (!isPasswordTouched) setIsPasswordTouched(true);
-              setPassword(e.target.value);
-            }}
-            onDebouncedChange={handlePasswordDebounced}
-            error={hasPasswordError}
-            errorText={passwordErrorText}
-            required
-            showToggle
-            setIsTyping={setIsTyping}
-          />
+        <ClientOnly>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <InputPalco
+              type={InputType.Email}
+              placeholder={t('login.email')}
+              value={email}
+              onChange={(e) => {
+                if (!isEmailTouched) setIsEmailTouched(true);
+                setEmail(e.target.value);
+              }}
+              onDebouncedChange={handleEmailDebounced}
+              error={hasEmailError}
+              errorText={emailErrorText}
+              required
+              setIsTyping={setIsTyping}
+            />
+            <InputPalco
+              type={InputType.Password}
+              placeholder={t('login.password')}
+              value={password}
+              onChange={(e) => {
+                if (!isPasswordTouched) setIsPasswordTouched(true);
+                setPassword(e.target.value);
+              }}
+              onDebouncedChange={handlePasswordDebounced}
+              error={hasPasswordError}
+              errorText={passwordErrorText}
+              required
+              showToggle
+              setIsTyping={setIsTyping}
+            />
 
-          <button
-            type="button"
-            onClick={() => {
-              // TODO: Open your modal logic here
-            }}
-            className="text-[var(--color-palco)] text-sm font-medium hover:underline text-left cursor-pointer"
+            <button
+              type="button"
+              onClick={() => setShowForgotModal(true)}
+              className="text-[var(--color-palco)] text-sm font-medium hover:underline text-left cursor-pointer"
+            >
+              {t('login.forgot-password')}
+            </button>
+
+            <ButtonPalco
+              type={ButtonType.Submit}
+              rank={ButtonRank.Primary}
+              text={t('login.login')}
+              loading={loading}
+              disabled={!isFormValid}
+            />
+          </form>
+        </ClientOnly>
+
+        {loginErrorText && <p className="text-red-600 mt-4">{loginErrorText}</p>}
+
+        <p className="mt-4 text-sm text-center cursor-default">
+          {t('login.new-user')}{' '}
+          <Link
+            href={`/${locale}/signup`}
+            className="text-[var(--color-palco)] text-sm font-medium hover:underline"
           >
-            {t('login.forgot-password')}
-          </button>
+            {t('login.sign-up')}
+          </Link>
+        </p>
+      </FormContainerPalco>
+      {/* Forgot Password Modal */}
+      <ModalPopupPalco
+        isOpen={showForgotModal}
+        title={'Forgot Password'}
+        buttons={[
+          {
+            text: 'Cancel',
+            onClick: () => setShowForgotModal(false),
+            rank: ButtonRank.Secondary,
+            type: ButtonType.Button,
+          },
+          {
+            text: 'Send',
+            onClick: () => {
+              alert('Reset link sent'); // Replace with real logic
+              setShowForgotModal(false);
+            },
+            type: ButtonType.Button,
+            rank: ButtonRank.Primary,
+          },
+        ]}
+      >
+        <p className="text-sm text-gray-600 mb-2">{'Add instructions here'}</p>
 
-          <ButtonPalco
-            type={ButtonType.Submit}
-            rank={ButtonRank.Primary}
-            text={t('login.login')}
-            loading={loading}
-            disabled={!isFormValid}
-          />
-        </form>
-      </ClientOnly>
-
-      {loginErrorText && <p className="text-red-600 mt-4">{loginErrorText}</p>}
-
-      <p className="mt-4 text-sm text-center cursor-default">
-        {t('login.new-user')}{' '}
-        <Link
-          href={`/${locale}/signup`}
-          className="text-[var(--color-palco)] text-sm font-medium hover:underline"
-        >
-          {t('login.sign-up')}
-        </Link>
-      </p>
-    </FormContainerPalco>
+        <InputPalco type="email" placeholder={t('login.email')} onChange={() => {}} />
+      </ModalPopupPalco>
+    </>
   );
 }
