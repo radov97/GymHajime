@@ -1,8 +1,8 @@
-import GoogleButtonPalco from '../components/GoogleButtonPalco';
+import GoogleButton from '../components/GoogleButton';
 
 export default {
-  title: 'GoogleButtonPalco',
-  component: GoogleButtonPalco,
+  title: 'GoogleButton',
+  component: GoogleButton,
   argTypes: {
     text: { control: 'text' },
     width: { control: 'number' },
@@ -13,7 +13,7 @@ export default {
 
 const Template = (args) => (
   <div className="max-w-xs mx-auto p-4 bg-gray-100 rounded">
-    <GoogleButtonPalco {...args} />
+    <GoogleButton {...args} />
   </div>
 );
 

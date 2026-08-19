@@ -16,7 +16,7 @@
     "google-button": "Înregistrează-te cu Google",
     "new-account": "Cont nou",
     "password": "Parolă",
-    "sign-ip": "Conectare",
+    "sign-in": "Conectare",
     "sign-up": "Înregistrare",
     "sign-up-info": "Înregistrează-te cu Google sau cu adresa ta de e-mail"
   },
@@ -24,7 +24,7 @@
     "continue": "Continua",
     "email-confirmed": "Email confirmat!",
     "signing-you-in": "Se conectează...",
-    "welcome-message": "Noul tău Palco te așteaptă. Ești gata să explorezi, să te conectezi și să împărtășești experiențe."
+    "welcome-message": "Călătoria ta cu GymHajime începe acum. Creează rutine, urmărește-ți progresul și antrenează-te cu un scop."
   },
   "login": {
     "email": "E-mail",
@@ -37,7 +37,7 @@
     "welcome-message": "Salut... Bine ai revenit!"
   },
   "header": {
-    "header-tagline": " Conectează-te dincolo de călătorii",
+    "header-tagline": " Antrenează-te cu un scop",
     "login": "Log in",
     "signup": "Înregistrare"
   }

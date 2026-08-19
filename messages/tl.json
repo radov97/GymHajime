@@ -16,7 +16,7 @@
     "google-button": "Mag-sign up sa Google",
     "new-account": "Bagong Account",
     "password": "Password",
-    "sign-ip": "Mag-sign in",
+    "sign-in": "Mag-sign in",
     "sign-up": "Mag-sign Up",
     "sign-up-info": "Mag-sign up sa Google o sa iyong email address"
   },
@@ -24,7 +24,7 @@
     "continue": "Magpatuloy",
     "email-confirmed": "Nakumpirma ang Email!",
     "signing-you-in": "Sina-sign in ka...",
-    "welcome-message": "Naghihintay ang iyong bagong Palco. Handa ka nang mag-explore, kumonekta, at magbahagi ng mga karanasan."
+    "welcome-message": "Nagsisimula na ang iyong paglalakbay sa GymHajime. Gumawa ng mga workout routine, subaybayan ang iyong progreso, at magsanay nang may layunin."
   },
   "login": {
     "email": "Email",
@@ -37,7 +37,7 @@
     "welcome-message": "Hoy... Maligayang pagbabalik!"
   },
   "header": {
-    "header-tagline": " Connect Beyond Travel",
+    "header-tagline": " Magsanay nang may layunin",
     "login": "Mag-login",
     "signup": "Mag-sign Up"
   }

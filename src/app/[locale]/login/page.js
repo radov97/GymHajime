@@ -3,16 +3,16 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import supabase from '@/lib/supabaseClient';
-import InputPalco from '@/components/InputPalco';
-import ButtonPalco from '@/components/ButtonPalco';
-import GoogleButtonPalco from '@/components/GoogleButtonPalco';
+import Input from '@/components/Input';
+import Button from '@/components/Button';
+import GoogleButton from '@/components/GoogleButton';
 import Link from 'next/link';
 import { ButtonRank, ButtonType, InputType, LoginFailureCodes } from '@/lib/enums';
 import { isValidEmail, useValidatedPassword } from '@/lib/helperFunctions';
 import { useLocale, useTranslations } from 'next-intl';
-import FormContainerPalco from '@/components/FormContainerPalco';
+import FormContainer from '@/components/FormContainer';
 import ClientOnly from '@/lib/ClientOnly';
-import ModalPopupPalco from '@/components/ModalPopupPalco';
+import ModalPopup from '@/components/ModalPopup';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -114,18 +114,18 @@ export default function LoginPage() {
 
   return (
     <>
-      <FormContainerPalco>
-        <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
+      <FormContainer>
+        <h2 className="text-2xl font-bold text-[var(--color-brand-ink)] mb-2 text-center cursor-default">
           {t('login.login')}
         </h2>
         <p className="mb-4 text-sm text-gray-600 text-center cursor-default">
           {t('login.welcome-message')}
         </p>
-        <GoogleButtonPalco text={t('login.google-sign-in')} onClick={signInWithGoogle} />
+        <GoogleButton text={t('login.google-sign-in')} onClick={signInWithGoogle} />
 
         <ClientOnly>
           <form onSubmit={handleLogin} className="space-y-4">
-            <InputPalco
+            <Input
               type={InputType.Email}
               placeholder={t('login.email')}
               value={email}
@@ -139,7 +139,7 @@ export default function LoginPage() {
               required
               setIsTyping={setIsTyping}
             />
-            <InputPalco
+            <Input
               type={InputType.Password}
               placeholder={t('login.password')}
               value={password}
@@ -158,12 +158,12 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => setShowForgotModal(true)}
-              className="text-[var(--color-palco)] text-sm font-medium hover:underline text-left cursor-pointer"
+              className="text-[var(--color-brand)] text-sm font-medium hover:underline text-left cursor-pointer"
             >
               {t('login.forgot-password')}
             </button>
 
-            <ButtonPalco
+            <Button
               type={ButtonType.Submit}
               rank={ButtonRank.Primary}
               text={t('login.login')}
@@ -179,14 +179,14 @@ export default function LoginPage() {
           {t('login.new-user')}{' '}
           <Link
             href={`/${locale}/signup`}
-            className="text-[var(--color-palco)] text-sm font-medium hover:underline"
+            className="text-[var(--color-brand)] text-sm font-medium hover:underline"
           >
             {t('login.sign-up')}
           </Link>
         </p>
-      </FormContainerPalco>
+      </FormContainer>
       {/* Forgot Password Modal */}
-      <ModalPopupPalco
+      <ModalPopup
         isOpen={showForgotModal}
         title={'Forgot Password'}
         buttons={[
@@ -209,8 +209,8 @@ export default function LoginPage() {
       >
         <p className="text-sm text-gray-600 mb-2">{'Add instructions here'}</p>
 
-        <InputPalco type="email" placeholder={t('login.email')} onChange={() => {}} />
-      </ModalPopupPalco>
+        <Input type="email" placeholder={t('login.email')} onChange={() => {}} />
+      </ModalPopup>
     </>
   );
 }

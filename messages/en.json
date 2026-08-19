@@ -16,7 +16,7 @@
     "google-button": "Sign up with Google",
     "new-account": "New Account",
     "password": "Password",
-    "sign-ip": "Sign in",
+    "sign-in": "Sign in",
     "sign-up": "Sign Up",
     "sign-up-info": "Sign up with Google or your email address"
   },
@@ -24,7 +24,7 @@
     "continue": "Continue",
     "email-confirmed": "Email Confirmed!",
     "signing-you-in": "Signing you in...",
-    "welcome-message": "Your new Palco awaits. You are all set to explore, connect, and share experiences."
+    "welcome-message": "Your GymHajime journey starts now. Build routines, track your progress, and train with purpose."
   },
   "login": {
     "email": "Email",
@@ -36,5 +36,5 @@
     "sign-up": "Sign up",
     "welcome-message": "Hey there... Welcome back!"
   },
-  "header": { "header-tagline": " Connect Beyond Travel", "login": "Login", "signup": "Sign Up" }
+  "header": { "header-tagline": " Train with purpose", "login": "Login", "signup": "Sign Up" }
 }

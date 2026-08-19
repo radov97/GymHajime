@@ -4,7 +4,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { InputType } from '@/lib/enums';
 
-export default function InputPalco({
+export default function Input({
   type = InputType.Text,
   value,
   onChange,
@@ -50,7 +50,7 @@ export default function InputPalco({
   const errorStyles =
     !disabled && error
       ? 'border-red-500 bg-red-50 placeholder-red-400'
-      : 'border-[var(--color-palco)] bg-[var(--color-palco-soft)] focus:ring-[var(--color-palco)]';
+      : 'border-[var(--color-brand)] bg-[var(--color-brand-soft)] focus:ring-[var(--color-brand)]';
   const paddingRight = isPassword && showToggle ? 'pr-10' : '';
 
   const combinedClassNames = [

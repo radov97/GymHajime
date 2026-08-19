@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-export default function GoogleButtonPalco({
+export default function GoogleButton({
   text = 'Sign up with Google',
   width = 40,
   height = 40,
@@ -19,7 +19,7 @@ export default function GoogleButtonPalco({
     isInteractive
       ? 'cursor-pointer hover:opacity-90 hover:brightness-110 hover:scale-[1.01] hover:shadow-md'
       : 'opacity-60 cursor-not-allowed',
-    'text-[var(--color-palco-dark)] border-[var(--color-palco-dark)]',
+    'text-[var(--color-brand-dark)] border-[var(--color-brand-dark)]',
   ].join(' ');
 
   return (

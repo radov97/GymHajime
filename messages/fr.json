@@ -16,7 +16,7 @@
     "google-button": "Inscrivez-vous avec Google",
     "new-account": "Nouveau compte",
     "password": "Mot de passe",
-    "sign-ip": "Se connecter",
+    "sign-in": "Se connecter",
     "sign-up": "S'inscrire",
     "sign-up-info": "Inscrivez-vous avec Google ou votre adresse e-mail"
   },
@@ -24,7 +24,7 @@
     "continue": "Continuer",
     "email-confirmed": "E-mail confirmé !",
     "signing-you-in": "Je vous connecte...",
-    "welcome-message": "Votre nouveau Palco vous attend. Vous êtes prêt à explorer, à vous connecter et à partager vos expériences."
+    "welcome-message": "Votre parcours GymHajime commence maintenant. Créez vos programmes, suivez vos progrès et entraînez-vous avec un objectif."
   },
   "login": {
     "email": "E-mail",
@@ -37,7 +37,7 @@
     "welcome-message": "Salut... Bienvenue !"
   },
   "header": {
-    "header-tagline": " Connectez-vous au-delà du voyage",
+    "header-tagline": " Entraînez-vous avec un objectif",
     "login": "Se connecter",
     "signup": "S'inscrire"
   }

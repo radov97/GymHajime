@@ -3,7 +3,7 @@
 import { Loader } from 'lucide-react';
 import { ButtonType, ButtonRank } from '@/lib/enums';
 
-export default function ButtonPalco({
+export default function Button({
   type = ButtonType.Button,
   text,
   rank = ButtonRank.Primary,
@@ -16,11 +16,11 @@ export default function ButtonPalco({
   const getRankStyles = (rank) => {
     switch (rank) {
       case ButtonRank.Primary:
-        return 'bg-[var(--color-palco)] text-white';
+        return 'bg-[var(--color-brand)] text-white';
       case ButtonRank.Secondary:
         return 'bg-gray-200 text-gray-800';
       case ButtonRank.Link:
-        return 'bg-[var(--color-palco-soft)] text-[var(--color-palco)] border border-[var(--color-palco)]';
+        return 'bg-[var(--color-brand-soft)] text-[var(--color-brand)] border border-[var(--color-brand)]';
       default:
         return '';
     }

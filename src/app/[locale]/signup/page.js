@@ -6,12 +6,12 @@ import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import ClientOnly from '@/lib/ClientOnly';
-import ButtonPalco from '@/components/ButtonPalco';
-import InputPalco from '@/components/InputPalco';
+import Button from '@/components/Button';
+import Input from '@/components/Input';
 import { ButtonRank, ButtonType, InputType } from '@/lib/enums';
 import { isNotEmptyString, isValidEmail, useValidatedPassword } from '@/lib/helperFunctions';
-import FormContainerPalco from '@/components/FormContainerPalco';
-import GoogleButtonPalco from '@/components/GoogleButtonPalco';
+import FormContainer from '@/components/FormContainer';
+import GoogleButton from '@/components/GoogleButton';
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('');
@@ -128,18 +128,18 @@ export default function SignUpPage() {
     !isTyping;
 
   return (
-    <FormContainerPalco>
-      <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-center cursor-default">
+    <FormContainer>
+      <h2 className="text-2xl font-bold text-[var(--color-brand-ink)] mb-2 text-center cursor-default">
         {t('signup.new-account')}
       </h2>
       <p className="mb-4 text-sm text-gray-600 text-center cursor-default">
         {t('signup.sign-up-info')}
       </p>
-      <GoogleButtonPalco text={t('signup.google-button')} onClick={signInWithGoogle} />
+      <GoogleButton text={t('signup.google-button')} onClick={signInWithGoogle} />
 
       <ClientOnly>
         <form onSubmit={handleSignup} className="space-y-4">
-          <InputPalco
+          <Input
             type={InputType.Email}
             placeholder={t('signup.email')}
             required
@@ -154,7 +154,7 @@ export default function SignUpPage() {
             setIsTyping={setIsTyping}
           />
 
-          <InputPalco
+          <Input
             type={InputType.Text}
             placeholder={t('signup.full-name')}
             value={fullName}
@@ -169,7 +169,7 @@ export default function SignUpPage() {
             setIsTyping={setIsTyping}
           />
 
-          <InputPalco
+          <Input
             type={InputType.Password}
             placeholder={t('signup.password')}
             required
@@ -184,7 +184,7 @@ export default function SignUpPage() {
             errorText={passwordErrorText}
             setIsTyping={setIsTyping}
           />
-          <ButtonPalco
+          <Button
             text={t('signup.sign-up')}
             type={ButtonType.Submit}
             rank={ButtonRank.Primary}
@@ -199,11 +199,11 @@ export default function SignUpPage() {
         {t('signup.already-have-account')}{' '}
         <Link
           href={`/${locale}/login`}
-          className="text-[var(--color-palco)] text-sm font-medium hover:underline"
+          className="text-[var(--color-brand)] text-sm font-medium hover:underline"
         >
-          {t('signup.sign-ip')}
+          {t('signup.sign-in')}
         </Link>
       </p>
-    </FormContainerPalco>
+    </FormContainer>
   );
 }

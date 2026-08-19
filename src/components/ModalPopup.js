@@ -1,17 +1,17 @@
 'use client';
 
 import { ButtonRank, ButtonType } from '@/lib/enums';
-import ButtonPalco from './ButtonPalco';
-import FormContainerPalco from './FormContainerPalco';
+import Button from './Button';
+import FormContainer from './FormContainer';
 
-export default function ModalPopupPalco({ isOpen, children, title, buttons = [] }) {
+export default function ModalPopup({ isOpen, children, title, buttons = [] }) {
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <FormContainerPalco className="bg-[var(--color-palco-modal-bg)]" noBg={true}>
+      <FormContainer className="bg-[var(--color-brand-modal-bg)]" noBg={true}>
         {title && (
-          <h2 className="text-2xl font-bold text-[var(--color-palco-black)] mb-2 text-left cursor-default">
+          <h2 className="text-2xl font-bold text-[var(--color-brand-ink)] mb-2 text-left cursor-default">
             {title}
           </h2>
         )}
@@ -20,7 +20,7 @@ export default function ModalPopupPalco({ isOpen, children, title, buttons = [] 
 
         <div className="flex justify-end gap-2">
           {buttons.map((btn, idx) => (
-            <ButtonPalco
+            <Button
               key={idx}
               type={btn.type || ButtonType.Button}
               rank={btn.rank || ButtonRank.Primary}
@@ -32,7 +32,7 @@ export default function ModalPopupPalco({ isOpen, children, title, buttons = [] 
             />
           ))}
         </div>
-      </FormContainerPalco>
+      </FormContainer>
     </div>
   );
 }

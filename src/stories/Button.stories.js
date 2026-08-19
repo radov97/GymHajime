@@ -1,9 +1,9 @@
-import ButtonPalco from '../components/ButtonPalco';
+import Button from '../components/Button';
 import { ButtonType, ButtonRank } from '@/lib/enums';
 
 export default {
-  title: 'ButtonPalco',
-  component: ButtonPalco,
+  title: 'Button',
+  component: Button,
   argTypes: {
     text: {
       control: 'text',
@@ -34,7 +34,7 @@ export default {
   },
 };
 
-const Template = (args) => <ButtonPalco {...args} />;
+const Template = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

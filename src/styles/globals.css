@@ -1,17 +1,17 @@
 @import 'tailwindcss';
 
-/* ===== Global Color Palette ===== */
+/* ===== GymHajime Color Palette ===== */
 :root {
-  --color-palco: #923b14; /* primary dark brown from logo */
-  --color-palco-dark: #602914; /* deep earthy tone */
-  --color-palco-light: #ffd197; /* warm soft orange for highlights */
-  --color-palco-accent: #ff8b3d; /* strong call-to-action orange */
-  --color-palco-soft: #fff4df; /* background cream tone */
-  --color-palco-black: #2b1c14; /* deeper text/border contrast */
-  --color-palco-modal-bg: #ffe0a4;
+  --color-brand: #f97316;
+  --color-brand-dark: #171717;
+  --color-brand-light: #ffedd5;
+  --color-brand-accent: #fb923c;
+  --color-brand-soft: #fff7ed;
+  --color-brand-ink: #0a0a0a;
+  --color-brand-modal-bg: #ffedd5;
 
-  --color-background: var(--color-palco-soft);
-  --color-foreground: var(--color-palco-dark);
+  --color-background: var(--color-brand-soft);
+  --color-foreground: var(--color-brand-dark);
 }
 
 /* ===== Global Base Styles ===== */

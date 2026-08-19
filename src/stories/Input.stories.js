@@ -1,10 +1,10 @@
-import InputPalco from '../components/InputPalco';
+import Input from '../components/Input';
 import { InputType } from '@/lib/enums';
 import React, { useState } from 'react';
 
 export default {
-  title: 'InputPalco',
-  component: InputPalco,
+  title: 'Input',
+  component: Input,
   argTypes: {
     type: {
       control: { type: 'select' },
@@ -27,7 +27,7 @@ const Template = (args) => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <InputPalco
+      <Input
         {...args}
         value={val}
         onChange={(e) => setVal(e.target.value)}

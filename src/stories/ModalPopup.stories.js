@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import ModalPopupPalco from '../components/ModalPopupPalco';
+import ModalPopup from '../components/ModalPopup';
 import { ButtonRank, ButtonType } from '@/lib/enums';
-import InputPalco from '@/components/InputPalco';
+import Input from '@/components/Input';
 
 export default {
-  title: 'ModalPopupPalco',
-  component: ModalPopupPalco,
+  title: 'ModalPopup',
+  component: ModalPopup,
 };
 
 export function Default() {
@@ -17,12 +17,12 @@ export function Default() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="px-4 py-2 bg-[var(--color-palco)] text-white rounded"
+        className="px-4 py-2 bg-[var(--color-brand)] text-white rounded"
       >
         Open Modal
       </button>
 
-      <ModalPopupPalco
+      <ModalPopup
         isOpen={open}
         title="Reset Password"
         onClose={() => setOpen(false)}
@@ -43,13 +43,8 @@ export function Default() {
         <p className="text-sm text-gray-600 mb-2">
           Enter your email to receive a password reset link.
         </p>
-        <InputPalco
-          type="email"
-          placeholder="you@example.com"
-          className="text-sm"
-          onChange={() => {}}
-        />
-      </ModalPopupPalco>
+        <Input type="email" placeholder="you@example.com" className="text-sm" onChange={() => {}} />
+      </ModalPopup>
     </>
   );
 }

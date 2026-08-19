@@ -1,8 +1,8 @@
-import LinkPalco from '../components/LinkPalco';
+import NavLink from '../components/NavLink';
 
 export default {
-  title: 'LinkPalco',
-  component: LinkPalco,
+  title: 'NavLink',
+  component: NavLink,
   argTypes: {
     text: { control: 'text' },
     href: { control: 'text' },
@@ -13,12 +13,12 @@ const Template = (args) => (
   <div
     className="p-4"
     style={{
-      backgroundColor: 'var(--color-palco-dark)',
+      backgroundColor: 'var(--color-brand-dark)',
       display: 'inline-block',
       borderRadius: '8px',
     }}
   >
-    <LinkPalco {...args} />
+    <NavLink {...args} />
   </div>
 );
 

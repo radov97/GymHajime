@@ -5,11 +5,10 @@ import { locales } from '@/i18n/i18n';
 import ResponsiveHeader from '@/components/ResponsiveHeader';
 
 export const metadata = {
-  title: 'FindPalco',
-  description: 'Connect Beyond Travel',
+  title: 'GymHajime',
+  description: 'Personalised workout planning and fitness tracking across web and mobile.',
   icons: {
     icon: [
-      { url: '/favicon.ico', type: 'image/x-icon' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
@@ -17,7 +16,7 @@ export const metadata = {
   },
   manifest: '/site.webmanifest',
   other: {
-    'theme-color': '#ffffff',
+    'theme-color': '#f97316',
   },
 };
 

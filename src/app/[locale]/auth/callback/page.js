@@ -28,7 +28,7 @@ export default function AuthCallbackPage() {
 
   return (
     <div className="h-screen flex flex-col items-center justify-center text-center space-y-6">
-      <Loader className="animate-spin w-24 h-24 text-[var(--color-palco)]" />
+      <Loader className="animate-spin w-24 h-24 text-[var(--color-brand)]" />
       <p className="mb-4 text-sm text-gray-600 text-center cursor-default">{t('signing-you-in')}</p>
     </div>
   );
