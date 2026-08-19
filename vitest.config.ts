@@ -10,8 +10,27 @@ const dirname =
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  esbuild: {
+    jsx: 'automatic',
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(dirname, 'src'),
+    },
+  },
   test: {
     projects: [
+      {
+        extends: true,
+        test: {
+          name: 'unit',
+          environment: 'jsdom',
+          include: ['src/**/*.test.{ts,tsx}'],
+          setupFiles: ['./vitest.setup.tsx'],
+          restoreMocks: true,
+          clearMocks: true,
+        },
+      },
       {
         extends: true,
         plugins: [
