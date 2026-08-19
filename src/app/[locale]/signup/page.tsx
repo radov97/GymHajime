@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 import supabase from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
@@ -12,8 +12,10 @@ import { ButtonRank, ButtonType, InputType } from '@/lib/enums';
 import { isNotEmptyString, isValidEmail, useValidatedPassword } from '@/lib/helperFunctions';
 import FormContainer from '@/components/FormContainer';
 import GoogleButton from '@/components/GoogleButton';
+import { Loader } from 'lucide-react';
 
 export default function SignUpPage() {
+  const [isCheckingSession, setIsCheckingSession] = useState(true);
   const [email, setEmail] = useState('');
   const [hasEmailError, setHasEmailError] = useState(false);
   const [emailErrorText, setEmailErrorText] = useState('');
@@ -38,6 +40,29 @@ export default function SignUpPage() {
   const t = useTranslations();
 
   const validatePassword = useValidatedPassword();
+
+  useEffect(() => {
+    // Keep authenticated users out of the signup route when they enter or paste
+    // it manually. replace() also prevents Back from returning to signup.
+    void supabase.auth.getUser().then(({ data }) => {
+      if (data.user) {
+        router.replace(`/${locale}/dashboard`);
+        return;
+      }
+
+      setIsCheckingSession(false);
+    });
+  }, [locale, router]);
+
+  // Avoid briefly exposing the signup form while an existing session is checked.
+  if (isCheckingSession) {
+    return (
+      <main className="flex min-h-[60vh] items-center justify-center" role="status">
+        <Loader className="h-10 w-10 animate-spin text-[var(--color-brand)]" aria-hidden="true" />
+        <span className="sr-only">Checking session...</span>
+      </main>
+    );
+  }
 
   async function handleSignup(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

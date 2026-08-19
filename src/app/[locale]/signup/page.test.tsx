@@ -4,11 +4,15 @@ import { renderWithIntl } from '../../../test/render';
 
 const mocks = vi.hoisted(() => ({
   push: vi.fn(),
+  replace: vi.fn(),
+  getUser: vi.fn(),
   signUp: vi.fn(),
   signInWithOAuth: vi.fn(),
 }));
 
-vi.mock('next/navigation', () => ({ useRouter: () => ({ push: mocks.push }) }));
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: mocks.push, replace: mocks.replace }),
+}));
 vi.mock('next-intl', async (importOriginal) => {
   const actual = await importOriginal<typeof import('next-intl')>();
   return { ...actual, useLocale: () => 'en' };
@@ -16,6 +20,7 @@ vi.mock('next-intl', async (importOriginal) => {
 vi.mock('../../../lib/supabaseClient', () => ({
   default: {
     auth: {
+      getUser: mocks.getUser,
       signUp: mocks.signUp,
       signInWithOAuth: mocks.signInWithOAuth,
     },
@@ -41,6 +46,7 @@ describe('SignUpPage', () => {
   beforeEach(() => {
     vi.useFakeTimers();
     process.env.NEXT_PUBLIC_SITE_URL = 'http://localhost:3000';
+    mocks.getUser.mockResolvedValue({ data: { user: null } });
     mocks.signUp.mockResolvedValue({ error: null });
     mocks.signInWithOAuth.mockResolvedValue({ error: null });
   });
@@ -48,6 +54,8 @@ describe('SignUpPage', () => {
 
   it('creates an account with profile metadata and confirmation redirect', async () => {
     renderWithIntl(<SignUpPage />);
+    await act(async () => Promise.resolve());
+    expect(screen.getByPlaceholderText('Email')).toBeInTheDocument();
     completeSignupForm();
     vi.useRealTimers();
     const submit = screen.getByRole('button', { name: 'Sign Up' });
@@ -70,6 +78,8 @@ describe('SignUpPage', () => {
   it('shows the generic error when signup fails', async () => {
     mocks.signUp.mockResolvedValue({ error: { message: 'Signup failed' } });
     renderWithIntl(<SignUpPage />);
+    await act(async () => Promise.resolve());
+    expect(screen.getByPlaceholderText('Email')).toBeInTheDocument();
     completeSignupForm();
     vi.useRealTimers();
     fireEvent.click(screen.getByRole('button', { name: 'Sign Up' }));
@@ -79,12 +89,22 @@ describe('SignUpPage', () => {
   it('starts Google OAuth with the localized callback URL', async () => {
     renderWithIntl(<SignUpPage />);
     vi.useRealTimers();
-    fireEvent.click(screen.getByRole('button', { name: /Sign up with Google/ }));
+    fireEvent.click(await screen.findByRole('button', { name: /Sign up with Google/ }));
     await waitFor(() =>
       expect(mocks.signInWithOAuth).toHaveBeenCalledWith({
         provider: 'google',
         options: { redirectTo: 'http://localhost:3000/en/auth/callback' },
       })
     );
+  });
+
+  it('redirects an existing session away from a hardcoded signup URL', async () => {
+    mocks.getUser.mockResolvedValue({ data: { user: { id: 'user-1' } } });
+    renderWithIntl(<SignUpPage />);
+    expect(screen.getByRole('status')).toHaveTextContent('Checking session...');
+    expect(screen.queryByRole('heading', { name: 'New Account' })).not.toBeInTheDocument();
+    vi.useRealTimers();
+
+    await waitFor(() => expect(mocks.replace).toHaveBeenCalledWith('/en/dashboard'));
   });
 });

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import supabase from '@/lib/supabaseClient';
 import Input from '@/components/Input';
@@ -13,8 +13,10 @@ import { useLocale, useTranslations } from 'next-intl';
 import FormContainer from '@/components/FormContainer';
 import ClientOnly from '@/lib/ClientOnly';
 import ModalPopup from '@/components/ModalPopup';
+import { Loader } from 'lucide-react';
 
 export default function LoginPage() {
+  const [isCheckingSession, setIsCheckingSession] = useState(true);
   const [email, setEmail] = useState('');
   const [hasEmailError, setHasEmailError] = useState(false);
   const [isEmailTouched, setIsEmailTouched] = useState(false);
@@ -34,6 +36,29 @@ export default function LoginPage() {
   const locale = useLocale();
   const t = useTranslations();
   const validatePassword = useValidatedPassword();
+
+  useEffect(() => {
+    // Keep authenticated users out of the login route when they enter or paste
+    // it manually. replace() also prevents Back from returning to the login page.
+    void supabase.auth.getUser().then(({ data }) => {
+      if (data.user) {
+        router.replace(`/${locale}/dashboard`);
+        return;
+      }
+
+      setIsCheckingSession(false);
+    });
+  }, [locale, router]);
+
+  // Avoid briefly exposing the login form while an existing session is checked.
+  if (isCheckingSession) {
+    return (
+      <main className="flex min-h-[60vh] items-center justify-center" role="status">
+        <Loader className="h-10 w-10 animate-spin text-[var(--color-brand)]" aria-hidden="true" />
+        <span className="sr-only">Checking session...</span>
+      </main>
+    );
+  }
 
   const handleEmailDebounced = (val: string) => {
     if (isValidEmail(val)) {
