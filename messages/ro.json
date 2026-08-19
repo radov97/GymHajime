@@ -48,6 +48,47 @@
     "signup": "Înregistrare",
     "user": "Utilizator"
   },
+  "hajime-info": {
+    "action": "Să începem →",
+    "closing": "Rutina ta. Progresul tău. Hajime-ul tău.",
+    "introduction": {
+      "build": "Construiește un program săptămânal potrivit pentru tine, alege exercițiile, urmărește fiecare sesiune și vezi-ți progresul în timp.",
+      "idea": "GymHajime pornește de la o idee simplă: nu mai aștepta, rupe rutina și începe.",
+      "verb": "Din verbul japonez <em>hajimeru</em> (始める): „a începe”."
+    },
+    "sections": {
+      "dashboard": {
+        "paragraph-1": "Concentrează-te pe ceea ce contează acum.",
+        "paragraph-2": "Vezi dintr-o privire antrenamentul de ieri, antrenamentul de astăzi și planul de mâine.",
+        "paragraph-3": "Folosește-l ca memento zilnic pentru ce ai făcut, ce ai de făcut astăzi și ce urmează.",
+        "title": "PANOU DE CONTROL"
+      },
+      "discover": {
+        "paragraph-1": "Nu trebuie să-ți construiești rutina singur.",
+        "paragraph-2": "Descoperă alți utilizatori GymHajime și programele de antrenament pe care aleg să le facă publice.",
+        "paragraph-3": "Găsește exerciții noi, inspiră-te din modul în care se antrenează ceilalți și descoperă rutine potrivite pentru tine.",
+        "paragraph-4": "Ai găsit o rutină care îți place? Fă-o a ta.",
+        "title": "DESCOPERĂ"
+      },
+      "plan": {
+        "paragraph-1": "Creează-ți rutina de antrenament de luni până duminică.",
+        "paragraph-2": "Alege exercițiile, seturile și repetările și află mereu ce urmează să antrenezi.",
+        "title": "PLANIFICĂ"
+      },
+      "progress": {
+        "paragraph-1": "Păstrează istoricul antrenamentelor și urmărește evoluția forței, consecvenței și performanței.",
+        "title": "PROGRES"
+      },
+      "train": {
+        "paragraph-1": "Transformă antrenamentul planificat într-o sesiune reală.",
+        "paragraph-2": "Înregistrează seturile, repetările și greutățile pe măsură ce te antrenezi.",
+        "title": "ANTRENEAZĂ-TE"
+      }
+    },
+    "subtitle": "HAJIME — ÎNCEPE",
+    "title": "始め",
+    "trigger": "Ce înseamnă Hajime?"
+  },
   "sidebar": {
     "collapse": "Restrânge bara laterală",
     "dashboard": "Panou de control",

@@ -49,6 +49,42 @@ describe('ModalPopup', () => {
     expect(onClose).toHaveBeenCalledOnce();
   });
 
+  it('does not close from the backdrop by default', () => {
+    const onClose = vi.fn();
+    render(
+      <ModalPopup isOpen title="Workout details" onClose={onClose}>
+        Modal content
+      </ModalPopup>
+    );
+
+    fireEvent.click(screen.getByTestId('modal-backdrop'));
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it('closes from the backdrop when explicitly enabled', () => {
+    const onClose = vi.fn();
+    render(
+      <ModalPopup isOpen title="Workout details" onClose={onClose} closeOnBackdropClick>
+        Modal content
+      </ModalPopup>
+    );
+
+    fireEvent.click(screen.getByTestId('modal-backdrop'));
+    expect(onClose).toHaveBeenCalledOnce();
+  });
+
+  it('does not close when its content is clicked', () => {
+    const onClose = vi.fn();
+    render(
+      <ModalPopup isOpen title="Workout details" onClose={onClose}>
+        Modal content
+      </ModalPopup>
+    );
+
+    fireEvent.click(screen.getByText('Modal content'));
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
   it('supports a loading action', () => {
     render(
       <ModalPopup isOpen buttons={[{ text: 'Saving', loading: true }]}>

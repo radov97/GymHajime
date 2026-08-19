@@ -18,6 +18,7 @@ export interface ModalPopupProps {
   buttons?: ModalButton[];
   onClose?: () => void;
   closeLabel?: string;
+  closeOnBackdropClick?: boolean;
 }
 
 export default function ModalPopup({
@@ -28,6 +29,7 @@ export default function ModalPopup({
   buttons = [],
   onClose,
   closeLabel = 'Close modal',
+  closeOnBackdropClick = false,
 }: ModalPopupProps) {
   useEffect(() => {
     if (!isOpen) return;
@@ -45,7 +47,15 @@ export default function ModalPopup({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      onClick={(event) => {
+        // Backdrop closing is opt-in. Clicks inside the modal bubble here too,
+        // so compare the originating and current elements before closing.
+        if (closeOnBackdropClick && event.target === event.currentTarget) onClose?.();
+      }}
+      data-testid="modal-backdrop"
+    >
       <FormContainer
         className="relative max-h-[calc(100vh-2rem)] overflow-y-auto bg-[var(--color-brand-modal-bg)]"
         noBg={true}

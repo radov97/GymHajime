@@ -1,5 +1,6 @@
 import AuthNavigation from './AuthNavigation';
 import BrandLogo from './BrandLogo';
+import HajimeInfo from './HajimeInfo';
 
 export default function HeaderMobile() {
   return (
@@ -16,7 +17,10 @@ export default function HeaderMobile() {
             GymHajime
           </span>
         </div>
-        <AuthNavigation />
+        <div className="flex items-center gap-1">
+          <HajimeInfo iconOnly />
+          <AuthNavigation />
+        </div>
       </div>
     </header>
   );

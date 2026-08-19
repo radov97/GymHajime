@@ -28,3 +28,14 @@ export const LoginFailureCodes = {
   EmailNotConfirmed: 'email_not_confirmed',
   InvalidCredentials: 'invalid_credentials',
 } as const;
+
+export const HajimeInfoSection = {
+  Dashboard: 'dashboard',
+  Plan: 'plan',
+  Train: 'train',
+  Progress: 'progress',
+  Discover: 'discover',
+} as const;
+
+export type HajimeInfoSectionValue =
+  (typeof HajimeInfoSection)[keyof typeof HajimeInfoSection];

@@ -48,6 +48,25 @@
     "signup": "S'inscrire",
     "user": "Utilisateur"
   },
+  "hajime-info": {
+    "action": "Commençons →",
+    "closing": "Votre routine. Vos progrès. Votre Hajime.",
+    "introduction": {
+      "build": "Créez un programme hebdomadaire adapté, choisissez vos exercices, suivez chaque séance et observez vos progrès.",
+      "idea": "GymHajime repose sur une idée simple : arrêtez d’attendre, brisez la routine et commencez.",
+      "verb": "Du verbe japonais <em>hajimeru</em> (始める) : « commencer »."
+    },
+    "sections": {
+      "dashboard": { "paragraph-1": "Restez concentré sur ce qui compte maintenant.", "paragraph-2": "Voyez en un coup d’œil l’entraînement d’hier, celui d’aujourd’hui et le programme de demain.", "paragraph-3": "Utilisez-le comme rappel quotidien de votre parcours, de ce qui vous attend aujourd’hui et de la suite.", "title": "TABLEAU DE BORD" },
+      "discover": { "paragraph-1": "Vous n’avez pas à créer votre routine seul.", "paragraph-2": "Découvrez d’autres utilisateurs GymHajime et les programmes qu’ils rendent publics.", "paragraph-3": "Trouvez de nouveaux exercices, inspirez-vous des autres et découvrez des routines adaptées.", "paragraph-4": "Vous aimez une routine ? Faites-en la vôtre.", "title": "DÉCOUVRIR" },
+      "plan": { "paragraph-1": "Créez votre routine d’entraînement du lundi au dimanche.", "paragraph-2": "Choisissez exercices, séries et répétitions et sachez toujours ce que vous entraînerez ensuite.", "title": "PLANIFIER" },
+      "progress": { "paragraph-1": "Conservez votre historique et observez l’évolution de votre force, régularité et performance.", "title": "PROGRÈS" },
+      "train": { "paragraph-1": "Transformez votre entraînement planifié en véritable séance.", "paragraph-2": "Enregistrez vos séries, répétitions et charges pendant l’entraînement.", "title": "S’ENTRAÎNER" }
+    },
+    "subtitle": "HAJIME — COMMENCER",
+    "title": "始め",
+    "trigger": "Que signifie Hajime ?"
+  },
   "sidebar": {
     "collapse": "Réduire la barre latérale",
     "dashboard": "Tableau de bord",

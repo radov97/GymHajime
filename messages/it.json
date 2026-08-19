@@ -48,6 +48,47 @@
     "signup": "Iscrizione",
     "user": "Utente"
   },
+  "hajime-info": {
+    "action": "Iniziamo →",
+    "closing": "La tua routine. I tuoi progressi. Il tuo Hajime.",
+    "introduction": {
+      "build": "Crea un programma settimanale adatto a te, scegli gli esercizi, registra ogni sessione e osserva i tuoi progressi nel tempo.",
+      "idea": "GymHajime nasce da un’idea semplice: smetti di aspettare, rompi la routine e comincia.",
+      "verb": "Dal verbo giapponese <em>hajimeru</em> (始める): «iniziare» o «cominciare»."
+    },
+    "sections": {
+      "dashboard": {
+        "paragraph-1": "Concentrati su ciò che conta in questo momento.",
+        "paragraph-2": "Guarda a colpo d’occhio l’allenamento di ieri, quello di oggi e il piano di domani.",
+        "paragraph-3": "Usalo come promemoria quotidiano di ciò che hai fatto, di ciò che devi fare oggi e di ciò che viene dopo.",
+        "title": "DASHBOARD"
+      },
+      "discover": {
+        "paragraph-1": "Non devi costruire la tua routine da solo.",
+        "paragraph-2": "Scopri altri utenti GymHajime e i programmi che scelgono di rendere pubblici.",
+        "paragraph-3": "Trova nuovi esercizi, lasciati ispirare dagli altri e scopri routine adatte a te.",
+        "paragraph-4": "Hai trovato una routine che ti piace? Falla tua.",
+        "title": "SCOPRI"
+      },
+      "plan": {
+        "paragraph-1": "Crea la tua routine di allenamento dal lunedì alla domenica.",
+        "paragraph-2": "Scegli esercizi, serie e ripetizioni e sappi sempre cosa allenerai dopo.",
+        "title": "PIANIFICA"
+      },
+      "progress": {
+        "paragraph-1": "Conserva la cronologia dei tuoi allenamenti e osserva come si sviluppano forza, costanza e prestazioni.",
+        "title": "PROGRESSI"
+      },
+      "train": {
+        "paragraph-1": "Trasforma l’allenamento pianificato in una vera sessione.",
+        "paragraph-2": "Registra serie, ripetizioni e pesi mentre ti alleni.",
+        "title": "ALLENATI"
+      }
+    },
+    "subtitle": "HAJIME — INIZIA",
+    "title": "始め",
+    "trigger": "Cosa significa Hajime?"
+  },
   "sidebar": {
     "collapse": "Comprimi barra laterale",
     "dashboard": "Dashboard",

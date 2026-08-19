@@ -48,6 +48,25 @@
     "signup": "Melden Sie sich an",
     "user": "Benutzer"
   },
+  "hajime-info": {
+    "action": "Lass uns beginnen →",
+    "closing": "Deine Routine. Dein Fortschritt. Dein Hajime.",
+    "introduction": {
+      "build": "Erstelle einen wöchentlichen Trainingsplan, der zu dir passt, wähle deine Übungen, dokumentiere jede Einheit und verfolge deinen Fortschritt.",
+      "idea": "GymHajime basiert auf einer einfachen Idee: Hör auf zu warten, durchbrich die Routine und beginne.",
+      "verb": "Vom japanischen Verb <em>hajimeru</em> (始める): „beginnen“ oder „starten“."
+    },
+    "sections": {
+      "dashboard": { "paragraph-1": "Konzentriere dich auf das, was jetzt zählt.", "paragraph-2": "Sieh das Training von gestern, das heutige Training und den Plan für morgen auf einen Blick.", "paragraph-3": "Nutze es als tägliche Erinnerung daran, wo du warst, was heute ansteht und was als Nächstes kommt.", "title": "DASHBOARD" },
+      "discover": { "paragraph-1": "Du musst deine Routine nicht allein erstellen.", "paragraph-2": "Entdecke andere GymHajime-Nutzer und ihre öffentlich geteilten Trainingspläne.", "paragraph-3": "Finde neue Übungen, lass dich von anderen inspirieren und entdecke passende Routinen.", "paragraph-4": "Eine Routine gefunden, die dir gefällt? Mach sie zu deiner eigenen.", "title": "ENTDECKEN" },
+      "plan": { "paragraph-1": "Erstelle deine Trainingsroutine von Montag bis Sonntag.", "paragraph-2": "Wähle Übungen, Sätze und Wiederholungen und wisse immer, was du als Nächstes trainierst.", "title": "PLANEN" },
+      "progress": { "paragraph-1": "Speichere deinen Trainingsverlauf und beobachte, wie sich Kraft, Beständigkeit und Leistung entwickeln.", "title": "FORTSCHRITT" },
+      "train": { "paragraph-1": "Verwandle dein geplantes Workout in eine echte Trainingseinheit.", "paragraph-2": "Erfasse Sätze, Wiederholungen und Gewichte während des Trainings.", "title": "TRAINIEREN" }
+    },
+    "subtitle": "HAJIME — BEGINN",
+    "title": "始め",
+    "trigger": "Was bedeutet Hajime?"
+  },
   "sidebar": {
     "collapse": "Seitenleiste einklappen",
     "dashboard": "Dashboard",

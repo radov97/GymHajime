@@ -48,6 +48,47 @@
     "signup": "Sign Up",
     "user": "User"
   },
+  "hajime-info": {
+    "action": "Let’s begin →",
+    "closing": "Your routine. Your progress. Your Hajime.",
+    "introduction": {
+      "build": "Build a weekly training schedule that works for you, choose your exercises, track every session and see your progress over time.",
+      "idea": "GymHajime is built around a simple idea: stop waiting, break the routine, and begin.",
+      "verb": "From the Japanese verb <em>hajimeru</em> (始める): “to begin” or “to start.”"
+    },
+    "sections": {
+      "dashboard": {
+        "paragraph-1": "Stay focused on what matters right now.",
+        "paragraph-2": "See yesterday’s workout, today’s training, and tomorrow’s plan at a glance.",
+        "paragraph-3": "Use it as your daily reminder of where you’ve been, what you need to do today, and what comes next.",
+        "title": "DASHBOARD"
+      },
+      "discover": {
+        "paragraph-1": "You don’t have to build your routine alone.",
+        "paragraph-2": "Discover other GymHajime users and explore the training schedules they choose to make public.",
+        "paragraph-3": "Find new exercises, get inspiration from how others train, and discover routines that might work for you.",
+        "paragraph-4": "Eventually, find a routine you like? Make it your own.",
+        "title": "DISCOVER"
+      },
+      "plan": {
+        "paragraph-1": "Create your Monday–Sunday training routine.",
+        "paragraph-2": "Choose exercises, sets and reps and always know what you’re training next.",
+        "title": "PLAN"
+      },
+      "progress": {
+        "paragraph-1": "Keep a history of your workouts and see how your strength, consistency and performance develop.",
+        "title": "PROGRESS"
+      },
+      "train": {
+        "paragraph-1": "Turn your planned workout into a real training session.",
+        "paragraph-2": "Record your sets, reps and weights as you train.",
+        "title": "TRAIN"
+      }
+    },
+    "subtitle": "HAJIME — BEGIN",
+    "title": "始め",
+    "trigger": "What is Hajime?"
+  },
   "sidebar": {
     "collapse": "Collapse sidebar",
     "dashboard": "Dashboard",

@@ -48,6 +48,47 @@
     "signup": "Mag-sign Up",
     "user": "User"
   },
+  "hajime-info": {
+    "action": "Magsimula tayo →",
+    "closing": "Ang routine mo. Ang progreso mo. Ang Hajime mo.",
+    "introduction": {
+      "build": "Bumuo ng lingguhang iskedyul ng pagsasanay na angkop sa iyo, pumili ng mga ehersisyo, itala ang bawat session, at subaybayan ang iyong progreso.",
+      "idea": "Ang GymHajime ay nakabatay sa isang simpleng ideya: huwag nang maghintay, baguhin ang nakasanayan, at magsimula.",
+      "verb": "Mula sa salitang Hapones na <em>hajimeru</em> (始める): “magsimula.”"
+    },
+    "sections": {
+      "dashboard": {
+        "paragraph-1": "Manatiling nakatuon sa pinakamahalaga ngayon.",
+        "paragraph-2": "Tingnan agad ang workout kahapon, pagsasanay ngayon, at plano para bukas.",
+        "paragraph-3": "Gamitin ito bilang araw-araw na paalala ng iyong nagawa, gagawin ngayon, at susunod na hakbang.",
+        "title": "DASHBOARD"
+      },
+      "discover": {
+        "paragraph-1": "Hindi mo kailangang bumuo ng routine nang mag-isa.",
+        "paragraph-2": "Tumuklas ng ibang gumagamit ng GymHajime at tingnan ang mga iskedyul na pinili nilang gawing pampubliko.",
+        "paragraph-3": "Humanap ng mga bagong ehersisyo, kumuha ng inspirasyon sa iba, at tumuklas ng routine na maaaring angkop sa iyo.",
+        "paragraph-4": "May nakita kang routine na gusto mo? Gawin itong sarili mo.",
+        "title": "TUKLASIN"
+      },
+      "plan": {
+        "paragraph-1": "Bumuo ng iyong Monday–Sunday na routine sa pagsasanay.",
+        "paragraph-2": "Pumili ng mga ehersisyo, set, at rep para lagi mong alam ang susunod mong pagsasanay.",
+        "title": "MAGPLANO"
+      },
+      "progress": {
+        "paragraph-1": "Panatilihin ang kasaysayan ng iyong mga workout at tingnan kung paano umuunlad ang iyong lakas, consistency, at performance.",
+        "title": "PROGRESO"
+      },
+      "train": {
+        "paragraph-1": "Gawing aktuwal na training session ang iyong nakaplanong workout.",
+        "paragraph-2": "Itala ang iyong mga set, rep, at timbang habang nagsasanay.",
+        "title": "MAGSANAY"
+      }
+    },
+    "subtitle": "HAJIME — MAGSIMULA",
+    "title": "始め",
+    "trigger": "Ano ang ibig sabihin ng Hajime?"
+  },
   "sidebar": {
     "collapse": "I-collapse ang sidebar",
     "dashboard": "Dashboard",

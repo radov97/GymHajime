@@ -2,6 +2,7 @@
 import { useTranslations } from 'next-intl';
 import AuthNavigation from './AuthNavigation';
 import BrandLogo from './BrandLogo';
+import HajimeInfo from './HajimeInfo';
 
 export default function Header() {
   const t = useTranslations('header');
@@ -18,9 +19,12 @@ export default function Header() {
           />
           <div className="text-[var(--color-brand-soft)]">
             <h1 className="text-2xl font-bold leading-tight cursor-default">GymHajime</h1>
-            <p className="text-sm font-semibold text-[var(--color-brand-dark)] cursor-default">
-              {t('header-tagline')}
-            </p>
+            <div className="flex flex-col items-start gap-1">
+              <p className="text-sm font-semibold text-[var(--color-brand-dark)] cursor-default">
+                {t('header-tagline')}
+              </p>
+              <HajimeInfo />
+            </div>
           </div>
         </div>
 
