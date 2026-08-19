@@ -1,10 +1,12 @@
 import '../../styles/globals.css';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { locales } from '@/i18n/i18n';
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+import { isLocale, locales, type Locale } from '@/i18n/i18n';
 import ResponsiveHeader from '@/components/ResponsiveHeader';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'GymHajime',
   description: 'Personalised workout planning and fitness tracking across web and mobile.',
   icons: {
@@ -26,7 +28,7 @@ export function generateStaticParams() {
 }
 
 // ✅ Load local messages (e.g. from /messages/en.json)
-async function loadMessages(locale) {
+async function loadMessages(locale: Locale) {
   try {
     const messages = (await import(`../../../messages/${locale}.json`)).default;
     return messages;
@@ -36,8 +38,14 @@ async function loadMessages(locale) {
   }
 }
 
-export default async function LocaleLayout({ children, params }) {
+interface LocaleLayoutProps {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+}
+
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
+  if (!isLocale(locale)) notFound();
   const messages = await loadMessages(locale);
 
   return (

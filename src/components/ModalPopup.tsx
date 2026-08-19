@@ -1,10 +1,22 @@
 'use client';
 
 import { ButtonRank, ButtonType } from '@/lib/enums';
-import Button from './Button';
+import type { ReactNode } from 'react';
+import Button, { type ButtonProps } from './Button';
 import FormContainer from './FormContainer';
 
-export default function ModalPopup({ isOpen, children, title, buttons = [] }) {
+export interface ModalButton extends Omit<ButtonProps, 'text'> {
+  text: string;
+}
+
+export interface ModalPopupProps {
+  isOpen: boolean;
+  children: ReactNode;
+  title?: string;
+  buttons?: ModalButton[];
+}
+
+export default function ModalPopup({ isOpen, children, title, buttons = [] }: ModalPopupProps) {
   if (!isOpen) return null;
 
   return (

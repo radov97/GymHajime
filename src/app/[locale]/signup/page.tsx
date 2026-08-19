@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import supabase from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
@@ -39,7 +39,7 @@ export default function SignUpPage() {
 
   const validatePassword = useValidatedPassword();
 
-  async function handleSignup(e) {
+  async function handleSignup(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
     setError(false);
@@ -69,21 +69,21 @@ export default function SignUpPage() {
     setIsLoading(true);
     setError(false);
     const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/auth/callback`; // go to dashboard when ready
-    await supabase.auth.signInWithOAuth({
+    const { error: oauthError } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         redirectTo: redirectUrl,
       },
     });
 
-    if (error) {
-      console.error('Google sign up error:', error.message);
+    if (oauthError) {
+      console.error('Google sign up error:', oauthError.message);
       setError(true);
     }
     setIsLoading(false);
   }
 
-  const handleEmailDebounced = (val) => {
+  const handleEmailDebounced = (val: string) => {
     if (isValidEmail(val)) {
       setHasEmailError(false);
       setEmailErrorText('');
@@ -93,7 +93,7 @@ export default function SignUpPage() {
     }
   };
 
-  const handleNameDebounced = (val) => {
+  const handleNameDebounced = (val: string) => {
     if (isNotEmptyString(val)) {
       setHasFullNameError(false);
       setFullNameErrorText('');
@@ -103,7 +103,7 @@ export default function SignUpPage() {
     }
   };
 
-  const handlePasswordDebounced = (val) => {
+  const handlePasswordDebounced = (val: string) => {
     const errors = validatePassword(val);
 
     if (errors.length === 0) {
@@ -144,7 +144,7 @@ export default function SignUpPage() {
             placeholder={t('signup.email')}
             required
             value={email}
-            onChange={(e) => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               if (!isEmailTouched) setIsEmailTouched(true);
               setEmail(e.target.value);
             }}
@@ -159,7 +159,7 @@ export default function SignUpPage() {
             placeholder={t('signup.full-name')}
             value={fullName}
             required
-            onChange={(e) => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               if (!isFullNameTouched) setIsFullNameTouched(true);
               setFullName(e.target.value);
             }}
@@ -174,7 +174,7 @@ export default function SignUpPage() {
             placeholder={t('signup.password')}
             required
             value={password}
-            onChange={(e) => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               if (!isPasswordTouched) setIsPasswordTouched(true);
               setPassword(e.target.value);
             }}

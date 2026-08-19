@@ -1,7 +1,16 @@
 'use client';
 
 import { Loader } from 'lucide-react';
-import { ButtonType, ButtonRank } from '@/lib/enums';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonType, ButtonRank, type ButtonRankValue, type ButtonTypeValue } from '@/lib/enums';
+
+export interface ButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'children'> {
+  type?: ButtonTypeValue;
+  text: ReactNode;
+  rank?: ButtonRankValue;
+  loading?: boolean;
+}
 
 export default function Button({
   type = ButtonType.Button,
@@ -11,9 +20,9 @@ export default function Button({
   loading = false,
   className = '',
   ...props
-}) {
+}: ButtonProps) {
   const baseStyles = 'w-full font-semibold py-2 rounded transition-all duration-200 ease-in-out';
-  const getRankStyles = (rank) => {
+  const getRankStyles = (rank: ButtonRankValue) => {
     switch (rank) {
       case ButtonRank.Primary:
         return 'bg-[var(--color-brand)] text-white';

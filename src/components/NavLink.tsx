@@ -1,8 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import type { ComponentProps, ReactNode } from 'react';
 
-export default function NavLink({ href, text }) {
+export interface NavLinkProps {
+  href: ComponentProps<typeof Link>['href'];
+  text: ReactNode;
+}
+
+export default function NavLink({ href, text }: NavLinkProps) {
   return (
     <Link
       href={href}

@@ -1,6 +1,8 @@
 import '../styles/globals.css';
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'GymHajime',
   description: 'Personalised workout planning and fitness tracking across web and mobile.',
   icons: {
@@ -16,11 +18,9 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children, params }) {
-  const locale = params?.locale || 'en'; // default fallback
-
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang={locale}>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

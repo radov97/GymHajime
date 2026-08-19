@@ -1,12 +1,25 @@
 'use client';
 
 import { Eye, EyeOff } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { InputType } from '@/lib/enums';
+import { useState, useEffect, type ChangeEventHandler, type InputHTMLAttributes } from 'react';
+import { InputType, type InputTypeValue } from '@/lib/enums';
+
+export interface InputProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'value' | 'onChange'> {
+  type?: InputTypeValue;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onDebouncedChange?: (value: string) => void;
+  error?: boolean;
+  errorText?: string;
+  showToggle?: boolean;
+  debounceDelay?: number;
+  setIsTyping?: (isTyping: boolean) => void;
+}
 
 export default function Input({
   type = InputType.Text,
-  value,
+  value = '',
   onChange,
   onDebouncedChange,
   placeholder = '',
@@ -19,7 +32,7 @@ export default function Input({
   debounceDelay = 1000,
   setIsTyping = () => {},
   ...props
-}) {
+}: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [localValue, setLocalValue] = useState(value);
   const [isDirty, setIsDirty] = useState(false);

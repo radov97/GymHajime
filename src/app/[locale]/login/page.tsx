@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import supabase from '@/lib/supabaseClient';
 import Input from '@/components/Input';
@@ -35,7 +35,7 @@ export default function LoginPage() {
   const t = useTranslations();
   const validatePassword = useValidatedPassword();
 
-  const handleEmailDebounced = (val) => {
+  const handleEmailDebounced = (val: string) => {
     if (isValidEmail(val)) {
       setHasEmailError(false);
       setEmailErrorText('');
@@ -45,7 +45,7 @@ export default function LoginPage() {
     }
   };
 
-  const handlePasswordDebounced = (val) => {
+  const handlePasswordDebounced = (val: string) => {
     const errors = validatePassword(val);
 
     if (errors.length === 0) {
@@ -66,7 +66,7 @@ export default function LoginPage() {
     password.trim() !== '' &&
     !isTyping;
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setLoginErrorText('');
@@ -129,7 +129,7 @@ export default function LoginPage() {
               type={InputType.Email}
               placeholder={t('login.email')}
               value={email}
-              onChange={(e) => {
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 if (!isEmailTouched) setIsEmailTouched(true);
                 setEmail(e.target.value);
               }}
@@ -143,7 +143,7 @@ export default function LoginPage() {
               type={InputType.Password}
               placeholder={t('login.password')}
               value={password}
-              onChange={(e) => {
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 if (!isPasswordTouched) setIsPasswordTouched(true);
                 setPassword(e.target.value);
               }}
