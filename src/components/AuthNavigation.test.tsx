@@ -21,6 +21,7 @@ vi.mock('../lib/supabaseClient', () => ({
     signOut: mocks.signOut,
   } },
 }));
+vi.mock('./LanguageSelector', () => ({ default: () => <button type="button">Language</button> }));
 
 import AuthNavigation from './AuthNavigation';
 

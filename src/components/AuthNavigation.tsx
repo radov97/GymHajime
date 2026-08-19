@@ -10,6 +10,7 @@ import ChevronButton from './ChevronButton';
 import ModalPopup from './ModalPopup';
 import { ButtonRank, ButtonType } from '@/lib/enums';
 import DropdownMenu from './DropdownMenu';
+import LanguageSelector from './LanguageSelector';
 
 export interface AuthNavigationViewProps {
   userName?: string | null;
@@ -51,26 +52,27 @@ export function AuthNavigationView({
 
   if (!userName) {
     return (
-      <nav className="flex gap-4 text-[var(--color-brand-soft)]" aria-label="Account">
-        <NavLink href={`/${locale}/login`} text={t('login')} />
-        <NavLink href={`/${locale}/signup`} text={t('signup')} />
-      </nav>
+      <div className="flex items-center gap-3 text-[var(--color-brand-soft)]">
+        <nav className="flex gap-4" aria-label="Account">
+          <NavLink href={`/${locale}/login`} text={t('login')} />
+          <NavLink href={`/${locale}/signup`} text={t('signup')} />
+        </nav>
+        <LanguageSelector />
+      </div>
     );
   }
 
   return (
-    <div
-      ref={navigationRef}
-      className="relative flex items-center gap-1 text-[var(--color-brand-soft)]"
-    >
-      <span className="font-semibold">{userName}</span>
-      <ChevronButton
-        isOpen={isOpen}
-        onClick={() => setIsOpen((open) => !open)}
-        label={t('account-menu')}
-      />
+    <div className="flex items-center gap-3 text-[var(--color-brand-soft)]">
+      <div ref={navigationRef} className="relative flex items-center gap-1">
+        <span className="font-semibold">{userName}</span>
+        <ChevronButton
+          isOpen={isOpen}
+          onClick={() => setIsOpen((open) => !open)}
+          label={t('account-menu')}
+        />
 
-      <DropdownMenu
+        <DropdownMenu
         isOpen={isOpen}
         options={[
           {
@@ -82,8 +84,8 @@ export function AuthNavigationView({
             },
           },
         ]}
-      />
-      <ModalPopup
+        />
+        <ModalPopup
         isOpen={showLogoutModal}
         title={t('logout-title')}
         subtitle={t('logout-message')}
@@ -104,7 +106,9 @@ export function AuthNavigationView({
             loading: isLoggingOut,
           },
         ]}
-      />
+        />
+      </div>
+      <LanguageSelector />
     </div>
   );
 }
