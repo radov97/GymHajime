@@ -1,1 +1,44 @@
-{"validations":{"has-email-error":"Por favor, introduce una dirección de correo electrónico válida.","has-full-name-error":"El nombre completo no puede estar vacío.","login-error-email-not-confirmed":"Por favor, verifica tu correo electrónico para continuar. Revisa tu bandeja de entrada o correo no deseado para encontrar el enlace de confirmación.","login-error-invalid-credentials":"Correo electrónico o contraseña incorrectos. Inténtalo de nuevo. Asegúrate de tener la tecla Bloq Mayús desactivada.","password-error-1":"La contraseña debe tener al menos 8 caracteres.","password-error-2":"La contraseña debe incluir al menos una letra mayúscula.","password-error-3":"La contraseña debe incluir al menos un carácter especial.","signup-error":"Algo salió mal. Inténtalo de nuevo en breve."},"signup":{"already-have-account":"¿Ya tienes una cuenta?","email":"Correo electrónico","full-name":"Nombre completo","google-button":"Regístrate con Google","new-account":"Nueva cuenta","password":"Contraseña","sign-ip":"Iniciar sesión","sign-up":"Inscribirse","sign-up-info":"Regístrate con Google o tu dirección de correo electrónico"},"auth-confirmed":{"continue":"Continuar","email-confirmed":"¡Correo electrónico confirmado!","signing-you-in":"Registrandote...","welcome-message":"Tu nuevo Palco te espera. Estás listo para explorar, conectar y compartir experiencias."},"login":{"email":"Correo electrónico","forgot-password":"¿Olvidaste tu contraseña?","google-sign-in":"Iniciar sesión con Google","login":"Acceso","new-user":" ¿Nuevo usuario?","password":"Contraseña","sign-up":"Inscribirse","welcome-message":"Hola... ¡Bienvenido de nuevo!"},"header":{"header-tagline":" Conéctate más allá de los viajes","login":"Acceso","signup":"Inscribirse"}}
+{
+  "validations": {
+    "has-email-error": "Por favor, introduce una dirección de correo electrónico válida.",
+    "has-full-name-error": "El nombre completo no puede estar vacío.",
+    "login-error-email-not-confirmed": "Por favor, verifica tu correo electrónico para continuar. Revisa tu bandeja de entrada o correo no deseado para encontrar el enlace de confirmación.",
+    "login-error-invalid-credentials": "Correo electrónico o contraseña incorrectos. Inténtalo de nuevo. Asegúrate de tener la tecla Bloq Mayús desactivada.",
+    "password-error-1": "La contraseña debe tener al menos 8 caracteres.",
+    "password-error-2": "La contraseña debe incluir al menos una letra mayúscula.",
+    "password-error-3": "La contraseña debe incluir al menos un carácter especial.",
+    "signup-error": "Algo salió mal. Inténtalo de nuevo en breve."
+  },
+  "signup": {
+    "already-have-account": "¿Ya tienes una cuenta?",
+    "email": "Correo electrónico",
+    "full-name": "Nombre completo",
+    "google-button": "Regístrate con Google",
+    "new-account": "Nueva cuenta",
+    "password": "Contraseña",
+    "sign-ip": "Iniciar sesión",
+    "sign-up": "Inscribirse",
+    "sign-up-info": "Regístrate con Google o tu dirección de correo electrónico"
+  },
+  "auth-confirmed": {
+    "continue": "Continuar",
+    "email-confirmed": "¡Correo electrónico confirmado!",
+    "signing-you-in": "Registrandote...",
+    "welcome-message": "Tu nuevo Palco te espera. Estás listo para explorar, conectar y compartir experiencias."
+  },
+  "login": {
+    "email": "Correo electrónico",
+    "forgot-password": "¿Olvidaste tu contraseña?",
+    "google-sign-in": "Iniciar sesión con Google",
+    "login": "Acceso",
+    "new-user": " ¿Nuevo usuario?",
+    "password": "Contraseña",
+    "sign-up": "Inscribirse",
+    "welcome-message": "Hola... ¡Bienvenido de nuevo!"
+  },
+  "header": {
+    "header-tagline": " Conéctate más allá de los viajes",
+    "login": "Acceso",
+    "signup": "Inscribirse"
+  }
+}

@@ -1,1 +1,44 @@
-{"validations":{"has-email-error":"Vă rugăm să introduceți o adresă de email validă.","has-full-name-error":"Numele complet nu poate fi gol.","login-error-email-not-confirmed":"Vă rugăm să vă verificați adresa de e-mail pentru a continua. Verificați inbox-ul sau folderul de spam pentru linkul de confirmare.","login-error-invalid-credentials":"Adresă de e-mail sau parolă incorectă. Vă rugăm să încercați din nou. Asigurați-vă că aveți majuscule dezactivate.","password-error-1":"Parola trebuie să aibă cel puțin 8 caractere.","password-error-2":"Parola trebuie să includă cel puțin o literă mare.","password-error-3":"Parola trebuie să includă cel puțin un caracter special.","signup-error":"Ceva nu a mers bine. Vă rugăm să încercați din nou în scurt timp."},"signup":{"already-have-account":"Ai deja un cont?","email":"E-mail","full-name":"Numele complet","google-button":"Înregistrează-te cu Google","new-account":"Cont nou","password":"Parolă","sign-ip":"Conectare","sign-up":"Înregistrare","sign-up-info":"Înregistrează-te cu Google sau cu adresa ta de e-mail"},"auth-confirmed":{"continue":"Continua","email-confirmed":"Email confirmat!","signing-you-in":"Se conectează...","welcome-message":"Noul tău Palco te așteaptă. Ești gata să explorezi, să te conectezi și să împărtășești experiențe."},"login":{"email":"E-mail","forgot-password":"Ați uitat parola?","google-sign-in":"Conectați-vă cu Google","login":"Log in","new-user":" Utilizator nou?","password":"Parolă","sign-up":"Înscrie-te","welcome-message":"Salut... Bine ai revenit!"},"header":{"header-tagline":" Conectează-te dincolo de călătorii","login":"Log in","signup":"Înregistrare"}}
+{
+  "validations": {
+    "has-email-error": "Vă rugăm să introduceți o adresă de email validă.",
+    "has-full-name-error": "Numele complet nu poate fi gol.",
+    "login-error-email-not-confirmed": "Vă rugăm să vă verificați adresa de e-mail pentru a continua. Verificați inbox-ul sau folderul de spam pentru linkul de confirmare.",
+    "login-error-invalid-credentials": "Adresă de e-mail sau parolă incorectă. Vă rugăm să încercați din nou. Asigurați-vă că aveți majuscule dezactivate.",
+    "password-error-1": "Parola trebuie să aibă cel puțin 8 caractere.",
+    "password-error-2": "Parola trebuie să includă cel puțin o literă mare.",
+    "password-error-3": "Parola trebuie să includă cel puțin un caracter special.",
+    "signup-error": "Ceva nu a mers bine. Vă rugăm să încercați din nou în scurt timp."
+  },
+  "signup": {
+    "already-have-account": "Ai deja un cont?",
+    "email": "E-mail",
+    "full-name": "Numele complet",
+    "google-button": "Înregistrează-te cu Google",
+    "new-account": "Cont nou",
+    "password": "Parolă",
+    "sign-ip": "Conectare",
+    "sign-up": "Înregistrare",
+    "sign-up-info": "Înregistrează-te cu Google sau cu adresa ta de e-mail"
+  },
+  "auth-confirmed": {
+    "continue": "Continua",
+    "email-confirmed": "Email confirmat!",
+    "signing-you-in": "Se conectează...",
+    "welcome-message": "Noul tău Palco te așteaptă. Ești gata să explorezi, să te conectezi și să împărtășești experiențe."
+  },
+  "login": {
+    "email": "E-mail",
+    "forgot-password": "Ați uitat parola?",
+    "google-sign-in": "Conectați-vă cu Google",
+    "login": "Log in",
+    "new-user": " Utilizator nou?",
+    "password": "Parolă",
+    "sign-up": "Înscrie-te",
+    "welcome-message": "Salut... Bine ai revenit!"
+  },
+  "header": {
+    "header-tagline": " Conectează-te dincolo de călătorii",
+    "login": "Log in",
+    "signup": "Înregistrare"
+  }
+}

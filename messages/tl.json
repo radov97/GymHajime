@@ -1,1 +1,44 @@
-{"validations":{"has-email-error":"Mangyaring magpasok ng wastong email address.","has-full-name-error":"Hindi maaaring walang laman ang buong pangalan.","login-error-email-not-confirmed":"Paki-verify ang iyong email upang magpatuloy. Tingnan ang iyong inbox o folder ng spam para sa link ng kumpirmasyon.","login-error-invalid-credentials":"Maling email o password. Pakisubukang muli. Tiyaking naka-off ang iyong caps lock.","password-error-1":"Dapat na hindi bababa sa 8 character ang password.","password-error-2":"Ang password ay dapat magsama ng hindi bababa sa isang malaking titik.","password-error-3":"Dapat na may kasamang kahit isang espesyal na character ang password.","signup-error":"Nagkaproblema. Pakisubukang muli sa ilang sandali."},"signup":{"already-have-account":"Mayroon ka nang account?","email":"Email","full-name":"Buong Pangalan","google-button":"Mag-sign up sa Google","new-account":"Bagong Account","password":"Password","sign-ip":"Mag-sign in","sign-up":"Mag-sign Up","sign-up-info":"Mag-sign up sa Google o sa iyong email address"},"auth-confirmed":{"continue":"Magpatuloy","email-confirmed":"Nakumpirma ang Email!","signing-you-in":"Sina-sign in ka...","welcome-message":"Naghihintay ang iyong bagong Palco. Handa ka nang mag-explore, kumonekta, at magbahagi ng mga karanasan."},"login":{"email":"Email","forgot-password":"Nakalimutan ang iyong password?","google-sign-in":"Mag-sign in gamit ang Google","login":"Mag-login","new-user":" Bagong User?","password":"Password","sign-up":"Mag-sign up","welcome-message":"Hoy... Maligayang pagbabalik!"},"header":{"header-tagline":" Connect Beyond Travel","login":"Mag-login","signup":"Mag-sign Up"}}
+{
+  "validations": {
+    "has-email-error": "Mangyaring magpasok ng wastong email address.",
+    "has-full-name-error": "Hindi maaaring walang laman ang buong pangalan.",
+    "login-error-email-not-confirmed": "Paki-verify ang iyong email upang magpatuloy. Tingnan ang iyong inbox o folder ng spam para sa link ng kumpirmasyon.",
+    "login-error-invalid-credentials": "Maling email o password. Pakisubukang muli. Tiyaking naka-off ang iyong caps lock.",
+    "password-error-1": "Dapat na hindi bababa sa 8 character ang password.",
+    "password-error-2": "Ang password ay dapat magsama ng hindi bababa sa isang malaking titik.",
+    "password-error-3": "Dapat na may kasamang kahit isang espesyal na character ang password.",
+    "signup-error": "Nagkaproblema. Pakisubukang muli sa ilang sandali."
+  },
+  "signup": {
+    "already-have-account": "Mayroon ka nang account?",
+    "email": "Email",
+    "full-name": "Buong Pangalan",
+    "google-button": "Mag-sign up sa Google",
+    "new-account": "Bagong Account",
+    "password": "Password",
+    "sign-ip": "Mag-sign in",
+    "sign-up": "Mag-sign Up",
+    "sign-up-info": "Mag-sign up sa Google o sa iyong email address"
+  },
+  "auth-confirmed": {
+    "continue": "Magpatuloy",
+    "email-confirmed": "Nakumpirma ang Email!",
+    "signing-you-in": "Sina-sign in ka...",
+    "welcome-message": "Naghihintay ang iyong bagong Palco. Handa ka nang mag-explore, kumonekta, at magbahagi ng mga karanasan."
+  },
+  "login": {
+    "email": "Email",
+    "forgot-password": "Nakalimutan ang iyong password?",
+    "google-sign-in": "Mag-sign in gamit ang Google",
+    "login": "Mag-login",
+    "new-user": " Bagong User?",
+    "password": "Password",
+    "sign-up": "Mag-sign up",
+    "welcome-message": "Hoy... Maligayang pagbabalik!"
+  },
+  "header": {
+    "header-tagline": " Connect Beyond Travel",
+    "login": "Mag-login",
+    "signup": "Mag-sign Up"
+  }
+}
