@@ -19,3 +19,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: { text: 'Login', href: '/en/login' },
 };
+
+export const Signup: Story = {
+  args: { text: 'Create account', href: '/en/signup' },
+};
+
+export const LocalizedLabel: Story = {
+  args: { text: 'Înregistrează-te', href: '/ro/signup' },
+};
+
+export const LongLabel: Story = {
+  args: { text: 'View your personalised training plan', href: '/en' },
+};

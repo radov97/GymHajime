@@ -2,7 +2,7 @@
 
 import { Eye, EyeOff } from 'lucide-react';
 import { useState, useEffect, type ChangeEventHandler, type InputHTMLAttributes } from 'react';
-import { InputType, type InputTypeValue } from '@/lib/enums';
+import { InputType, type InputTypeValue } from '../lib/enums';
 
 export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'value' | 'onChange'> {

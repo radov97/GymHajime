@@ -1,6 +1,6 @@
 'use client';
 
-import { ButtonRank, ButtonType } from '@/lib/enums';
+import { ButtonRank, ButtonType } from '../lib/enums';
 import type { ReactNode } from 'react';
 import Button, { type ButtonProps } from './Button';
 import FormContainer from './FormContainer';

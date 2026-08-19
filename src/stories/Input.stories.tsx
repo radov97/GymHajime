@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Input, { type InputProps } from '../components/Input';
-import { InputType } from '@/lib/enums';
+import { InputType } from '../lib/enums';
 
 const meta = {
   title: 'Input',
@@ -68,4 +68,34 @@ export const WithError: Story = {
 };
 export const DisabledInput: Story = {
   args: { ...defaultArgs, placeholder: 'Disabled input', disabled: true },
+};
+
+export const Populated: Story = {
+  args: { ...defaultArgs, value: 'Barbell squat', placeholder: 'Exercise name' },
+};
+
+export const Required: Story = {
+  args: { ...defaultArgs, placeholder: 'Workout name', required: true },
+};
+
+export const PasswordWithoutToggle: Story = {
+  args: {
+    ...defaultArgs,
+    type: InputType.Password,
+    value: 'StrongPassword123!',
+    showToggle: false,
+  },
+};
+
+export const LongValidationMessage: Story = {
+  args: {
+    ...defaultArgs,
+    error: true,
+    errorText: 'Enter a valid exercise name between 2 and 80 characters before continuing.',
+    value: 'A',
+  },
+};
+
+export const ReadOnly: Story = {
+  args: { ...defaultArgs, value: 'Completed workout', readOnly: true },
 };

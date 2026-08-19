@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Button from '../components/Button';
-import { ButtonRank, ButtonType } from '@/lib/enums';
+import { ButtonRank, ButtonType } from '../lib/enums';
 
 const meta = {
   title: 'Button',
@@ -31,4 +31,23 @@ export const Loading: Story = {
 };
 export const Disabled: Story = {
   args: { text: 'Disabled', rank: ButtonRank.Secondary, disabled: true },
+};
+
+export const LongLabel: Story = {
+  args: {
+    text: 'Save this personalised workout routine',
+    rank: ButtonRank.Primary,
+  },
+};
+
+export const CustomWidth: Story = {
+  args: {
+    text: 'Add set',
+    rank: ButtonRank.Secondary,
+    className: 'w-auto px-8',
+  },
+};
+
+export const ResetFormButton: Story = {
+  args: { text: 'Reset form', rank: ButtonRank.Link, type: ButtonType.Reset },
 };

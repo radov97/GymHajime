@@ -27,3 +27,15 @@ export const Default: Story = {
 export const Disabled: Story = {
   args: { ...Default.args, disabled: true },
 };
+
+export const SignInCopy: Story = {
+  args: { text: 'Sign in with Google', width: 32, height: 32 },
+};
+
+export const CompactIcon: Story = {
+  args: { text: 'Continue with Google', width: 24, height: 24 },
+};
+
+export const LongLocalizedCopy: Story = {
+  args: { text: 'Continuă antrenamentul folosind contul Google', width: 32, height: 32 },
+};

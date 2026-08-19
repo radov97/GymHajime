@@ -2,7 +2,7 @@
 
 import { Loader } from 'lucide-react';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
-import { ButtonType, ButtonRank, type ButtonRankValue, type ButtonTypeValue } from '@/lib/enums';
+import { ButtonType, ButtonRank, type ButtonRankValue, type ButtonTypeValue } from '../lib/enums';
 
 export interface ButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'children'> {
