@@ -47,5 +47,18 @@
     "logout-title": "Confirmă deconectarea",
     "signup": "Înregistrare",
     "user": "Utilizator"
+  },
+  "sidebar": {
+    "collapse": "Restrânge bara laterală",
+    "dashboard": "Panou de control",
+    "discover": "Descoperă",
+    "exercises": "Exerciții",
+    "expand": "Extinde bara laterală",
+    "history": "Istoric antrenamente",
+    "navigation": "Navigarea aplicației",
+    "primary-navigation": "Navigare antrenamente",
+    "progress": "Progres",
+    "schedule": "Programul meu",
+    "settings": "Setări"
   }
 }

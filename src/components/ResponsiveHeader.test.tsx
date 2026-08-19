@@ -3,12 +3,13 @@ import { screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import ResponsiveHeader from './ResponsiveHeader';
 import { renderWithIntl } from '../test/render';
+import Link from 'next/link';
 
 vi.mock('next-intl', async (importOriginal) => {
   const actual = await importOriginal<typeof import('next-intl')>();
   return { ...actual, useLocale: () => 'en' };
 });
-vi.mock('./AuthNavigation', () => ({ default: () => <a href="/en/login">Login</a> }));
+vi.mock('./AuthNavigation', () => ({ default: () => <Link href="/en/login">Login</Link> }));
 
 describe('ResponsiveHeader', () => {
   it('renders the desktop navigation above the breakpoint', async () => {

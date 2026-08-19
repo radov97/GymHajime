@@ -47,5 +47,18 @@
     "logout-title": "Confirmar cierre de sesión",
     "signup": "Inscribirse",
     "user": "Usuario"
+  },
+  "sidebar": {
+    "collapse": "Contraer barra lateral",
+    "dashboard": "Panel",
+    "discover": "Descubrir",
+    "exercises": "Ejercicios",
+    "expand": "Expandir barra lateral",
+    "history": "Historial de entrenamientos",
+    "navigation": "Navegación de la aplicación",
+    "primary-navigation": "Navegación de entrenamiento",
+    "progress": "Progreso",
+    "schedule": "Mi horario",
+    "settings": "Ajustes"
   }
 }

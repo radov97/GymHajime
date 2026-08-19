@@ -47,5 +47,18 @@
     "logout-title": "Kumpirmahin ang pag-logout",
     "signup": "Mag-sign Up",
     "user": "User"
+  },
+  "sidebar": {
+    "collapse": "I-collapse ang sidebar",
+    "dashboard": "Dashboard",
+    "discover": "Tuklasin",
+    "exercises": "Mga Ehersisyo",
+    "expand": "I-expand ang sidebar",
+    "history": "Kasaysayan ng Workout",
+    "navigation": "Navigation ng application",
+    "primary-navigation": "Navigation ng training",
+    "progress": "Progreso",
+    "schedule": "Aking Iskedyul",
+    "settings": "Mga Setting"
   }
 }

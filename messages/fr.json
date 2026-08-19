@@ -47,5 +47,18 @@
     "logout-title": "Confirmer la déconnexion",
     "signup": "S'inscrire",
     "user": "Utilisateur"
+  },
+  "sidebar": {
+    "collapse": "Réduire la barre latérale",
+    "dashboard": "Tableau de bord",
+    "discover": "Découvrir",
+    "exercises": "Exercices",
+    "expand": "Développer la barre latérale",
+    "history": "Historique des entraînements",
+    "navigation": "Navigation de l'application",
+    "primary-navigation": "Navigation d'entraînement",
+    "progress": "Progrès",
+    "schedule": "Mon programme",
+    "settings": "Paramètres"
   }
 }

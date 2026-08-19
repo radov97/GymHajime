@@ -47,5 +47,18 @@
     "logout-title": "Conferma uscita",
     "signup": "Iscrizione",
     "user": "Utente"
+  },
+  "sidebar": {
+    "collapse": "Comprimi barra laterale",
+    "dashboard": "Dashboard",
+    "discover": "Scopri",
+    "exercises": "Esercizi",
+    "expand": "Espandi barra laterale",
+    "history": "Cronologia allenamenti",
+    "navigation": "Navigazione applicazione",
+    "primary-navigation": "Navigazione allenamento",
+    "progress": "Progressi",
+    "schedule": "Il mio programma",
+    "settings": "Impostazioni"
   }
 }

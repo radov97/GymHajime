@@ -47,5 +47,18 @@
     "logout-title": "Confirm logout",
     "signup": "Sign Up",
     "user": "User"
+  },
+  "sidebar": {
+    "collapse": "Collapse sidebar",
+    "dashboard": "Dashboard",
+    "discover": "Discover",
+    "exercises": "Exercises",
+    "expand": "Expand sidebar",
+    "history": "Workout History",
+    "navigation": "Application sidebar",
+    "primary-navigation": "Training navigation",
+    "progress": "Progress",
+    "schedule": "My Schedule",
+    "settings": "Settings"
   }
 }

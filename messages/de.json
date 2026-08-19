@@ -47,5 +47,18 @@
     "logout-title": "Abmeldung bestätigen",
     "signup": "Melden Sie sich an",
     "user": "Benutzer"
+  },
+  "sidebar": {
+    "collapse": "Seitenleiste einklappen",
+    "dashboard": "Dashboard",
+    "discover": "Entdecken",
+    "exercises": "Übungen",
+    "expand": "Seitenleiste ausklappen",
+    "history": "Trainingsverlauf",
+    "navigation": "Anwendungsnavigation",
+    "primary-navigation": "Trainingsnavigation",
+    "progress": "Fortschritt",
+    "schedule": "Mein Trainingsplan",
+    "settings": "Einstellungen"
   }
 }
