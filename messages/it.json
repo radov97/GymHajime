@@ -37,11 +37,15 @@
     "welcome-message": "Ciao... Bentornati!"
   },
   "header": {
+    "account-menu": "Menu account",
     "header-tagline": " Allenati con uno scopo",
     "login": "Login",
     "logout": "Esci",
+    "logout-cancel": "Annulla",
+    "logout-confirm": "Esci",
+    "logout-message": "Sei sicuro di voler uscire?",
+    "logout-title": "Conferma uscita",
     "signup": "Iscrizione",
-    "user": "Utente",
-    "welcome": "Benvenuto, {name}"
+    "user": "Utente"
   }
 }

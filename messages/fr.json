@@ -37,11 +37,15 @@
     "welcome-message": "Salut... Bienvenue !"
   },
   "header": {
+    "account-menu": "Menu du compte",
     "header-tagline": " Entraînez-vous avec un objectif",
     "login": "Se connecter",
     "logout": "Se déconnecter",
+    "logout-cancel": "Annuler",
+    "logout-confirm": "Se déconnecter",
+    "logout-message": "Voulez-vous vraiment vous déconnecter ?",
+    "logout-title": "Confirmer la déconnexion",
     "signup": "S'inscrire",
-    "user": "Utilisateur",
-    "welcome": "Bienvenue, {name}"
+    "user": "Utilisateur"
   }
 }

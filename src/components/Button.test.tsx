@@ -25,4 +25,9 @@ describe('Button', () => {
     expect(screen.getByRole('button')).toBeDisabled();
     expect(screen.queryByText('Saving')).not.toBeInTheDocument();
   });
+
+  it('uses destructive styling for danger actions', () => {
+    render(<Button text="Delete" rank={ButtonRank.Danger} />);
+    expect(screen.getByRole('button', { name: 'Delete' })).toHaveClass('bg-red-600', 'text-white');
+  });
 });

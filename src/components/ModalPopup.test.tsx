@@ -1,7 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import ModalPopup from './ModalPopup';
 import { ButtonRank } from '../lib/enums';
+
+afterEach(() => {
+  document.body.style.removeProperty('overflow');
+});
 
 describe('ModalPopup', () => {
   it('renders nothing while closed', () => {
@@ -27,6 +31,24 @@ describe('ModalPopup', () => {
     expect(onConfirm).toHaveBeenCalledOnce();
   });
 
+  it('renders a subtitle and closes from the top-right button', () => {
+    const onClose = vi.fn();
+    render(
+      <ModalPopup
+        isOpen
+        title="Confirm logout"
+        subtitle="Are you sure you want to log out?"
+        onClose={onClose}
+      />
+    );
+
+    expect(screen.getByText('Are you sure you want to log out?')).toBeInTheDocument();
+    const closeButton = screen.getByRole('button', { name: 'Close modal' });
+    expect(closeButton).toHaveClass('text-red-600');
+    fireEvent.click(closeButton);
+    expect(onClose).toHaveBeenCalledOnce();
+  });
+
   it('supports a loading action', () => {
     render(
       <ModalPopup isOpen buttons={[{ text: 'Saving', loading: true }]}>
@@ -34,5 +56,23 @@ describe('ModalPopup', () => {
       </ModalPopup>
     );
     expect(screen.getByRole('button')).toBeDisabled();
+  });
+
+  it('locks page scrolling while open and restores the previous overflow value', () => {
+    document.body.style.overflow = 'scroll';
+    const { rerender } = render(<ModalPopup isOpen>Modal content</ModalPopup>);
+
+    expect(document.body.style.overflow).toBe('hidden');
+
+    rerender(<ModalPopup isOpen={false}>Modal content</ModalPopup>);
+    expect(document.body.style.overflow).toBe('scroll');
+  });
+
+  it('restores page scrolling when an open modal unmounts', () => {
+    document.body.style.overflow = 'auto';
+    const { unmount } = render(<ModalPopup isOpen>Modal content</ModalPopup>);
+
+    unmount();
+    expect(document.body.style.overflow).toBe('auto');
   });
 });

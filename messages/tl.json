@@ -37,11 +37,15 @@
     "welcome-message": "Hoy... Maligayang pagbabalik!"
   },
   "header": {
+    "account-menu": "Menu ng account",
     "header-tagline": " Magsanay nang may layunin",
     "login": "Mag-login",
     "logout": "Mag-logout",
+    "logout-cancel": "Kanselahin",
+    "logout-confirm": "Mag-logout",
+    "logout-message": "Sigurado ka bang gusto mong mag-logout?",
+    "logout-title": "Kumpirmahin ang pag-logout",
     "signup": "Mag-sign Up",
-    "user": "User",
-    "welcome": "Maligayang pagdating, {name}"
+    "user": "User"
   }
 }

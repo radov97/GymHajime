@@ -23,6 +23,9 @@ export const Primary: Story = {
 export const Secondary: Story = {
   args: { text: 'Cancel', rank: ButtonRank.Secondary, type: ButtonType.Button },
 };
+export const Danger: Story = {
+  args: { text: 'Delete workout', rank: ButtonRank.Danger, type: ButtonType.Button },
+};
 export const Link: Story = {
   args: { text: 'Redirect me to ...', rank: ButtonRank.Link, type: ButtonType.Button },
 };

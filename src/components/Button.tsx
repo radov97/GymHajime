@@ -28,6 +28,8 @@ export default function Button({
         return 'bg-[var(--color-brand)] text-white';
       case ButtonRank.Secondary:
         return 'bg-gray-200 text-gray-800';
+      case ButtonRank.Danger:
+        return 'bg-red-600 text-white';
       case ButtonRank.Link:
         return 'bg-[var(--color-brand-soft)] text-[var(--color-brand)] border border-[var(--color-brand)]';
       default:

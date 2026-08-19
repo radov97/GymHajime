@@ -37,11 +37,15 @@
     "welcome-message": "Salut... Bine ai revenit!"
   },
   "header": {
+    "account-menu": "Meniu cont",
     "header-tagline": " Antrenează-te cu un scop",
     "login": "Log in",
     "logout": "Deconectare",
+    "logout-cancel": "Anulează",
+    "logout-confirm": "Deconectare",
+    "logout-message": "Sigur dorești să te deconectezi?",
+    "logout-title": "Confirmă deconectarea",
     "signup": "Înregistrare",
-    "user": "Utilizator",
-    "welcome": "Bine ai venit, {name}"
+    "user": "Utilizator"
   }
 }

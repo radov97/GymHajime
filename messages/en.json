@@ -37,11 +37,15 @@
     "welcome-message": "Hey there... Welcome back!"
   },
   "header": {
+    "account-menu": "Account menu",
     "header-tagline": " Train with purpose",
     "login": "Login",
     "logout": "Logout",
+    "logout-cancel": "Cancel",
+    "logout-confirm": "Log out",
+    "logout-message": "Are you sure you want to log out?",
+    "logout-title": "Confirm logout",
     "signup": "Sign Up",
-    "user": "User",
-    "welcome": "Welcome, {name}"
+    "user": "User"
   }
 }

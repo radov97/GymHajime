@@ -37,11 +37,15 @@
     "welcome-message": "Hola... ¡Bienvenido de nuevo!"
   },
   "header": {
+    "account-menu": "Menú de cuenta",
     "header-tagline": " Entrena con un propósito",
     "login": "Acceso",
     "logout": "Cerrar sesión",
+    "logout-cancel": "Cancelar",
+    "logout-confirm": "Cerrar sesión",
+    "logout-message": "¿Seguro que quieres cerrar sesión?",
+    "logout-title": "Confirmar cierre de sesión",
     "signup": "Inscribirse",
-    "user": "Usuario",
-    "welcome": "Bienvenido, {name}"
+    "user": "Usuario"
   }
 }

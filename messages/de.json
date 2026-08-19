@@ -37,11 +37,15 @@
     "welcome-message": "Hallo ... Willkommen zurück!"
   },
   "header": {
+    "account-menu": "Kontomenü",
     "header-tagline": " Trainiere mit einem Ziel",
     "login": "Login",
     "logout": "Abmelden",
+    "logout-cancel": "Abbrechen",
+    "logout-confirm": "Abmelden",
+    "logout-message": "Möchten Sie sich wirklich abmelden?",
+    "logout-title": "Abmeldung bestätigen",
     "signup": "Melden Sie sich an",
-    "user": "Benutzer",
-    "welcome": "Willkommen, {name}"
+    "user": "Benutzer"
   }
 }

@@ -27,7 +27,7 @@ const meta = {
         >
           Open Modal
         </button>
-        <ModalPopup {...args} isOpen={open} buttons={buttons} />
+        <ModalPopup {...args} isOpen={open} buttons={buttons} onClose={() => setOpen(false)} />
       </>
     );
   },
@@ -40,13 +40,9 @@ export const Default: Story = {
   args: {
     isOpen: true,
     title: 'Reset Password',
+    subtitle: 'Enter your email to receive a password reset link.',
     children: (
-      <>
-        <p className="text-sm text-gray-600 mb-2">
-          Enter your email to receive a password reset link.
-        </p>
-        <Input type="email" placeholder="you@example.com" className="text-sm" />
-      </>
+      <Input type="email" placeholder="you@example.com" className="text-sm" />
     ),
     buttons: [
       { text: 'Cancel', rank: ButtonRank.Secondary },

@@ -33,7 +33,8 @@ export const SignedIn: Story = {
   args: { userName: 'Test Athlete' },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByRole('button', { name: /Welcome, Test Athlete/ })).toHaveAttribute(
+    await expect(canvas.getByText('Test Athlete')).toBeVisible();
+    await expect(canvas.getByRole('button', { name: 'Account menu' })).toHaveAttribute(
       'aria-expanded',
       'false'
     );
@@ -47,6 +48,8 @@ export const MenuOpen: Story = {
     const logout = canvas.getByRole('menuitem', { name: 'Logout' });
     await expect(logout).toBeVisible();
     await userEvent.click(logout);
+    await expect(canvas.getByRole('heading', { name: 'Confirm logout' })).toBeVisible();
+    await userEvent.click(canvas.getByRole('button', { name: 'Log out' }));
     await expect(args.onLogout).toHaveBeenCalledOnce();
   },
 };

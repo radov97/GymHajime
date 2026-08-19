@@ -10,6 +10,7 @@ export type ButtonTypeValue = (typeof ButtonType)[keyof typeof ButtonType];
 export const ButtonRank = {
   Primary: 'primary',
   Secondary: 'secondary',
+  Danger: 'danger',
   Link: 'link',
 } as const;
 
