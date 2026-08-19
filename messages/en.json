@@ -36,5 +36,12 @@
     "sign-up": "Sign up",
     "welcome-message": "Hey there... Welcome back!"
   },
-  "header": { "header-tagline": " Train with purpose", "login": "Login", "signup": "Sign Up" }
+  "header": {
+    "header-tagline": " Train with purpose",
+    "login": "Login",
+    "logout": "Logout",
+    "signup": "Sign Up",
+    "user": "User",
+    "welcome": "Welcome, {name}"
+  }
 }

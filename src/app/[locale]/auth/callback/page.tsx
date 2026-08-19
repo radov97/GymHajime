@@ -20,7 +20,7 @@ export default function AuthCallbackPage() {
 
     // Optionally wait a sec before redirecting
     const timeout = setTimeout(() => {
-      router.push(`/${locale}`); // or redirect to dashboard
+      router.push(`/${locale}/dashboard`);
     }, 1000);
 
     return () => clearTimeout(timeout);

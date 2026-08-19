@@ -1,11 +1,10 @@
 'use client';
 import Image from 'next/image';
-import { useTranslations, useLocale } from 'next-intl';
-import NavLink from './NavLink';
+import { useTranslations } from 'next-intl';
+import AuthNavigation from './AuthNavigation';
 
 export default function Header() {
   const t = useTranslations('header');
-  const locale = useLocale();
 
   return (
     <header className="bg-[var(--color-brand)] px-6 py-4 shadow-md">
@@ -27,10 +26,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="flex gap-4 text-[var(--color-brand-soft)]">
-          <NavLink href={`/${locale}/login`} text={t('login')} />
-          <NavLink href={`/${locale}/signup`} text={t('signup')} />
-        </div>
+        <AuthNavigation />
       </div>
     </header>
   );

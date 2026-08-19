@@ -43,6 +43,12 @@ const preview: Preview = {
     },
   ],
   parameters: {
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        pathname: '/en',
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

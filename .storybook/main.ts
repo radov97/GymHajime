@@ -20,7 +20,16 @@ const config: StorybookConfig = {
         dedupe: ['react', 'react-dom'],
       },
       optimizeDeps: {
-        include: ['react', 'react-dom', 'react-responsive', 'next/link', 'lucide-react'],
+        include: [
+          'react',
+          'react-dom',
+          'react-responsive',
+          'next/link',
+          'next/navigation',
+          'lucide-react',
+          '@supabase/supabase-js',
+          'storybook/test',
+        ],
       },
     });
   },

@@ -1,4 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
+vi.mock('@/components/ResponsiveHeader', () => ({ default: () => null }));
 import { generateStaticParams, metadata } from './layout';
 
 describe('localized layout', () => {

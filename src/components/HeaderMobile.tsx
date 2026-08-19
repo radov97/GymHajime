@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import AuthNavigation from './AuthNavigation';
 
 export default function HeaderMobile() {
   return (
@@ -12,7 +13,12 @@ export default function HeaderMobile() {
           className="h-12 w-auto rounded shadow bg-[var(--color-brand-light)]"
           priority
         />
-        <span className="text-sm text-[var(--color-brand-soft)] font-semibold">GymHajime</span>
+        <div className="flex items-center gap-3">
+          <span className="hidden text-sm text-[var(--color-brand-soft)] font-semibold sm:inline">
+            GymHajime
+          </span>
+          <AuthNavigation />
+        </div>
       </div>
     </header>
   );

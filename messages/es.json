@@ -39,6 +39,9 @@
   "header": {
     "header-tagline": " Entrena con un propósito",
     "login": "Acceso",
-    "signup": "Inscribirse"
+    "logout": "Cerrar sesión",
+    "signup": "Inscribirse",
+    "user": "Usuario",
+    "welcome": "Bienvenido, {name}"
   }
 }

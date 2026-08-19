@@ -39,6 +39,9 @@
   "header": {
     "header-tagline": " Trainiere mit einem Ziel",
     "login": "Login",
-    "signup": "Melden Sie sich an"
+    "logout": "Abmelden",
+    "signup": "Melden Sie sich an",
+    "user": "Benutzer",
+    "welcome": "Willkommen, {name}"
   }
 }

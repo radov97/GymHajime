@@ -39,6 +39,9 @@
   "header": {
     "header-tagline": " Antrenează-te cu un scop",
     "login": "Log in",
-    "signup": "Înregistrare"
+    "logout": "Deconectare",
+    "signup": "Înregistrare",
+    "user": "Utilizator",
+    "welcome": "Bine ai venit, {name}"
   }
 }

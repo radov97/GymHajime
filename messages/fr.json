@@ -39,6 +39,9 @@
   "header": {
     "header-tagline": " Entraînez-vous avec un objectif",
     "login": "Se connecter",
-    "signup": "S'inscrire"
+    "logout": "Se déconnecter",
+    "signup": "S'inscrire",
+    "user": "Utilisateur",
+    "welcome": "Bienvenue, {name}"
   }
 }

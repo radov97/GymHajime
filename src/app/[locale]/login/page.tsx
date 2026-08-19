@@ -87,7 +87,7 @@ export default function LoginPage() {
           break;
       }
     } else {
-      router.push(`/${locale}`); // go to dashboard when ready
+      router.push(`/${locale}/dashboard`);
     }
 
     setLoading(false);

@@ -8,6 +8,7 @@ vi.mock('next-intl', async (importOriginal) => {
   const actual = await importOriginal<typeof import('next-intl')>();
   return { ...actual, useLocale: () => 'en' };
 });
+vi.mock('./AuthNavigation', () => ({ default: () => <a href="/en/login">Login</a> }));
 
 describe('ResponsiveHeader', () => {
   it('renders the desktop navigation above the breakpoint', async () => {
@@ -26,6 +27,6 @@ describe('ResponsiveHeader', () => {
       </ResponsiveContext.Provider>
     );
     await waitFor(() => expect(screen.getByText('GymHajime')).toBeInTheDocument());
-    expect(screen.queryByRole('link', { name: 'Login' })).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Login' })).toBeInTheDocument();
   });
 });

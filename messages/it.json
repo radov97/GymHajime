@@ -39,6 +39,9 @@
   "header": {
     "header-tagline": " Allenati con uno scopo",
     "login": "Login",
-    "signup": "Iscrizione"
+    "logout": "Esci",
+    "signup": "Iscrizione",
+    "user": "Utente",
+    "welcome": "Benvenuto, {name}"
   }
 }

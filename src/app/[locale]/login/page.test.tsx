@@ -57,7 +57,7 @@ describe('LoginPage', () => {
         password: 'StrongPass1!',
       })
     );
-    expect(mocks.push).toHaveBeenCalledWith('/en');
+    expect(mocks.push).toHaveBeenCalledWith('/en/dashboard');
   });
 
   it('shows a useful invalid-credentials message', async () => {

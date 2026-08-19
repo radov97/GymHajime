@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import HeaderMobile from './HeaderMobile';
+
+vi.mock('./AuthNavigation', () => ({ default: () => <nav>Account navigation</nav> }));
 
 describe('HeaderMobile', () => {
   it('renders compact GymHajime branding', () => {

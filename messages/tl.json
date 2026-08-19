@@ -39,6 +39,9 @@
   "header": {
     "header-tagline": " Magsanay nang may layunin",
     "login": "Mag-login",
-    "signup": "Mag-sign Up"
+    "logout": "Mag-logout",
+    "signup": "Mag-sign Up",
+    "user": "User",
+    "welcome": "Maligayang pagdating, {name}"
   }
 }
