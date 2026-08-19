@@ -2,6 +2,11 @@
   "name": "findpalco-web",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.19.0",
+    "npm": "11.17.0"
+  },
+  "packageManager": "npm@11.17.0",
   "scripts": {
     "dev": "i18nexus pull && next dev",
     "build": "i18nexus pull && next build",
