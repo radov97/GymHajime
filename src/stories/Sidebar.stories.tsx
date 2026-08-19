@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import Sidebar from '../components/Sidebar';
+import { Context as ResponsiveContext } from 'react-responsive';
+import { BREAKPOINTS } from '../lib/breakpoints';
 
 const meta = {
   title: 'Navigation/Sidebar',
@@ -40,4 +42,29 @@ export const Romanian: Story = {
 
 export const SettingsActive: Story = {
   parameters: { nextjs: { navigation: { pathname: '/en/settings' } } },
+};
+
+export const MobileBreakpoint: Story = {
+  decorators: [
+    (Story) => (
+      <ResponsiveContext.Provider value={{ width: BREAKPOINTS.mobileMax }}>
+        <Story />
+      </ResponsiveContext.Provider>
+    ),
+  ],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.queryByText('GYMHAJIME')).not.toBeInTheDocument();
+    await expect(canvas.queryByRole('button', { name: /sidebar/i })).not.toBeInTheDocument();
+  },
+};
+
+export const Mobile: Story = {
+  decorators: [
+    (Story) => (
+      <ResponsiveContext.Provider value={{ width: 390 }}>
+        <Story />
+      </ResponsiveContext.Provider>
+    ),
+  ],
 };

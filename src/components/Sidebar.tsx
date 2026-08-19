@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useState, type ComponentType } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import { useMediaQuery } from 'react-responsive';
+import { BREAKPOINTS } from '@/lib/breakpoints';
 import {
   CalendarDays,
   ChartNoAxesCombined,
@@ -39,6 +41,8 @@ export interface SidebarProps {
 
 export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(initiallyCollapsed);
+  const isCompactViewport = useMediaQuery({ maxWidth: BREAKPOINTS.mobileMax });
+  const showCollapsed = isCompactViewport || isCollapsed;
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations('sidebar');
@@ -52,8 +56,8 @@ export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
       <Link
         key={id}
         href={href}
-        title={isCollapsed ? label : undefined}
-        aria-label={isCollapsed ? label : undefined}
+        title={showCollapsed ? label : undefined}
+        aria-label={showCollapsed ? label : undefined}
         aria-current={isActive ? 'page' : undefined}
         className={`flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 transition-colors ${
           isActive
@@ -62,7 +66,7 @@ export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
         }`}
       >
         <Icon className="h-5 w-5 shrink-0" aria-hidden />
-        {!isCollapsed && <span className="whitespace-nowrap font-medium">{label}</span>}
+        {!showCollapsed && <span className="whitespace-nowrap font-medium">{label}</span>}
       </Link>
     );
   };
@@ -71,26 +75,28 @@ export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
     <aside
       aria-label={t('navigation')}
       className={`sticky top-0 flex min-h-[calc(100vh-7rem)] shrink-0 flex-col border-r border-orange-200 bg-white/80 p-3 shadow-sm backdrop-blur transition-[width] duration-200 ${
-        isCollapsed ? 'w-20' : 'w-64'
+        showCollapsed ? 'w-20' : 'w-64'
       }`}
     >
       <div className="mb-5 flex items-center justify-between gap-2 px-2">
-        {!isCollapsed && (
+        {!showCollapsed && (
           <span className="font-black tracking-[0.16em] text-[var(--color-brand-ink)]">GYMHAJIME</span>
         )}
-        <button
-          type="button"
-          onClick={() => setIsCollapsed((collapsed) => !collapsed)}
-          aria-label={isCollapsed ? t('expand') : t('collapse')}
-          aria-expanded={!isCollapsed}
-          className="ml-auto rounded-md p-2 text-gray-600 hover:bg-orange-100 hover:text-[var(--color-brand)] cursor-pointer"
-        >
-          {isCollapsed ? (
-            <PanelLeftOpen className="h-5 w-5" aria-hidden />
-          ) : (
-            <PanelLeftClose className="h-5 w-5" aria-hidden />
-          )}
-        </button>
+        {!isCompactViewport && (
+          <button
+            type="button"
+            onClick={() => setIsCollapsed((collapsed) => !collapsed)}
+            aria-label={isCollapsed ? t('expand') : t('collapse')}
+            aria-expanded={!isCollapsed}
+            className="ml-auto rounded-md p-2 text-gray-600 hover:bg-orange-100 hover:text-[var(--color-brand)] cursor-pointer"
+          >
+            {isCollapsed ? (
+              <PanelLeftOpen className="h-5 w-5" aria-hidden />
+            ) : (
+              <PanelLeftClose className="h-5 w-5" aria-hidden />
+            )}
+          </button>
+        )}
       </div>
 
       <nav className="flex flex-1 flex-col gap-1" aria-label={t('primary-navigation')}>

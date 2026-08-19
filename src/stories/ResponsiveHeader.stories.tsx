@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Context as ResponsiveContext } from 'react-responsive';
+import { BREAKPOINTS } from '../lib/breakpoints';
 import ResponsiveHeader from '../components/ResponsiveHeader';
 
 const meta = {
@@ -36,8 +37,8 @@ export const Mobile: Story = {
 export const TabletBreakpoint: Story = {
   decorators: [
     (Story) => (
-      <ResponsiveContext.Provider value={{ width: 768 }}>
-        <div className="w-[768px] max-w-full">
+      <ResponsiveContext.Provider value={{ width: BREAKPOINTS.mobileMax }}>
+        <div className="max-w-full" style={{ width: BREAKPOINTS.mobileMax }}>
           <Story />
         </div>
       </ResponsiveContext.Provider>

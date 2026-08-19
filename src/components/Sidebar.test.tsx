@@ -1,6 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { renderWithIntl } from '../test/render';
+import { Context as ResponsiveContext } from 'react-responsive';
+import { BREAKPOINTS } from '../lib/breakpoints';
 
 const navigation = vi.hoisted(() => ({ pathname: '/en/dashboard' }));
 
@@ -31,5 +33,17 @@ describe('Sidebar', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Expand sidebar' }));
     expect(screen.getByText('GYMHAJIME')).toBeInTheDocument();
+  });
+
+  it('stays collapsed and hides the toggle on mobile and tablet widths', () => {
+    renderWithIntl(
+      <ResponsiveContext.Provider value={{ width: BREAKPOINTS.mobileMax }}>
+        <Sidebar />
+      </ResponsiveContext.Provider>
+    );
+
+    expect(screen.queryByText('GYMHAJIME')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /sidebar/i })).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Dashboard' })).toHaveAttribute('title', 'Dashboard');
   });
 });

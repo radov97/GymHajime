@@ -27,7 +27,10 @@ describe('ResponsiveHeader', () => {
         <ResponsiveHeader />
       </ResponsiveContext.Provider>
     );
-    await waitFor(() => expect(screen.getByText('GymHajime')).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getByRole('img', { name: 'GymHajime logo' })).toBeInTheDocument()
+    );
+    expect(screen.getByText('GymHajime')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Login' })).toBeInTheDocument();
   });
 });
