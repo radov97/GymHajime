@@ -10,6 +10,9 @@ vi.mock('next-intl', async (importOriginal) => {
   return { ...actual, useLocale: () => 'en' };
 });
 vi.mock('./AuthNavigation', () => ({ default: () => <Link href="/en/login">Login</Link> }));
+vi.mock('./BrandLogo', () => ({
+  default: () => <span role="img" aria-label="GymHajime logo" />,
+}));
 
 describe('ResponsiveHeader', () => {
   it('renders the desktop navigation above the breakpoint', async () => {

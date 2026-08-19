@@ -1,7 +1,7 @@
 'use client';
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import AuthNavigation from './AuthNavigation';
+import BrandLogo from './BrandLogo';
 
 export default function Header() {
   const t = useTranslations('header');
@@ -10,9 +10,7 @@ export default function Header() {
     <header className="bg-[var(--color-brand)] px-6 py-4 shadow-md">
       <div className="max-w-screen-xl mx-auto flex items-center gap-6 justify-between">
         <div className="flex items-center gap-4">
-          <Image
-            src="/gymhajime-logo.png"
-            alt="GymHajime logo"
+          <BrandLogo
             width={120}
             height={120}
             className="h-20 w-auto rounded-md shadow-lg bg-[var(--color-brand-light)]"

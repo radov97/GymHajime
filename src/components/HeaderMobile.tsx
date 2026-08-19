@@ -1,14 +1,12 @@
-import Image from 'next/image';
 import AuthNavigation from './AuthNavigation';
+import BrandLogo from './BrandLogo';
 
 export default function HeaderMobile() {
   return (
     <header className="bg-[var(--color-brand)] p-4 shadow-md">
       <div className="flex items-center justify-between">
         <div className="flex flex-col items-center gap-1">
-          <Image
-            src="/gymhajime-logo.png"
-            alt="GymHajime logo"
+          <BrandLogo
             width={48}
             height={48}
             className="h-12 w-auto rounded shadow bg-[var(--color-brand-light)]"

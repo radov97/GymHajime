@@ -3,6 +3,9 @@ import { describe, expect, it, vi } from 'vitest';
 import HeaderMobile from './HeaderMobile';
 
 vi.mock('./AuthNavigation', () => ({ default: () => <nav>Account navigation</nav> }));
+vi.mock('./BrandLogo', () => ({
+  default: () => <span role="img" aria-label="GymHajime logo" />,
+}));
 
 describe('HeaderMobile', () => {
   it('renders compact GymHajime branding', () => {

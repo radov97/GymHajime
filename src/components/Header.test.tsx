@@ -8,6 +8,9 @@ vi.mock('next-intl', async (importOriginal) => {
   return { ...actual, useLocale: () => 'en' };
 });
 vi.mock('./AuthNavigation', () => ({ default: () => <nav>Account navigation</nav> }));
+vi.mock('./BrandLogo', () => ({
+  default: () => <span role="img" aria-label="GymHajime logo" />,
+}));
 
 describe('Header', () => {
   it('renders branding, translated copy, and localized links', () => {
