@@ -9,6 +9,7 @@ import NavLink from './NavLink';
 import ChevronButton from './ChevronButton';
 import ModalPopup from './ModalPopup';
 import { ButtonRank, ButtonType } from '@/lib/enums';
+import DropdownMenu from './DropdownMenu';
 
 export interface AuthNavigationViewProps {
   userName?: string | null;
@@ -69,24 +70,19 @@ export function AuthNavigationView({
         label={t('account-menu')}
       />
 
-      {isOpen && (
-        <div
-          role="menu"
-          className="absolute right-0 top-full z-20 mt-2 min-w-36 rounded-md bg-white p-1 text-gray-900 shadow-lg"
-        >
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => {
+      <DropdownMenu
+        isOpen={isOpen}
+        options={[
+          {
+            id: 'logout',
+            label: t('logout'),
+            onClick: () => {
               setIsOpen(false);
               setShowLogoutModal(true);
-            }}
-            className="w-full rounded px-3 py-2 text-left hover:bg-gray-100 cursor-pointer"
-          >
-            {t('logout')}
-          </button>
-        </div>
-      )}
+            },
+          },
+        ]}
+      />
       <ModalPopup
         isOpen={showLogoutModal}
         title={t('logout-title')}
