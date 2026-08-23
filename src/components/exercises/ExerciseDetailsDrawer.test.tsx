@@ -22,7 +22,10 @@ const labels = {
   remove: 'Remove exercise',
 };
 
-afterEach(() => vi.useRealTimers());
+afterEach(() => {
+  vi.useRealTimers();
+  document.body.style.removeProperty('overflow');
+});
 
 describe('ExerciseDetailsDrawer', () => {
   it('renders nothing without an exercise', () => {
@@ -51,7 +54,10 @@ describe('ExerciseDetailsDrawer', () => {
         labels={labels}
       />
     );
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toBeInTheDocument();
+    expect(dialog).toHaveClass('items-center', 'justify-center', 'md:block');
+    expect(dialog.querySelector('aside')).toHaveClass('rounded-2xl', 'md:rounded-none');
     expect(screen.getByAltText('Bench Press 1')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Next image' }));
     expect(screen.getByAltText('Bench Press 2')).toBeInTheDocument();
@@ -121,5 +127,51 @@ describe('ExerciseDetailsDrawer', () => {
     expect(screen.getByRole('dialog')).toBeInTheDocument();
     act(() => vi.advanceTimersByTime(300));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('locks page scrolling through the exit animation and then restores it', () => {
+    vi.useFakeTimers();
+    document.body.style.overflow = 'scroll';
+    const { rerender } = render(
+      <ExerciseDetailsDrawer
+        exercise={exercise}
+        saved={false}
+        saving={false}
+        onClose={vi.fn()}
+        onToggleSave={vi.fn()}
+        labels={labels}
+      />
+    );
+    expect(document.body.style.overflow).toBe('hidden');
+
+    rerender(
+      <ExerciseDetailsDrawer
+        exercise={null}
+        saved={false}
+        saving={false}
+        onClose={vi.fn()}
+        onToggleSave={vi.fn()}
+        labels={labels}
+      />
+    );
+    expect(document.body.style.overflow).toBe('hidden');
+    act(() => vi.advanceTimersByTime(300));
+    expect(document.body.style.overflow).toBe('scroll');
+  });
+
+  it('restores page scrolling when an open drawer unmounts', () => {
+    document.body.style.overflow = 'auto';
+    const { unmount } = render(
+      <ExerciseDetailsDrawer
+        exercise={exercise}
+        saved={false}
+        saving={false}
+        onClose={vi.fn()}
+        onToggleSave={vi.fn()}
+        labels={labels}
+      />
+    );
+    unmount();
+    expect(document.body.style.overflow).toBe('auto');
   });
 });

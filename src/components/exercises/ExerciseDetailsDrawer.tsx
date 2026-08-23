@@ -20,7 +20,8 @@ interface Props {
 }
 
 /**
- * Displays complete exercise information in an animated right-side panel.
+ * Displays complete exercise information in an animated modal on phones and right-side panel on
+ * larger screens.
  *
  * The parent controls whether the drawer is open by passing an exercise or `null`. Internally, the
  * component keeps the last exercise rendered for 300 ms after close so the exit animation can
@@ -88,6 +89,20 @@ export default function ExerciseDetailsDrawer({
     return () => window.removeEventListener('keydown', listener);
   }, [exercise, onClose]);
 
+  /**
+   * Prevents the catalogue behind the drawer from scrolling. The lock follows `renderedExercise`
+   * so it remains active throughout the closing animation. Cleanup restores the exact overflow
+   * value that existed before the drawer opened, including when the component unmounts.
+   */
+  useEffect(() => {
+    if (!renderedExercise) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [renderedExercise]);
+
   // Nothing is rendered before the drawer opens or after its closing transition has completed.
   if (!renderedExercise) return null;
 
@@ -103,9 +118,10 @@ export default function ExerciseDetailsDrawer({
         (current + step + renderedExercise.images.length) % renderedExercise.images.length
     );
   return (
-    // Opacity animates the entire dialog/backdrop while the aside below adds horizontal movement.
+    // Opacity animates the entire dialog/backdrop. Flex centers the phone modal; the tablet/desktop
+    // breakpoint returns to block layout so the aside can attach to the right edge.
     <div
-      className={`fixed inset-0 z-50 transition-opacity duration-300 motion-reduce:transition-none ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 motion-reduce:transition-none md:block md:p-0 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       role="dialog"
       aria-modal="true"
       aria-labelledby="exercise-details-title"
@@ -116,9 +132,9 @@ export default function ExerciseDetailsDrawer({
         onClick={onClose}
         className="absolute inset-0 cursor-default bg-black/35"
       />
-      {/* The panel independently slides along the x-axis during the same 300 ms window. */}
+      {/* Phones use ModalPopup-like scale/fade motion; larger screens slide from the right. */}
       <aside
-        className={`absolute inset-y-0 right-0 w-full max-w-xl overflow-y-auto bg-[var(--color-brand-soft)] p-7 shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none ${isVisible ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`relative z-10 max-h-[calc(100dvh-2rem)] w-full max-w-lg overflow-y-auto rounded-2xl bg-[var(--color-brand-modal-bg)] p-5 shadow-2xl transition-[transform,opacity] duration-300 ease-out motion-reduce:transition-none md:absolute md:inset-y-0 md:right-0 md:max-h-none md:max-w-xl md:rounded-none md:bg-[var(--color-brand-soft)] md:p-7 ${isVisible ? 'scale-100 opacity-100 md:translate-x-0' : 'scale-95 opacity-0 md:scale-100 md:translate-x-full md:opacity-100'}`}
       >
         <div className="mb-6 flex items-center justify-between">
           <span className="text-xs font-bold uppercase tracking-widest text-orange-600">
