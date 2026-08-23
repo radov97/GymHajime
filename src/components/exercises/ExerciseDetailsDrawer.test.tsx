@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import ExerciseDetailsDrawer from './ExerciseDetailsDrawer';
 import type { Exercise } from '@/lib/exercises';
 
@@ -21,6 +21,8 @@ const labels = {
   save: 'Add exercise',
   remove: 'Remove exercise',
 };
+
+afterEach(() => vi.useRealTimers());
 
 describe('ExerciseDetailsDrawer', () => {
   it('renders nothing without an exercise', () => {
@@ -71,5 +73,53 @@ describe('ExerciseDetailsDrawer', () => {
     );
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(onClose).toHaveBeenCalledOnce();
+  });
+
+  it('automatically advances to the next image every two seconds', () => {
+    vi.useFakeTimers();
+    render(
+      <ExerciseDetailsDrawer
+        exercise={exercise}
+        saved={false}
+        saving={false}
+        onClose={vi.fn()}
+        onToggleSave={vi.fn()}
+        labels={labels}
+      />
+    );
+
+    expect(screen.getByAltText('Bench Press 1')).toBeInTheDocument();
+    act(() => vi.advanceTimersByTime(2000));
+    expect(screen.getByAltText('Bench Press 2')).toBeInTheDocument();
+    act(() => vi.advanceTimersByTime(2000));
+    expect(screen.getByAltText('Bench Press 3')).toBeInTheDocument();
+  });
+
+  it('keeps the drawer mounted until its closing transition finishes', () => {
+    vi.useFakeTimers();
+    const { rerender } = render(
+      <ExerciseDetailsDrawer
+        exercise={exercise}
+        saved={false}
+        saving={false}
+        onClose={vi.fn()}
+        onToggleSave={vi.fn()}
+        labels={labels}
+      />
+    );
+
+    rerender(
+      <ExerciseDetailsDrawer
+        exercise={null}
+        saved={false}
+        saving={false}
+        onClose={vi.fn()}
+        onToggleSave={vi.fn()}
+        labels={labels}
+      />
+    );
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    act(() => vi.advanceTimersByTime(300));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });

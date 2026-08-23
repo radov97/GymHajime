@@ -20,3 +20,25 @@ body {
   color: var(--color-foreground);
   font-family: sans-serif;
 }
+
+/* A newly selected carousel image gently fades and settles into place. */
+@keyframes exercise-carousel-enter {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.exercise-carousel-image {
+  animation: exercise-carousel-enter 450ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exercise-carousel-image {
+    animation: none;
+  }
+}
