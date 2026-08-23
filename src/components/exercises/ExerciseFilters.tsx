@@ -1,4 +1,4 @@
-import { Search, X } from 'lucide-react';
+import { ChevronDown, Search, X } from 'lucide-react';
 import { formatCategory } from '@/lib/exercises';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   category: string;
   onCategoryChange: (value: string) => void;
   getCategoryLabel?: (category: string) => string;
-  labels: { search: string; clear: string; all: string };
+  labels: { search: string; clear: string; all: string; category: string };
 }
 
 export default function ExerciseFilters({
@@ -46,7 +46,26 @@ export default function ExerciseFilters({
           </button>
         )}
       </div>
-      <div className="flex flex-wrap gap-2" aria-label="Exercise categories">
+      <div className="relative max-w-2xl md:hidden">
+        <select
+          value={category}
+          onChange={(event) => onCategoryChange(event.target.value)}
+          aria-label={labels.category}
+          className="w-full cursor-pointer appearance-none rounded-2xl border border-orange-100 bg-white px-4 py-3.5 pr-12 font-semibold text-neutral-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+        >
+          <option value="">{labels.all}</option>
+          {categories.map((value) => (
+            <option key={value} value={value}>
+              {getCategoryLabel(value)}
+            </option>
+          ))}
+        </select>
+        <ChevronDown
+          className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-500"
+          aria-hidden
+        />
+      </div>
+      <div className="hidden flex-wrap gap-2 md:flex" aria-label={labels.category}>
         {['', ...categories].map((value) => {
           const selected = category === value;
           return (

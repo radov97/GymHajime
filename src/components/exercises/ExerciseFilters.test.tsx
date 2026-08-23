@@ -2,7 +2,12 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import ExerciseFilters from './ExerciseFilters';
 
-const labels = { search: 'Search exercises', clear: 'Clear search', all: 'All' };
+const labels = {
+  search: 'Search exercises',
+  clear: 'Clear search',
+  all: 'All',
+  category: 'Exercise category',
+};
 
 describe('ExerciseFilters', () => {
   it('reports search and category changes', () => {
@@ -38,5 +43,23 @@ describe('ExerciseFilters', () => {
     );
     fireEvent.click(screen.getByRole('button', { name: 'Clear search' }));
     expect(onSearchChange).toHaveBeenCalledWith('');
+  });
+
+  it('changes category from the mobile dropdown', () => {
+    const onCategoryChange = vi.fn();
+    render(
+      <ExerciseFilters
+        search=""
+        onSearchChange={vi.fn()}
+        categories={['chest', 'back']}
+        category=""
+        onCategoryChange={onCategoryChange}
+        labels={labels}
+      />
+    );
+    fireEvent.change(screen.getByRole('combobox', { name: 'Exercise category' }), {
+      target: { value: 'back' },
+    });
+    expect(onCategoryChange).toHaveBeenCalledWith('back');
   });
 });

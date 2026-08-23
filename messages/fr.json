@@ -104,6 +104,7 @@
     "mine": "Mes exercices",
     "search": "Rechercher des exercices...",
     "clear-search": "Effacer la recherche",
+    "category-filter": "Catégorie d’exercice",
     "all": "Tous",
     "result-count": "{count, plural, =0 {Aucun exercice} =1 {# exercice} other {# exercices}}",
     "loading": "Chargement des exercices...",

@@ -202,7 +202,7 @@ export default function ExercisesPage() {
   );
 
   return (
-    <main className="mx-auto max-w-[1500px] p-8 lg:p-10">
+    <main className="mx-auto max-w-[1500px] p-4 sm:p-6 lg:p-10">
       <h1 className="text-3xl font-bold text-[var(--color-brand-ink)]">{t('title')}</h1>
       <div className="mt-7 flex gap-8 border-b border-orange-100" role="tablist">
         {(['explore', 'mine'] as const).map((value) => (
@@ -228,7 +228,12 @@ export default function ExercisesPage() {
             category={category}
             onCategoryChange={setCategory}
             getCategoryLabel={getCategoryLabel}
-            labels={{ search: t('search'), clear: t('clear-search'), all: t('all') }}
+            labels={{
+              search: t('search'),
+              clear: t('clear-search'),
+              all: t('all'),
+              category: t('category-filter'),
+            }}
           />
           {!loading && !error && (
             <p className="text-sm font-semibold text-neutral-600" aria-live="polite">
@@ -272,7 +277,7 @@ export default function ExercisesPage() {
             </Status>
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-5 xl:grid-cols-3 2xl:grid-cols-4">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                 {exercises.map(card)}
               </div>
               {exercises.length < total && (
@@ -293,7 +298,7 @@ export default function ExercisesPage() {
       ) : (
         <section className="mt-8">
           {visible.length ? (
-            <div className="grid grid-cols-2 gap-5 xl:grid-cols-3 2xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
               {visible.map(card)}
             </div>
           ) : (

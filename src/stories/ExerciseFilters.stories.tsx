@@ -26,7 +26,12 @@ const meta = {
     categories: ['chest', 'back', 'legs', 'shoulders', 'arms', 'core'],
     onSearchChange: () => undefined,
     onCategoryChange: () => undefined,
-    labels: { search: 'Search exercises...', clear: 'Clear search', all: 'All' },
+    labels: {
+      search: 'Search exercises...',
+      clear: 'Clear search',
+      all: 'All',
+      category: 'Exercise category',
+    },
   },
 } satisfies Meta<typeof ExerciseFilters>;
 export default meta;
@@ -34,3 +39,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 export const WithSearch: Story = { args: { search: 'bench' } };
 export const CategorySelected: Story = { args: { category: 'chest' } };
+export const Mobile: Story = {
+  parameters: { viewport: { defaultViewport: 'mobile1' } },
+};
