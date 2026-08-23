@@ -18,7 +18,7 @@ export default function DropdownMenu({ isOpen, options }: DropdownMenuProps) {
   return (
     <div
       role="menu"
-      className="absolute right-0 top-full z-20 mt-2 min-w-36 rounded-md bg-white p-1 text-gray-900 shadow-lg"
+      className="absolute right-0 top-full z-[100] mt-2 min-w-36 rounded-md bg-white p-1 text-gray-900 shadow-lg"
     >
       {options.map((option) => (
         <button

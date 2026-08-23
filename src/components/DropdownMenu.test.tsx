@@ -27,6 +27,11 @@ describe('DropdownMenu', () => {
     expect(onLogout).not.toHaveBeenCalled();
   });
 
+  it('renders above sticky controls and drawers', () => {
+    render(<DropdownMenu isOpen options={[]} />);
+    expect(screen.getByRole('menu')).toHaveClass('z-[100]');
+  });
+
   it('prevents disabled options from running', () => {
     const onClick = vi.fn();
     render(

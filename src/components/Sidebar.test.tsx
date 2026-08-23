@@ -18,10 +18,23 @@ describe('Sidebar', () => {
   it('renders localized navigation with the current page highlighted', () => {
     renderWithIntl(<Sidebar />);
 
-    expect(screen.getByRole('complementary', { name: 'Application sidebar' })).toBeInTheDocument();
+    expect(screen.getByRole('complementary', { name: 'Application sidebar' })).toHaveClass(
+      'sticky',
+      'self-start',
+      'h-[calc(100dvh-7rem)]',
+      'overflow-y-auto'
+    );
     expect(screen.getByRole('link', { name: 'Dashboard' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('link', { name: 'Settings' })).toHaveAttribute('href', '/en/settings');
     expect(screen.getAllByRole('link')).toHaveLength(7);
+  });
+
+  it('fills the viewport after it becomes pinned while scrolling', () => {
+    renderWithIntl(<Sidebar />);
+    Object.defineProperty(window, 'scrollY', { value: 120, configurable: true });
+    fireEvent.scroll(window);
+    expect(screen.getByRole('complementary', { name: 'Application sidebar' })).toHaveClass('h-dvh');
+    Object.defineProperty(window, 'scrollY', { value: 0, configurable: true });
   });
 
   it('collapses to accessible icon-only navigation and expands again', () => {

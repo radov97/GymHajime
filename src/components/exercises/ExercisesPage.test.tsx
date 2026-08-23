@@ -18,6 +18,7 @@ describe('ExercisesPage', () => {
     renderWithIntl(<ExercisesPage />);
     expect(screen.getByRole('heading', { name: 'Exercises' })).toBeInTheDocument();
     expect(screen.getByRole('searchbox', { name: 'Search exercises...' })).toBeInTheDocument();
+    expect(screen.getByTestId('sticky-exercise-filters')).toHaveClass('sticky', 'top-0');
     await waitFor(() => expect(screen.getByText('No exercises found.')).toBeInTheDocument());
   });
 

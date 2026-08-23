@@ -21,8 +21,8 @@ export default function ExerciseFilters({
   labels,
 }: Props) {
   return (
-    <div className="space-y-5">
-      <div className="relative max-w-2xl">
+    <div className="grid grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-2 md:block md:space-y-5">
+      <div className="relative min-w-0 max-w-2xl">
         <Search
           className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400"
           aria-hidden
@@ -33,7 +33,7 @@ export default function ExerciseFilters({
           onChange={(event) => onSearchChange(event.target.value)}
           placeholder={labels.search}
           aria-label={labels.search}
-          className="w-full rounded-2xl border border-orange-100 bg-white py-3.5 pl-12 pr-12 text-neutral-900 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+          className="w-full rounded-xl border border-orange-100 bg-white py-2.5 pl-10 pr-10 text-sm text-neutral-900 shadow-sm outline-none transition placeholder:text-ellipsis focus:border-orange-400 focus:ring-2 focus:ring-orange-100 md:rounded-2xl md:py-3.5 md:pl-12 md:pr-12 md:text-base"
         />
         {search && (
           <button
@@ -46,12 +46,12 @@ export default function ExerciseFilters({
           </button>
         )}
       </div>
-      <div className="relative max-w-2xl md:hidden">
+      <div className="relative min-w-0 md:hidden">
         <select
           value={category}
           onChange={(event) => onCategoryChange(event.target.value)}
           aria-label={labels.category}
-          className="w-full cursor-pointer appearance-none rounded-2xl border border-orange-100 bg-white px-4 py-3.5 pr-12 font-semibold text-neutral-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+          className="w-full cursor-pointer appearance-none truncate rounded-xl border border-orange-100 bg-white px-3 py-2.5 pr-9 text-sm font-semibold text-neutral-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
         >
           <option value="">{labels.all}</option>
           {categories.map((value) => (
@@ -61,7 +61,7 @@ export default function ExerciseFilters({
           ))}
         </select>
         <ChevronDown
-          className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-500"
+          className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500"
           aria-hidden
         />
       </div>

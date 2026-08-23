@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, type ComponentType } from 'react';
+import { useEffect, useRef, useState, type ComponentType } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { useMediaQuery } from 'react-responsive';
@@ -41,11 +41,27 @@ export interface SidebarProps {
 
 export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(initiallyCollapsed);
+  const [isPinnedToViewport, setIsPinnedToViewport] = useState(false);
+  const sidebarRef = useRef<HTMLElement>(null);
   const isCompactViewport = useMediaQuery({ maxWidth: BREAKPOINTS.mobileMax });
   const showCollapsed = isCompactViewport || isCollapsed;
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations('sidebar');
+
+  // The sidebar begins below the site header. Once scrolling makes its sticky top reach the top of
+  // the viewport, it expands from the shell-height calculation to the full dynamic viewport height.
+  useEffect(() => {
+    const updatePinnedState = () => {
+      const sidebar = sidebarRef.current;
+      setIsPinnedToViewport(
+        Boolean(sidebar && window.scrollY > 0 && sidebar.getBoundingClientRect().top <= 0)
+      );
+    };
+    updatePinnedState();
+    window.addEventListener('scroll', updatePinnedState, { passive: true });
+    return () => window.removeEventListener('scroll', updatePinnedState);
+  }, []);
 
   const renderItem = ({ id, path, icon: Icon }: SidebarItem) => {
     const href = `/${locale}/${path}`;
@@ -73,14 +89,17 @@ export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
 
   return (
     <aside
+      ref={sidebarRef}
       aria-label={t('navigation')}
-      className={`sticky top-0 flex min-h-[calc(100vh-7rem)] shrink-0 flex-col border-r border-orange-200 bg-white/80 p-3 shadow-sm backdrop-blur transition-[width] duration-200 ${
+      className={`sticky top-0 flex shrink-0 self-start flex-col overflow-y-auto border-r border-orange-200 bg-white/80 p-3 shadow-sm backdrop-blur transition-[width,height] duration-200 ${isPinnedToViewport ? 'h-dvh' : 'h-[calc(100dvh-7rem)]'} ${
         showCollapsed ? 'w-20' : 'w-64'
       }`}
     >
       <div className="mb-5 flex items-center justify-between gap-2 px-2">
         {!showCollapsed && (
-          <span className="font-black tracking-[0.16em] text-[var(--color-brand-ink)]">GYMHAJIME</span>
+          <span className="font-black tracking-[0.16em] text-[var(--color-brand-ink)]">
+            GYMHAJIME
+          </span>
         )}
         {!isCompactViewport && (
           <button

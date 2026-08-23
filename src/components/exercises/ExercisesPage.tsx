@@ -204,37 +204,47 @@ export default function ExercisesPage() {
   return (
     <main className="mx-auto max-w-[1500px] p-4 sm:p-6 lg:p-10">
       <h1 className="text-3xl font-bold text-[var(--color-brand-ink)]">{t('title')}</h1>
-      <div className="mt-7 flex gap-8 border-b border-orange-100" role="tablist">
-        {(['explore', 'mine'] as const).map((value) => (
-          <button
-            key={value}
-            type="button"
-            role="tab"
-            aria-selected={tab === value}
-            onClick={() => setTab(value)}
-            className={`cursor-pointer border-b-2 px-1 pb-3 text-sm font-bold transition ${tab === value ? 'border-orange-500 text-orange-600' : 'border-transparent text-neutral-500 hover:text-neutral-900'}`}
-          >
-            {t(value)}
-          </button>
-        ))}
+      {/* Keep tabs and catalogue controls reachable while users browse a long list. */}
+      <div
+        className="sticky top-0 z-20 -mx-4 mt-3 border-b border-orange-100 bg-[var(--color-brand-soft)]/95 px-4 py-2 shadow-sm backdrop-blur-sm sm:-mx-6 sm:px-6 md:py-4 lg:-mx-10 lg:px-10"
+        data-testid="sticky-exercise-filters"
+      >
+        <div className="flex gap-4 border-b border-orange-100 sm:gap-8" role="tablist">
+          {(['explore', 'mine'] as const).map((value) => (
+            <button
+              key={value}
+              type="button"
+              role="tab"
+              aria-selected={tab === value}
+              onClick={() => setTab(value)}
+              className={`cursor-pointer border-b-2 px-1 pb-3 text-sm font-bold transition ${tab === value ? 'border-orange-500 text-orange-600' : 'border-transparent text-neutral-500 hover:text-neutral-900'}`}
+            >
+              {t(value)}
+            </button>
+          ))}
+        </div>
+        {tab === 'explore' && (
+          <div className="mt-3 md:mt-5">
+            <ExerciseFilters
+              search={search}
+              onSearchChange={setSearch}
+              categories={categories}
+              category={category}
+              onCategoryChange={setCategory}
+              getCategoryLabel={getCategoryLabel}
+              labels={{
+                search: t('search'),
+                clear: t('clear-search'),
+                all: t('all'),
+                category: t('category-filter'),
+              }}
+            />
+          </div>
+        )}
       </div>
 
       {tab === 'explore' ? (
-        <section className="mt-8 space-y-7">
-          <ExerciseFilters
-            search={search}
-            onSearchChange={setSearch}
-            categories={categories}
-            category={category}
-            onCategoryChange={setCategory}
-            getCategoryLabel={getCategoryLabel}
-            labels={{
-              search: t('search'),
-              clear: t('clear-search'),
-              all: t('all'),
-              category: t('category-filter'),
-            }}
-          />
+        <section className="mt-7 space-y-7">
           {!loading && !error && (
             <p className="text-sm font-semibold text-neutral-600" aria-live="polite">
               {t('result-count', { count: total })}
