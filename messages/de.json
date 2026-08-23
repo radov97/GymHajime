@@ -91,6 +91,15 @@
   },
   "exercises": {
     "title": "Übungen",
+    "categories": {
+      "arms": "Arme",
+      "back": "Rücken",
+      "cardio": "Ausdauer",
+      "chest": "Brust",
+      "core": "Rumpf",
+      "legs": "Beine",
+      "shoulders": "Schultern"
+    },
     "explore": "Übungen entdecken",
     "mine": "Meine Übungen",
     "search": "Übungen suchen...",

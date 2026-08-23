@@ -91,6 +91,15 @@
   },
   "exercises": {
     "title": "Mga Ehersisyo",
+    "categories": {
+      "arms": "Mga Braso",
+      "back": "Likod",
+      "cardio": "Cardio",
+      "chest": "Dibdib",
+      "core": "Kalamnan ng tiyan",
+      "legs": "Mga Binti",
+      "shoulders": "Mga Balikat"
+    },
     "explore": "Tuklasin ang mga Ehersisyo",
     "mine": "Aking mga Ehersisyo",
     "search": "Maghanap ng ehersisyo...",

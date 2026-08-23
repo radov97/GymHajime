@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Bookmark, ChevronLeft, ChevronRight, ImageIcon, X } from 'lucide-react';
+import Image from 'next/image';
 import { formatCategory, type Exercise } from '@/lib/exercises';
 
 // The JavaScript unmount delay must match Tailwind's `duration-300` transition duration.
@@ -10,6 +11,7 @@ const DRAWER_TRANSITION_MS = 300;
 /** Data and actions supplied by the parent Exercises page. */
 interface Props {
   exercise: Exercise | null;
+  categoryLabel?: string;
   saved: boolean;
   saving: boolean;
   onClose: () => void;
@@ -26,6 +28,7 @@ interface Props {
  */
 export default function ExerciseDetailsDrawer({
   exercise,
+  categoryLabel,
   saved,
   saving,
   onClose,
@@ -119,7 +122,7 @@ export default function ExerciseDetailsDrawer({
       >
         <div className="mb-6 flex items-center justify-between">
           <span className="text-xs font-bold uppercase tracking-widest text-orange-600">
-            {formatCategory(renderedExercise.category)}
+            {categoryLabel ?? formatCategory(renderedExercise.category)}
           </span>
           <button
             type="button"
@@ -136,11 +139,13 @@ export default function ExerciseDetailsDrawer({
         <div className="relative mt-6 aspect-[4/3] overflow-hidden rounded-2xl border border-orange-100 bg-white">
           {/* The key remounts the image when its path changes, replaying its CSS transition. */}
           {image ? (
-            <img
+            <Image
               key={image.image_path}
               src={image.url}
               alt={`${renderedExercise.name} ${imageIndex + 1}`}
-              className="exercise-carousel-image h-full w-full object-cover"
+              fill
+              sizes="(max-width: 640px) 100vw, 576px"
+              className="exercise-carousel-image object-cover"
             />
           ) : (
             <div className="flex h-full items-center justify-center text-orange-300">

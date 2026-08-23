@@ -91,6 +91,15 @@
   },
   "exercises": {
     "title": "Esercizi",
+    "categories": {
+      "arms": "Braccia",
+      "back": "Schiena",
+      "cardio": "Cardio",
+      "chest": "Petto",
+      "core": "Core",
+      "legs": "Gambe",
+      "shoulders": "Spalle"
+    },
     "explore": "Esplora esercizi",
     "mine": "I miei esercizi",
     "search": "Cerca esercizi...",

@@ -91,6 +91,15 @@
   },
   "exercises": {
     "title": "Ejercicios",
+    "categories": {
+      "arms": "Brazos",
+      "back": "Espalda",
+      "cardio": "Cardio",
+      "chest": "Pecho",
+      "core": "Zona central",
+      "legs": "Piernas",
+      "shoulders": "Hombros"
+    },
     "explore": "Explorar ejercicios",
     "mine": "Mis ejercicios",
     "search": "Buscar ejercicios...",

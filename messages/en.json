@@ -91,6 +91,15 @@
   },
   "exercises": {
     "title": "Exercises",
+    "categories": {
+      "arms": "Arms",
+      "back": "Back",
+      "cardio": "Cardio",
+      "chest": "Chest",
+      "core": "Core",
+      "legs": "Legs",
+      "shoulders": "Shoulders"
+    },
     "explore": "Explore Exercises",
     "mine": "My Exercises",
     "search": "Search exercises...",

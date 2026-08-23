@@ -91,6 +91,15 @@
   },
   "exercises": {
     "title": "Exercices",
+    "categories": {
+      "arms": "Bras",
+      "back": "Dos",
+      "cardio": "Cardio",
+      "chest": "Pectoraux",
+      "core": "Abdominaux",
+      "legs": "Jambes",
+      "shoulders": "Épaules"
+    },
     "explore": "Explorer les exercices",
     "mine": "Mes exercices",
     "search": "Rechercher des exercices...",

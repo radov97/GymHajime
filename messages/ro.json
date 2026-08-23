@@ -91,6 +91,15 @@
   },
   "exercises": {
     "title": "Exerciții",
+    "categories": {
+      "arms": "Brațe",
+      "back": "Spate",
+      "cardio": "Cardio",
+      "chest": "Piept",
+      "core": "Abdomen",
+      "legs": "Picioare",
+      "shoulders": "Umeri"
+    },
     "explore": "Explorează exercițiile",
     "mine": "Exercițiile mele",
     "search": "Caută exerciții...",

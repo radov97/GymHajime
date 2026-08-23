@@ -7,6 +7,7 @@ interface Props {
   categories: string[];
   category: string;
   onCategoryChange: (value: string) => void;
+  getCategoryLabel?: (category: string) => string;
   labels: { search: string; clear: string; all: string };
 }
 
@@ -16,6 +17,7 @@ export default function ExerciseFilters({
   categories,
   category,
   onCategoryChange,
+  getCategoryLabel = formatCategory,
   labels,
 }: Props) {
   return (
@@ -55,7 +57,7 @@ export default function ExerciseFilters({
               onClick={() => onCategoryChange(value)}
               className={`cursor-pointer rounded-full border px-4 py-2 text-sm font-semibold transition ${selected ? 'border-orange-500 bg-orange-500 text-white shadow-sm' : 'border-orange-100 bg-white text-neutral-700 hover:border-orange-300 hover:text-orange-600'}`}
             >
-              {value ? formatCategory(value) : labels.all}
+              {value ? getCategoryLabel(value) : labels.all}
             </button>
           );
         })}

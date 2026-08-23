@@ -1,8 +1,10 @@
 import { Bookmark, ImageIcon } from 'lucide-react';
+import Image from 'next/image';
 import { formatCategory, type Exercise } from '@/lib/exercises';
 
 interface Props {
   exercise: Exercise;
+  categoryLabel?: string;
   saved: boolean;
   saving: boolean;
   onOpen: () => void;
@@ -13,6 +15,7 @@ interface Props {
 
 export default function ExerciseCard({
   exercise,
+  categoryLabel,
   saved,
   saving,
   onOpen,
@@ -24,12 +27,14 @@ export default function ExerciseCard({
   return (
     <article className="group overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
       <button type="button" onClick={onOpen} className="block w-full cursor-pointer text-left">
-        <div className="aspect-[4/3] overflow-hidden bg-orange-50">
+        <div className="relative aspect-[4/3] overflow-hidden bg-orange-50">
           {primaryImage ? (
-            <img
+            <Image
               src={primaryImage.url}
               alt=""
-              className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+              fill
+              sizes="(min-width: 1536px) 25vw, (min-width: 1280px) 33vw, 50vw"
+              className="object-cover transition duration-300 group-hover:scale-[1.03]"
             />
           ) : (
             <div className="flex h-full items-center justify-center text-orange-300">
@@ -46,7 +51,7 @@ export default function ExerciseCard({
             className="min-w-0 flex-1 cursor-pointer text-left"
           >
             <p className="mb-1 text-xs font-bold uppercase tracking-wide text-orange-600">
-              {formatCategory(exercise.category)}
+              {categoryLabel ?? formatCategory(exercise.category)}
             </p>
             <h2 className="truncate text-lg font-bold text-neutral-900">{exercise.name}</h2>
           </button>

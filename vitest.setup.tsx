@@ -15,8 +15,10 @@ afterEach(() => {
 vi.mock('next/image', () => ({
   default: ({
     priority: _priority,
+    fill: _fill,
     ...props
-  }: ImgHTMLAttributes<HTMLImageElement> & { priority?: boolean }) => createElement('img', props),
+  }: ImgHTMLAttributes<HTMLImageElement> & { priority?: boolean; fill?: boolean }) =>
+    createElement('img', props),
 }));
 
 vi.mock('next/link', () => ({

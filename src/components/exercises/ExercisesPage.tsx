@@ -6,12 +6,22 @@ import { useLocale, useTranslations } from 'next-intl';
 import { getExercises } from '@/api/exercises';
 import { deleteSavedExercise, getSavedExercises, saveExercise } from '@/api/savedExercises';
 import { isLocale } from '@/i18n/i18n';
-import { EXERCISES_PAGE_SIZE, type Exercise } from '@/lib/exercises';
+import { EXERCISES_PAGE_SIZE, formatCategory, type Exercise } from '@/lib/exercises';
 import ExerciseCard from './ExerciseCard';
 import ExerciseDetailsDrawer from './ExerciseDetailsDrawer';
 import ExerciseFilters from './ExerciseFilters';
 
 type Tab = 'explore' | 'mine';
+
+const CATEGORY_TRANSLATION_KEYS = {
+  arms: 'categories.arms',
+  back: 'categories.back',
+  cardio: 'categories.cardio',
+  chest: 'categories.chest',
+  core: 'categories.core',
+  legs: 'categories.legs',
+  shoulders: 'categories.shoulders',
+} as const;
 
 /**
  * Coordinates the Exercises screen.
@@ -25,6 +35,12 @@ export default function ExercisesPage() {
   const t = useTranslations('exercises');
   const rawLocale = useLocale();
   const locale = isLocale(rawLocale) ? rawLocale : 'en';
+
+  /** Translates known enum values and safely formats any category introduced in the future. */
+  const getCategoryLabel = (category: string) => {
+    const key = CATEGORY_TRANSLATION_KEYS[category as keyof typeof CATEGORY_TRANSLATION_KEYS];
+    return key ? t(key) : formatCategory(category);
+  };
 
   // Filter and navigation state represents choices made directly by the user.
   const [tab, setTab] = useState<Tab>('explore');
@@ -175,6 +191,7 @@ export default function ExercisesPage() {
     <ExerciseCard
       key={exercise.id}
       exercise={exercise}
+      categoryLabel={getCategoryLabel(exercise.category)}
       saved={savedIds.has(exercise.id)}
       saving={savingId === exercise.id}
       onOpen={() => setSelected(exercise)}
@@ -210,6 +227,7 @@ export default function ExercisesPage() {
             categories={categories}
             category={category}
             onCategoryChange={setCategory}
+            getCategoryLabel={getCategoryLabel}
             labels={{ search: t('search'), clear: t('clear-search'), all: t('all') }}
           />
           {!loading && !error && (
@@ -296,6 +314,7 @@ export default function ExercisesPage() {
       )}
       <ExerciseDetailsDrawer
         exercise={selected}
+        categoryLabel={selected ? getCategoryLabel(selected.category) : undefined}
         saved={selected ? savedIds.has(selected.id) : false}
         saving={selected ? savingId === selected.id : false}
         onClose={() => setSelected(null)}
