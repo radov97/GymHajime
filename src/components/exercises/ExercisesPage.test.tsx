@@ -20,7 +20,8 @@ vi.mock('@/api/workouts', () => ({
 describe('ExercisesPage', () => {
   it('renders the explore controls and no-results state', async () => {
     renderWithIntl(<ExercisesPage />);
-    expect(screen.getByRole('heading', { name: 'Exercises' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Exercises' })).not.toBeInTheDocument();
+    expect(screen.getByRole('tablist', { name: 'Exercises' })).toBeInTheDocument();
     expect(screen.getByRole('searchbox', { name: 'Search exercises...' })).toBeInTheDocument();
     expect(screen.getByTestId('sticky-exercise-filters')).toHaveClass('sticky', 'top-0');
     await waitFor(() => expect(screen.getByText('No exercises found.')).toBeInTheDocument());

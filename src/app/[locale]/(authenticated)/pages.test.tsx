@@ -27,7 +27,6 @@ describe('authenticated placeholder pages', () => {
   it.each([
     ['Dashboard', DashboardPage],
     ['Discover', DiscoverPage],
-    ['Exercises', ExercisesPage],
     ['Workout History', HistoryPage],
     ['Progress', ProgressPage],
     ['My Schedule', SchedulePage],
@@ -35,5 +34,11 @@ describe('authenticated placeholder pages', () => {
   ])('renders the %s page heading', (heading, Page) => {
     renderWithIntl(<Page />);
     expect(screen.getByRole('heading', { name: heading })).toBeInTheDocument();
+  });
+
+  it('renders Exercises without a redundant page heading', () => {
+    renderWithIntl(<ExercisesPage />);
+    expect(screen.queryByRole('heading', { name: 'Exercises' })).not.toBeInTheDocument();
+    expect(screen.getByRole('tablist', { name: 'Exercises' })).toBeInTheDocument();
   });
 });

@@ -7,10 +7,12 @@ import { getExercises } from '@/api/exercises';
 import { deleteSavedExercise, getSavedExercises, saveExercise } from '@/api/savedExercises';
 import { isLocale } from '@/i18n/i18n';
 import { EXERCISES_PAGE_SIZE, formatCategory, type Exercise } from '@/lib/exercises';
+import TabSelector from '@/components/TabSelector';
 import ExerciseCard from './ExerciseCard';
 import ExerciseDetailsDrawer from './ExerciseDetailsDrawer';
 import ExerciseFilters from './ExerciseFilters';
 import WorkoutBuilder from './WorkoutBuilder';
+import ExerciseCategorySelector from './ExerciseCategorySelector';
 
 type Tab = 'explore' | 'mine' | 'builder';
 
@@ -48,6 +50,7 @@ export default function ExercisesPage() {
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [category, setCategory] = useState('');
+  const [mineCategory, setMineCategory] = useState('');
 
   // API data is split between the public catalogue and the authenticated user's library.
   const [categories, setCategories] = useState<string[]>([]);
@@ -182,9 +185,21 @@ export default function ExercisesPage() {
   );
 
   // Only recompute the active tab's data when one of its source arrays or the tab changes.
+  const mineCategories = useMemo(
+    () => [...new Set(mineExercises.map((exercise) => exercise.category))].sort(),
+    [mineExercises]
+  );
+  useEffect(() => {
+    if (mineCategory && !mineCategories.includes(mineCategory)) setMineCategory('');
+  }, [mineCategories, mineCategory]);
   const visible = useMemo(
-    () => (tab === 'explore' ? exercises : mineExercises),
-    [exercises, mineExercises, tab]
+    () =>
+      tab === 'explore'
+        ? exercises
+        : mineCategory
+          ? mineExercises.filter((exercise) => exercise.category === mineCategory)
+          : mineExercises,
+    [exercises, mineCategory, mineExercises, tab]
   );
 
   /** Creates a consistently configured card while keeping the grid markup concise. */
@@ -203,27 +218,21 @@ export default function ExercisesPage() {
   );
 
   return (
-    <main className="mx-auto max-w-[1500px] p-4 sm:p-6 lg:p-10">
-      <h1 className="text-3xl font-bold text-[var(--color-brand-ink)]">{t('title')}</h1>
+    <main className="mx-auto max-w-[1500px] px-4 pb-4 pt-2 sm:px-6 sm:pb-6 sm:pt-3 lg:px-10 lg:pb-10 lg:pt-4">
       {/* Keep tabs and catalogue controls reachable while users browse a long list. */}
       <div
-        className="sticky top-0 z-20 -mx-4 mt-3 border-b border-orange-100 bg-[var(--color-brand-soft)]/95 px-4 py-2 shadow-sm backdrop-blur-sm sm:-mx-6 sm:px-6 md:py-4 lg:-mx-10 lg:px-10"
+        className="sticky top-0 z-20 -mx-4 border-b border-orange-100 bg-[var(--color-brand-soft)]/95 px-4 py-2 shadow-sm backdrop-blur-sm sm:-mx-6 sm:px-6 md:py-4 lg:-mx-10 lg:px-10"
         data-testid="sticky-exercise-filters"
       >
-        <div className="flex gap-4 border-b border-orange-100 sm:gap-8" role="tablist">
-          {(['explore', 'mine', 'builder'] as const).map((value) => (
-            <button
-              key={value}
-              type="button"
-              role="tab"
-              aria-selected={tab === value}
-              onClick={() => setTab(value)}
-              className={`cursor-pointer border-b-2 px-1 pb-3 text-sm font-bold transition ${tab === value ? 'border-orange-500 text-orange-600' : 'border-transparent text-neutral-500 hover:text-neutral-900'}`}
-            >
-              {t(value)}
-            </button>
-          ))}
-        </div>
+        <TabSelector
+          value={tab}
+          onChange={(value) => setTab(value as Tab)}
+          ariaLabel={t('title')}
+          options={(['explore', 'mine', 'builder'] as const).map((value) => ({
+            value,
+            label: t(value),
+          }))}
+        />
         {tab === 'explore' && (
           <div className="mt-3 md:mt-5">
             <ExerciseFilters
@@ -239,6 +248,18 @@ export default function ExercisesPage() {
                 all: t('all'),
                 category: t('category-filter'),
               }}
+            />
+          </div>
+        )}
+        {tab === 'mine' && mineExercises.length > 0 && (
+          <div className="mt-3 md:mt-5">
+            <ExerciseCategorySelector
+              value={mineCategory}
+              onChange={setMineCategory}
+              categories={mineCategories}
+              getCategoryLabel={getCategoryLabel}
+              allLabel={t('all')}
+              ariaLabel={t('category-filter')}
             />
           </div>
         )}
