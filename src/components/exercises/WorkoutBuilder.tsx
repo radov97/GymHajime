@@ -1,11 +1,14 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { AlertCircle, ArrowDown, ArrowUp, Loader, Plus, Search, Trash2, X } from 'lucide-react';
-import Image from 'next/image';
+import { AlertCircle, Loader, Plus } from 'lucide-react';
+import SelectDropdown from '@/components/SelectDropdown';
+import TextInput from '@/components/TextInput';
 import { getWorkout, saveWorkout } from '@/api/workouts';
 import type { Exercise } from '@/types/exercises';
 import type { WorkoutExercise } from '@/types/workouts';
+import SavedExercisePicker from './SavedExercisePicker';
+import WorkoutExerciseTable from './WorkoutExerciseTable';
 
 /** Text is supplied by ExercisesPage so the builder remains independent of next-intl. */
 export interface WorkoutBuilderLabels {
@@ -177,33 +180,28 @@ export default function WorkoutBuilder({
     <section className="mt-8 min-w-[900px]" aria-label={labels.builder}>
       <div className="mb-6 flex items-end justify-between gap-8">
         <div className="flex items-end gap-5">
-          <label className="grid gap-2 text-sm font-bold text-neutral-700">
-            {labels.day}
-            <select
-              aria-label={labels.day}
-              value={day}
-              onChange={(event) => changeDay(Number(event.target.value))}
-              className="min-w-56 rounded-xl border border-orange-200 bg-white px-4 py-3 text-base text-neutral-900 outline-none focus:border-orange-500"
-            >
-              {DAYS.map((key, index) => (
-                <option key={key} value={index + 1}>
-                  {labels[key]}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-neutral-700">
-            {labels.workoutName}
-            <input
-              value={name}
-              onChange={(event) => {
-                setName(event.target.value);
-                setDirty(true);
-              }}
-              placeholder={labels.namePlaceholder}
-              className="w-72 rounded-xl border border-orange-200 bg-white px-4 py-3 font-normal outline-none focus:border-orange-500"
-            />
-          </label>
+          <SelectDropdown
+            value={String(day)}
+            onChange={(value) => changeDay(Number(value))}
+            ariaLabel={labels.day}
+            label={labels.day}
+            className="min-w-56"
+            options={DAYS.map((key, index) => ({
+              value: String(index + 1),
+              label: labels[key],
+            }))}
+          />
+          <TextInput
+            value={name}
+            onChange={(value) => {
+              setName(value);
+              setDirty(true);
+            }}
+            ariaLabel={labels.workoutName}
+            label={labels.workoutName}
+            placeholder={labels.namePlaceholder}
+            className="w-72"
+          />
         </div>
         <button
           type="button"
@@ -245,101 +243,14 @@ export default function WorkoutBuilder({
           </button>
         </State>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-sm">
-          <table className="w-full table-fixed text-left">
-            <thead className="bg-orange-50 text-xs uppercase tracking-wide text-neutral-600">
-              <tr>
-                <th className="w-[42%] px-5 py-4">{labels.exercise}</th>
-                <th className="w-[12%] px-3 py-4">{labels.sets}</th>
-                <th className="w-[12%] px-3 py-4">{labels.reps}</th>
-                <th className="w-[15%] px-3 py-4">{labels.weight}</th>
-                <th className="px-3 py-4">{labels.actions}</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-orange-100">
-              {rows.map((row, index) => (
-                <tr key={row.exerciseId}>
-                  <td className="px-5 py-4">
-                    <div className="flex items-center gap-3">
-                      {row.imageUrl ? (
-                        <Image
-                          src={row.imageUrl}
-                          alt=""
-                          width={56}
-                          height={56}
-                          className="h-14 w-14 rounded-lg object-cover"
-                        />
-                      ) : (
-                        <div className="h-14 w-14 rounded-lg bg-orange-50" />
-                      )}
-                      <div>
-                        <strong className="block text-neutral-900">{row.name}</strong>
-                        <span className="text-sm text-neutral-500">
-                          {categoryLabel(row.category)}
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-3">
-                    <NumberInput
-                      label={`${row.name} ${labels.sets}`}
-                      value={row.sets}
-                      min={1}
-                      step={1}
-                      onChange={(value) => update(index, { sets: value })}
-                    />
-                  </td>
-                  <td className="px-3">
-                    <NumberInput
-                      label={`${row.name} ${labels.reps}`}
-                      value={row.reps}
-                      min={1}
-                      step={1}
-                      onChange={(value) => update(index, { reps: value })}
-                    />
-                  </td>
-                  <td className="px-3">
-                    <input
-                      aria-label={`${row.name} ${labels.weight}`}
-                      type="number"
-                      min="0"
-                      step="0.25"
-                      value={row.weight ?? ''}
-                      placeholder="—"
-                      onChange={(event) =>
-                        update(index, {
-                          weight: event.target.value === '' ? null : Number(event.target.value),
-                        })
-                      }
-                      className="w-24 rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500"
-                    />
-                  </td>
-                  <td className="px-3">
-                    <div className="flex gap-1">
-                      <IconButton
-                        label={labels.up}
-                        disabled={index === 0}
-                        onClick={() => move(index, -1)}
-                      >
-                        <ArrowUp />
-                      </IconButton>
-                      <IconButton
-                        label={labels.down}
-                        disabled={index === rows.length - 1}
-                        onClick={() => move(index, 1)}
-                      >
-                        <ArrowDown />
-                      </IconButton>
-                      <IconButton label={labels.remove} onClick={() => remove(index)} danger>
-                        <Trash2 />
-                      </IconButton>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <WorkoutExerciseTable
+          exercises={rows}
+          categoryLabel={categoryLabel}
+          labels={labels}
+          onUpdate={update}
+          onMove={move}
+          onRemove={remove}
+        />
       )}
       {error && rows.length > 0 && (
         <p role="alert" className="mt-4 flex items-center gap-2 text-sm font-semibold text-red-600">
@@ -358,138 +269,18 @@ export default function WorkoutBuilder({
         </button>
       </div>
 
-      {modal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 p-8"
-          role="presentation"
-          onMouseDown={(event) => event.target === event.currentTarget && setModal(false)}
-        >
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="add-exercise-title"
-            className="max-h-[78vh] w-[720px] overflow-hidden rounded-2xl bg-[var(--color-brand-soft)] shadow-2xl"
-          >
-            <div className="flex items-center justify-between border-b border-orange-100 px-6 py-5">
-              <h2
-                id="add-exercise-title"
-                className="text-xl font-bold text-[var(--color-brand-ink)]"
-              >
-                {labels.add}
-              </h2>
-              <button
-                aria-label={labels.close}
-                onClick={() => setModal(false)}
-                className="cursor-pointer rounded-lg p-2 hover:bg-orange-100"
-              >
-                <X />
-              </button>
-            </div>
-            <div className="p-6">
-              <label className="flex items-center gap-3 rounded-xl border border-orange-200 bg-white px-4">
-                <Search className="h-5 w-5 text-neutral-400" />
-                <input
-                  autoFocus
-                  aria-label={labels.search}
-                  value={search}
-                  onChange={(event) => setSearch(event.target.value)}
-                  placeholder={labels.search}
-                  className="w-full py-3 outline-none"
-                />
-              </label>
-              <div className="mt-4 max-h-[50vh] space-y-2 overflow-y-auto">
-                {choices.length ? (
-                  choices.map((exercise) => (
-                    <button
-                      key={exercise.id}
-                      type="button"
-                      onClick={() => add(exercise)}
-                      className="flex w-full cursor-pointer items-center gap-4 rounded-xl border border-transparent bg-white p-3 text-left hover:border-orange-300 hover:bg-orange-50"
-                    >
-                      {exercise.images[0] ? (
-                        <Image
-                          src={exercise.images[0].url}
-                          alt=""
-                          width={56}
-                          height={56}
-                          className="h-14 w-14 rounded-lg object-cover"
-                        />
-                      ) : (
-                        <div className="h-14 w-14 rounded-lg bg-orange-50" />
-                      )}
-                      <span>
-                        <strong className="block">{exercise.name}</strong>
-                        <span className="text-sm text-neutral-500">
-                          {categoryLabel(exercise.category)}
-                        </span>
-                      </span>
-                      <Plus className="ml-auto text-orange-500" />
-                    </button>
-                  ))
-                ) : (
-                  <p className="py-12 text-center text-neutral-500">
-                    {savedExercises.length ? labels.noMatches : labels.noSaved}
-                  </p>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <SavedExercisePicker
+        open={modal}
+        exercises={choices}
+        hasSavedExercises={savedExercises.length > 0}
+        search={search}
+        categoryLabel={categoryLabel}
+        labels={labels}
+        onSearchChange={setSearch}
+        onAdd={add}
+        onClose={() => setModal(false)}
+      />
     </section>
-  );
-}
-
-function NumberInput({
-  label,
-  value,
-  min,
-  step,
-  onChange,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  step: number;
-  onChange: (value: number) => void;
-}) {
-  return (
-    <input
-      aria-label={label}
-      type="number"
-      value={value}
-      min={min}
-      step={step}
-      onChange={(event) => onChange(Number(event.target.value))}
-      className="w-20 rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500"
-    />
-  );
-}
-
-function IconButton({
-  label,
-  disabled,
-  onClick,
-  danger,
-  children,
-}: {
-  label: string;
-  disabled?: boolean;
-  onClick: () => void;
-  danger?: boolean;
-  children: React.ReactElement<{ className?: string }>;
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      title={label}
-      disabled={disabled}
-      onClick={onClick}
-      className={`cursor-pointer rounded-lg p-2 disabled:cursor-not-allowed disabled:opacity-25 ${danger ? 'text-red-500 hover:bg-red-50' : 'text-neutral-500 hover:bg-orange-50 hover:text-orange-600'}`}
-    >
-      {children}
-    </button>
   );
 }
 
