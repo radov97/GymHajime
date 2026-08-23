@@ -57,15 +57,64 @@
       "verb": "Du verbe japonais <em>hajimeru</em> (始める) : « commencer »."
     },
     "sections": {
-      "dashboard": { "paragraph-1": "Restez concentré sur ce qui compte maintenant.", "paragraph-2": "Voyez en un coup d’œil l’entraînement d’hier, celui d’aujourd’hui et le programme de demain.", "paragraph-3": "Utilisez-le comme rappel quotidien de votre parcours, de ce qui vous attend aujourd’hui et de la suite.", "title": "TABLEAU DE BORD" },
-      "discover": { "paragraph-1": "Vous n’avez pas à créer votre routine seul.", "paragraph-2": "Découvrez d’autres utilisateurs GymHajime et les programmes qu’ils rendent publics.", "paragraph-3": "Trouvez de nouveaux exercices, inspirez-vous des autres et découvrez des routines adaptées.", "paragraph-4": "Vous aimez une routine ? Faites-en la vôtre.", "title": "DÉCOUVRIR" },
-      "plan": { "paragraph-1": "Créez votre routine d’entraînement du lundi au dimanche.", "paragraph-2": "Choisissez exercices, séries et répétitions et sachez toujours ce que vous entraînerez ensuite.", "title": "PLANIFIER" },
-      "progress": { "paragraph-1": "Conservez votre historique et observez l’évolution de votre force, régularité et performance.", "title": "PROGRÈS" },
-      "train": { "paragraph-1": "Transformez votre entraînement planifié en véritable séance.", "paragraph-2": "Enregistrez vos séries, répétitions et charges pendant l’entraînement.", "title": "S’ENTRAÎNER" }
+      "dashboard": {
+        "paragraph-1": "Restez concentré sur ce qui compte maintenant.",
+        "paragraph-2": "Voyez en un coup d’œil l’entraînement d’hier, celui d’aujourd’hui et le programme de demain.",
+        "paragraph-3": "Utilisez-le comme rappel quotidien de votre parcours, de ce qui vous attend aujourd’hui et de la suite.",
+        "title": "TABLEAU DE BORD"
+      },
+      "discover": {
+        "paragraph-1": "Vous n’avez pas à créer votre routine seul.",
+        "paragraph-2": "Découvrez d’autres utilisateurs GymHajime et les programmes qu’ils rendent publics.",
+        "paragraph-3": "Trouvez de nouveaux exercices, inspirez-vous des autres et découvrez des routines adaptées.",
+        "paragraph-4": "Vous aimez une routine ? Faites-en la vôtre.",
+        "title": "DÉCOUVRIR"
+      },
+      "plan": {
+        "paragraph-1": "Créez votre routine d’entraînement du lundi au dimanche.",
+        "paragraph-2": "Choisissez exercices, séries et répétitions et sachez toujours ce que vous entraînerez ensuite.",
+        "title": "PLANIFIER"
+      },
+      "progress": {
+        "paragraph-1": "Conservez votre historique et observez l’évolution de votre force, régularité et performance.",
+        "title": "PROGRÈS"
+      },
+      "train": {
+        "paragraph-1": "Transformez votre entraînement planifié en véritable séance.",
+        "paragraph-2": "Enregistrez vos séries, répétitions et charges pendant l’entraînement.",
+        "title": "S’ENTRAÎNER"
+      }
     },
     "subtitle": "HAJIME — COMMENCER",
     "title": "始め",
     "trigger": "Que signifie Hajime ?"
+  },
+  "exercises": {
+    "title": "Exercices",
+    "explore": "Explorer les exercices",
+    "mine": "Mes exercices",
+    "search": "Rechercher des exercices...",
+    "clear-search": "Effacer la recherche",
+    "all": "Tous",
+    "result-count": "{count, plural, =0 {Aucun exercice} =1 {# exercice} other {# exercices}}",
+    "loading": "Chargement des exercices...",
+    "error": "Impossible de charger les exercices.",
+    "retry": "Réessayer",
+    "no-results": "Aucun exercice trouvé.",
+    "no-results-search": "Aucun exercice trouvé pour « {search} ».",
+    "no-results-help": "Essayez une autre recherche ou effacez les filtres.",
+    "clear-filters": "Effacer les filtres",
+    "load-more": "Charger plus",
+    "save": "Enregistrer l’exercice",
+    "remove": "Retirer l’exercice enregistré",
+    "save-long": "Ajouter à Mes exercices",
+    "remove-long": "Retirer de Mes exercices",
+    "close": "Fermer les détails",
+    "previous-image": "Image précédente",
+    "next-image": "Image suivante",
+    "empty-title": "Aucun exercice enregistré.",
+    "empty-description": "Créez votre bibliothèque en enregistrant les exercices que vous utilisez régulièrement.",
+    "explore-action": "Explorer les exercices"
   },
   "sidebar": {
     "collapse": "Réduire la barre latérale",

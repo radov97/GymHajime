@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { renderWithIntl } from '../../../test/render';
 import DashboardPage from './dashboard/page';
 import DiscoverPage from './discover/page';
@@ -8,6 +8,16 @@ import HistoryPage from './history/page';
 import ProgressPage from './progress/page';
 import SchedulePage from './schedule/page';
 import SettingsPage from './settings/page';
+
+vi.mock('@/api/exercises', () => ({
+  getExercises: () =>
+    Promise.resolve({ exercises: [], categories: [], total: 0, page: 1, limit: 24 }),
+}));
+vi.mock('@/api/savedExercises', () => ({
+  getSavedExercises: () => Promise.resolve({ exercises: [] }),
+  saveExercise: vi.fn(),
+  deleteSavedExercise: vi.fn(),
+}));
 
 describe('authenticated placeholder pages', () => {
   it.each([

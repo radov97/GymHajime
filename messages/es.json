@@ -57,15 +57,64 @@
       "verb": "Del verbo japonés <em>hajimeru</em> (始める): «comenzar» o «empezar»."
     },
     "sections": {
-      "dashboard": { "paragraph-1": "Concéntrate en lo que importa ahora.", "paragraph-2": "Consulta de un vistazo el entrenamiento de ayer, el de hoy y el plan de mañana.", "paragraph-3": "Úsalo como recordatorio diario de dónde has estado, qué toca hoy y qué viene después.", "title": "PANEL" },
-      "discover": { "paragraph-1": "No tienes que crear tu rutina en solitario.", "paragraph-2": "Descubre otros usuarios de GymHajime y los horarios que deciden compartir.", "paragraph-3": "Encuentra ejercicios nuevos, inspírate en otros y descubre rutinas que podrían servirte.", "paragraph-4": "¿Has encontrado una rutina que te gusta? Hazla tuya.", "title": "DESCUBRIR" },
-      "plan": { "paragraph-1": "Crea tu rutina de entrenamiento de lunes a domingo.", "paragraph-2": "Elige ejercicios, series y repeticiones y sabe siempre qué entrenarás después.", "title": "PLANIFICAR" },
-      "progress": { "paragraph-1": "Conserva tu historial y observa cómo evolucionan tu fuerza, constancia y rendimiento.", "title": "PROGRESO" },
-      "train": { "paragraph-1": "Convierte tu entrenamiento planificado en una sesión real.", "paragraph-2": "Registra tus series, repeticiones y pesos mientras entrenas.", "title": "ENTRENAR" }
+      "dashboard": {
+        "paragraph-1": "Concéntrate en lo que importa ahora.",
+        "paragraph-2": "Consulta de un vistazo el entrenamiento de ayer, el de hoy y el plan de mañana.",
+        "paragraph-3": "Úsalo como recordatorio diario de dónde has estado, qué toca hoy y qué viene después.",
+        "title": "PANEL"
+      },
+      "discover": {
+        "paragraph-1": "No tienes que crear tu rutina en solitario.",
+        "paragraph-2": "Descubre otros usuarios de GymHajime y los horarios que deciden compartir.",
+        "paragraph-3": "Encuentra ejercicios nuevos, inspírate en otros y descubre rutinas que podrían servirte.",
+        "paragraph-4": "¿Has encontrado una rutina que te gusta? Hazla tuya.",
+        "title": "DESCUBRIR"
+      },
+      "plan": {
+        "paragraph-1": "Crea tu rutina de entrenamiento de lunes a domingo.",
+        "paragraph-2": "Elige ejercicios, series y repeticiones y sabe siempre qué entrenarás después.",
+        "title": "PLANIFICAR"
+      },
+      "progress": {
+        "paragraph-1": "Conserva tu historial y observa cómo evolucionan tu fuerza, constancia y rendimiento.",
+        "title": "PROGRESO"
+      },
+      "train": {
+        "paragraph-1": "Convierte tu entrenamiento planificado en una sesión real.",
+        "paragraph-2": "Registra tus series, repeticiones y pesos mientras entrenas.",
+        "title": "ENTRENAR"
+      }
     },
     "subtitle": "HAJIME — EMPEZAR",
     "title": "始め",
     "trigger": "¿Qué significa Hajime?"
+  },
+  "exercises": {
+    "title": "Ejercicios",
+    "explore": "Explorar ejercicios",
+    "mine": "Mis ejercicios",
+    "search": "Buscar ejercicios...",
+    "clear-search": "Borrar búsqueda",
+    "all": "Todos",
+    "result-count": "{count, plural, =0 {Ningún ejercicio} =1 {# ejercicio} other {# ejercicios}}",
+    "loading": "Cargando ejercicios...",
+    "error": "No se pudieron cargar los ejercicios.",
+    "retry": "Intentar de nuevo",
+    "no-results": "No se encontraron ejercicios.",
+    "no-results-search": "No se encontraron ejercicios para «{search}».",
+    "no-results-help": "Prueba otra búsqueda o borra los filtros.",
+    "clear-filters": "Borrar filtros",
+    "load-more": "Cargar más",
+    "save": "Guardar ejercicio",
+    "remove": "Quitar ejercicio guardado",
+    "save-long": "Añadir a Mis ejercicios",
+    "remove-long": "Quitar de Mis ejercicios",
+    "close": "Cerrar detalles",
+    "previous-image": "Imagen anterior",
+    "next-image": "Imagen siguiente",
+    "empty-title": "Aún no hay ejercicios guardados.",
+    "empty-description": "Crea tu biblioteca personal guardando los ejercicios que usas habitualmente.",
+    "explore-action": "Explorar ejercicios"
   },
   "sidebar": {
     "collapse": "Contraer barra lateral",

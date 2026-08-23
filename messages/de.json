@@ -57,15 +57,64 @@
       "verb": "Vom japanischen Verb <em>hajimeru</em> (始める): „beginnen“ oder „starten“."
     },
     "sections": {
-      "dashboard": { "paragraph-1": "Konzentriere dich auf das, was jetzt zählt.", "paragraph-2": "Sieh das Training von gestern, das heutige Training und den Plan für morgen auf einen Blick.", "paragraph-3": "Nutze es als tägliche Erinnerung daran, wo du warst, was heute ansteht und was als Nächstes kommt.", "title": "DASHBOARD" },
-      "discover": { "paragraph-1": "Du musst deine Routine nicht allein erstellen.", "paragraph-2": "Entdecke andere GymHajime-Nutzer und ihre öffentlich geteilten Trainingspläne.", "paragraph-3": "Finde neue Übungen, lass dich von anderen inspirieren und entdecke passende Routinen.", "paragraph-4": "Eine Routine gefunden, die dir gefällt? Mach sie zu deiner eigenen.", "title": "ENTDECKEN" },
-      "plan": { "paragraph-1": "Erstelle deine Trainingsroutine von Montag bis Sonntag.", "paragraph-2": "Wähle Übungen, Sätze und Wiederholungen und wisse immer, was du als Nächstes trainierst.", "title": "PLANEN" },
-      "progress": { "paragraph-1": "Speichere deinen Trainingsverlauf und beobachte, wie sich Kraft, Beständigkeit und Leistung entwickeln.", "title": "FORTSCHRITT" },
-      "train": { "paragraph-1": "Verwandle dein geplantes Workout in eine echte Trainingseinheit.", "paragraph-2": "Erfasse Sätze, Wiederholungen und Gewichte während des Trainings.", "title": "TRAINIEREN" }
+      "dashboard": {
+        "paragraph-1": "Konzentriere dich auf das, was jetzt zählt.",
+        "paragraph-2": "Sieh das Training von gestern, das heutige Training und den Plan für morgen auf einen Blick.",
+        "paragraph-3": "Nutze es als tägliche Erinnerung daran, wo du warst, was heute ansteht und was als Nächstes kommt.",
+        "title": "DASHBOARD"
+      },
+      "discover": {
+        "paragraph-1": "Du musst deine Routine nicht allein erstellen.",
+        "paragraph-2": "Entdecke andere GymHajime-Nutzer und ihre öffentlich geteilten Trainingspläne.",
+        "paragraph-3": "Finde neue Übungen, lass dich von anderen inspirieren und entdecke passende Routinen.",
+        "paragraph-4": "Eine Routine gefunden, die dir gefällt? Mach sie zu deiner eigenen.",
+        "title": "ENTDECKEN"
+      },
+      "plan": {
+        "paragraph-1": "Erstelle deine Trainingsroutine von Montag bis Sonntag.",
+        "paragraph-2": "Wähle Übungen, Sätze und Wiederholungen und wisse immer, was du als Nächstes trainierst.",
+        "title": "PLANEN"
+      },
+      "progress": {
+        "paragraph-1": "Speichere deinen Trainingsverlauf und beobachte, wie sich Kraft, Beständigkeit und Leistung entwickeln.",
+        "title": "FORTSCHRITT"
+      },
+      "train": {
+        "paragraph-1": "Verwandle dein geplantes Workout in eine echte Trainingseinheit.",
+        "paragraph-2": "Erfasse Sätze, Wiederholungen und Gewichte während des Trainings.",
+        "title": "TRAINIEREN"
+      }
     },
     "subtitle": "HAJIME — BEGINN",
     "title": "始め",
     "trigger": "Was bedeutet Hajime?"
+  },
+  "exercises": {
+    "title": "Übungen",
+    "explore": "Übungen entdecken",
+    "mine": "Meine Übungen",
+    "search": "Übungen suchen...",
+    "clear-search": "Suche löschen",
+    "all": "Alle",
+    "result-count": "{count, plural, =0 {Keine Übungen} =1 {# Übung} other {# Übungen}}",
+    "loading": "Übungen werden geladen...",
+    "error": "Die Übungen konnten nicht geladen werden.",
+    "retry": "Erneut versuchen",
+    "no-results": "Keine Übungen gefunden.",
+    "no-results-search": "Keine Übungen für „{search}“ gefunden.",
+    "no-results-help": "Versuche eine andere Suche oder lösche die Filter.",
+    "clear-filters": "Filter löschen",
+    "load-more": "Mehr laden",
+    "save": "Übung speichern",
+    "remove": "Gespeicherte Übung entfernen",
+    "save-long": "Zu meinen Übungen hinzufügen",
+    "remove-long": "Aus meinen Übungen entfernen",
+    "close": "Übungsdetails schließen",
+    "previous-image": "Vorheriges Bild",
+    "next-image": "Nächstes Bild",
+    "empty-title": "Noch keine gespeicherten Übungen.",
+    "empty-description": "Erstelle deine persönliche Bibliothek, indem du regelmäßig genutzte Übungen speicherst.",
+    "explore-action": "Übungen entdecken"
   },
   "sidebar": {
     "collapse": "Seitenleiste einklappen",
