@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createServerSupabaseClient } from '@/lib/supabase/server';
+import { bearerToken, createServerSupabaseClient } from '@/lib/supabase/server';
 import { getExerciseById } from '@/services/exercises/getExerciseById';
 
 interface Context {
@@ -9,18 +9,26 @@ interface Context {
 /**
  * Handles `GET /api/exercises/:id` for one exercise's complete details.
  *
- * Next.js supplies dynamic route parameters through `context.params`. The handler validates that
- * the path value is a UUID before touching the database, forwards the optional locale to the
- * service, and maps the service result to 200, 404, or 500 HTTP responses.
+ * The bearer token is verified first so catalogue RLS sees the authenticated user. Next.js supplies
+ * dynamic route parameters through `context.params`; the handler validates that the path value is
+ * a UUID, forwards the optional locale, and maps the result to 200, 404, or 500 HTTP responses.
  */
 export async function GET(request: Request, context: Context) {
+  const token = bearerToken(request);
+  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const supabase = createServerSupabaseClient(token);
+  const { data: auth, error: authError } = await supabase.auth.getUser(token);
+  if (authError || !auth.user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   const { id } = await context.params;
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)) {
     return NextResponse.json({ error: 'Invalid exercise id' }, { status: 400 });
   }
   try {
     const exercise = await getExerciseById(
-      createServerSupabaseClient(),
+      supabase,
       id,
       new URL(request.url).searchParams.get('locale') ?? undefined
     );

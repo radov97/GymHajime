@@ -1,17 +1,5 @@
-import supabase from '@/lib/supabaseClient';
 import type { SavedExerciseMutationResponse, SavedExercisesResponse } from '@/types/exercises';
-
-/**
- * Reads the current browser session and creates headers for an authenticated API request.
- * The access token proves the session to Next.js; no user ID is sent because the server derives it
- * after verifying this token with Supabase.
- */
-async function authenticatedHeaders(): Promise<HeadersInit> {
-  const { data } = await supabase.auth.getSession();
-  const token = data.session?.access_token;
-  if (!token) throw new Error('Authentication required');
-  return { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
-}
+import { authenticatedHeaders } from './auth';
 
 /**
  * Executes an authenticated HTTP request and parses its typed JSON response.
@@ -21,7 +9,7 @@ async function authenticatedHeaders(): Promise<HeadersInit> {
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, {
     ...init,
-    headers: { ...(await authenticatedHeaders()), ...init?.headers },
+    headers: { ...(await authenticatedHeaders(true)), ...init?.headers },
   });
   if (!response.ok) {
     const body = (await response.json().catch(() => null)) as { error?: string } | null;

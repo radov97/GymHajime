@@ -8,8 +8,9 @@ import type { ExerciseRow, ExercisesResponse, GetExercisesParams } from '@/types
  *
  * The service receives a Supabase client from the HTTP layer, keeping database knowledge out of
  * React and route handlers. It joins translations and images in the catalogue query, so it avoids
- * making a separate query for every exercise. `!inner` makes the locale/search constraints filter
- * the exercises themselves rather than only filtering the nested translation array.
+ * making a separate query for every exercise. English lives in the base `exercises` columns, while
+ * other locales live in `exercise_translations`; the query selects and searches the appropriate
+ * source for the requested locale.
  *
  * Pagination is converted from the API's one-based page number into Supabase's inclusive row
  * range. A small category-only query runs in parallel so the UI can display every database-backed
@@ -21,10 +22,14 @@ export async function getExercises(
 ): Promise<ExercisesResponse> {
   const locale: Locale = params.locale && isLocale(params.locale) ? params.locale : 'en';
   const from = (params.page - 1) * params.limit;
+  const translationsRelation =
+    locale === 'en'
+      ? 'exercise_translations(locale,name,description)'
+      : 'exercise_translations!inner(locale,name,description)';
   let query = supabase
     .from('exercises')
     .select(
-      'id,name,category,description,exercise_translations!inner(locale,name,description),exercise_images(image_path,sort_order)',
+      `id,name,category,description,${translationsRelation},exercise_images(image_path,sort_order)`,
       { count: 'exact' }
     )
     .eq('exercise_translations.locale', locale)
@@ -33,7 +38,10 @@ export async function getExercises(
   if (params.category) query = query.eq('category', params.category);
   if (params.search) {
     const escaped = params.search.replaceAll('%', '\\%').replaceAll('_', '\\_');
-    query = query.ilike('exercise_translations.name', `%${escaped}%`);
+    query =
+      locale === 'en'
+        ? query.ilike('name', `%${escaped}%`)
+        : query.ilike('exercise_translations.name', `%${escaped}%`);
   }
 
   const [catalogue, categoryResult] = await Promise.all([

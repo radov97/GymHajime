@@ -1,21 +1,30 @@
 import { NextResponse } from 'next/server';
-import { createServerSupabaseClient } from '@/lib/supabase/server';
+import { bearerToken, createServerSupabaseClient } from '@/lib/supabase/server';
 import { getExercises } from '@/services/exercises/getExercises';
 
 const DEFAULT_LIMIT = 24;
 const MAX_LIMIT = 100;
 
 /**
- * Handles `GET /api/exercises` requests for the paginated public catalogue.
+ * Handles authenticated `GET /api/exercises` requests for the global catalogue.
  *
  * Route handlers form the HTTP boundary: this function converts URL query strings into typed
  * service arguments, rejects invalid pagination with HTTP 400, and translates unexpected service
  * failures into HTTP 500. The database query itself stays in `getExercises`, keeping this handler
  * small and making the service reusable from another backend entry point later.
  *
- * Supported query parameters are `page`, `limit`, `search`, `category`, and `locale`.
+ * The bearer token is verified before querying so Supabase applies the signed-in user's RLS
+ * permissions. Supported query parameters are `page`, `limit`, `search`, `category`, and `locale`.
  */
 export async function GET(request: Request) {
+  const token = bearerToken(request);
+  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const supabase = createServerSupabaseClient(token);
+  const { data: auth, error: authError } = await supabase.auth.getUser(token);
+  if (authError || !auth.user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   const params = new URL(request.url).searchParams;
   const page = Number(params.get('page') ?? 1);
   const limit = Number(params.get('limit') ?? DEFAULT_LIMIT);
@@ -29,7 +38,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Invalid pagination parameters' }, { status: 400 });
   }
   try {
-    const result = await getExercises(createServerSupabaseClient(), {
+    const result = await getExercises(supabase, {
       page,
       limit,
       search: params.get('search')?.trim() || undefined,

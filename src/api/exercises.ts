@@ -1,4 +1,5 @@
 import type { Exercise, ExercisesResponse, GetExercisesParams } from '@/types/exercises';
+import { authenticatedHeaders } from './auth';
 
 /**
  * Converts a Fetch response into typed JSON or a useful application error.
@@ -21,7 +22,9 @@ export async function getExercises(params: GetExercisesParams): Promise<Exercise
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined && value !== '') query.set(key, String(value));
   });
-  return parseResponse<ExercisesResponse>(await fetch(`/api/exercises?${query}`));
+  return parseResponse<ExercisesResponse>(
+    await fetch(`/api/exercises?${query}`, { headers: await authenticatedHeaders() })
+  );
 }
 
 /**
@@ -30,5 +33,9 @@ export async function getExercises(params: GetExercisesParams): Promise<Exercise
  */
 export async function getExerciseById(id: string, locale?: string): Promise<Exercise> {
   const query = locale ? `?locale=${encodeURIComponent(locale)}` : '';
-  return parseResponse<Exercise>(await fetch(`/api/exercises/${encodeURIComponent(id)}${query}`));
+  return parseResponse<Exercise>(
+    await fetch(`/api/exercises/${encodeURIComponent(id)}${query}`, {
+      headers: await authenticatedHeaders(),
+    })
+  );
 }
