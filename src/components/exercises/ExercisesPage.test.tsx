@@ -12,6 +12,10 @@ vi.mock('@/api/savedExercises', () => ({
   saveExercise: vi.fn(),
   deleteSavedExercise: vi.fn(),
 }));
+vi.mock('@/api/workouts', () => ({
+  getWorkout: () => Promise.resolve({ workout: null }),
+  saveWorkout: vi.fn(),
+}));
 
 describe('ExercisesPage', () => {
   it('renders the explore controls and no-results state', async () => {
@@ -31,5 +35,12 @@ describe('ExercisesPage', () => {
       'aria-selected',
       'true'
     );
+  });
+
+  it('opens the Workout Builder tab and shows an empty Monday', async () => {
+    renderWithIntl(<ExercisesPage />);
+    fireEvent.click(screen.getByRole('tab', { name: 'Workout Builder' }));
+    expect(await screen.findByText('No exercises configured for Monday.')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Save Workout' })).toBeDisabled();
   });
 });

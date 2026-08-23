@@ -18,6 +18,10 @@ vi.mock('@/api/savedExercises', () => ({
   saveExercise: vi.fn(),
   deleteSavedExercise: vi.fn(),
 }));
+vi.mock('@/api/workouts', () => ({
+  getWorkout: () => Promise.resolve({ workout: null }),
+  saveWorkout: vi.fn(),
+}));
 
 describe('authenticated placeholder pages', () => {
   it.each([

@@ -10,8 +10,9 @@ import { EXERCISES_PAGE_SIZE, formatCategory, type Exercise } from '@/lib/exerci
 import ExerciseCard from './ExerciseCard';
 import ExerciseDetailsDrawer from './ExerciseDetailsDrawer';
 import ExerciseFilters from './ExerciseFilters';
+import WorkoutBuilder from './WorkoutBuilder';
 
-type Tab = 'explore' | 'mine';
+type Tab = 'explore' | 'mine' | 'builder';
 
 const CATEGORY_TRANSLATION_KEYS = {
   arms: 'categories.arms',
@@ -210,7 +211,7 @@ export default function ExercisesPage() {
         data-testid="sticky-exercise-filters"
       >
         <div className="flex gap-4 border-b border-orange-100 sm:gap-8" role="tablist">
-          {(['explore', 'mine'] as const).map((value) => (
+          {(['explore', 'mine', 'builder'] as const).map((value) => (
             <button
               key={value}
               type="button"
@@ -305,7 +306,7 @@ export default function ExercisesPage() {
             </>
           )}
         </section>
-      ) : (
+      ) : tab === 'mine' ? (
         <section className="mt-8">
           {visible.length ? (
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
@@ -326,6 +327,46 @@ export default function ExercisesPage() {
             </Status>
           )}
         </section>
+      ) : (
+        <WorkoutBuilder
+          locale={locale}
+          savedExercises={mineExercises}
+          categoryLabel={getCategoryLabel}
+          labels={{
+            builder: t('builder'),
+            day: t('builder-day'),
+            workoutName: t('builder-name'),
+            namePlaceholder: t('builder-name-placeholder'),
+            add: t('builder-add'),
+            loading: t('builder-loading'),
+            error: t('builder-error'),
+            retry: t('retry'),
+            empty: t('builder-empty', { day: '__DAY__' }),
+            exercise: t('builder-exercise'),
+            sets: t('builder-sets'),
+            reps: t('builder-reps'),
+            weight: t('builder-weight'),
+            actions: t('builder-actions'),
+            up: t('builder-up'),
+            down: t('builder-down'),
+            remove: t('builder-remove'),
+            save: t('builder-save'),
+            saving: t('builder-saving'),
+            unsaved: t('builder-unsaved'),
+            validation: t('builder-validation'),
+            close: t('builder-close'),
+            search: t('builder-search'),
+            noMatches: t('builder-no-matches'),
+            noSaved: t('builder-no-saved'),
+            monday: t('days.monday'),
+            tuesday: t('days.tuesday'),
+            wednesday: t('days.wednesday'),
+            thursday: t('days.thursday'),
+            friday: t('days.friday'),
+            saturday: t('days.saturday'),
+            sunday: t('days.sunday'),
+          }}
+        />
       )}
       <ExerciseDetailsDrawer
         exercise={selected}
