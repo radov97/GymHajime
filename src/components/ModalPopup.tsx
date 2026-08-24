@@ -61,7 +61,7 @@ export default function ModalPopup({
       data-testid="modal-backdrop"
     >
       <FormContainer
-        className={`relative max-h-[calc(100vh-2rem)] overflow-y-auto bg-[var(--color-brand-modal-bg)] ${size === 'wide' ? '!max-w-4xl' : ''}`}
+        className={`relative max-h-[calc(100vh-1rem)] overflow-y-auto bg-[var(--color-brand-modal-bg)] ${size === 'wide' ? '!m-2 !w-[calc(100%-1rem)] !max-w-4xl !p-4 sm:!m-8 sm:!w-full sm:!p-8' : ''}`}
         noBg={true}
         role="dialog"
         aria-modal="true"

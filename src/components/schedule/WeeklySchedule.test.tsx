@@ -34,6 +34,19 @@ describe('WeeklySchedule', () => {
     expect(screen.getByText('4 × 8')).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { name: 'Rest day' })).toHaveLength(6);
     expect(screen.getByText('training day')).toBeInTheDocument();
+    const rail = screen.getByRole('region', { name: 'Weekly workout schedule' });
+    const scrollBy = vi.fn();
+    Object.defineProperties(rail, {
+      clientWidth: { configurable: true, value: 320 },
+      scrollWidth: { configurable: true, value: 1000 },
+      scrollLeft: { configurable: true, value: 0, writable: true },
+      scrollBy: { configurable: true, value: scrollBy },
+    });
+    fireEvent.scroll(rail);
+    const nextDays = screen.getByRole('button', { name: 'Next days' });
+    expect(nextDays).toBeEnabled();
+    fireEvent.click(nextDays);
+    expect(scrollBy).toHaveBeenCalledWith({ left: 340, behavior: 'smooth' });
     fireEvent.click(screen.getByRole('button', { name: 'View Monday workout' }));
     expect(screen.getByRole('dialog', { name: 'Push Day' })).toBeInTheDocument();
     expect(screen.getByText('60 kg')).toBeInTheDocument();

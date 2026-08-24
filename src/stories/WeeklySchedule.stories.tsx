@@ -84,4 +84,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 export const DesktopWeek: Story = {};
+export const MobileAgenda: Story = {
+  parameters: { viewport: { defaultViewport: 'mobile1' } },
+};
 export const AllRestDays: Story = { args: { loadSchedule: async () => ({ workouts: [] }) } };

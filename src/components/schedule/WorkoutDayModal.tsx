@@ -59,7 +59,7 @@ export default function WorkoutDayModal({ workout, day, onClose }: WorkoutDayMod
                 <button
                   type="button"
                   onClick={() => setSelectedExercise(exercise)}
-                  className="group grid w-full cursor-pointer grid-cols-[2.5rem_5rem_minmax(0,1fr)_auto_1.25rem] items-center gap-4 rounded-2xl border border-orange-100 bg-white p-4 text-left shadow-sm transition hover:border-orange-300 hover:bg-orange-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
+                  className="group grid w-full cursor-pointer grid-cols-[2rem_4rem_minmax(0,1fr)_1.25rem] items-center gap-3 rounded-2xl border border-orange-100 bg-white p-3 text-left shadow-sm transition hover:border-orange-300 hover:bg-orange-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 sm:grid-cols-[2.5rem_5rem_minmax(0,1fr)_auto_1.25rem] sm:gap-4 sm:p-4"
                 >
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-100 text-sm font-black text-orange-700">
                     {String(index + 1).padStart(2, '0')}
@@ -70,10 +70,10 @@ export default function WorkoutDayModal({ workout, day, onClose }: WorkoutDayMod
                       alt=""
                       width={80}
                       height={80}
-                      className="h-20 w-20 rounded-xl object-cover"
+                      className="h-16 w-16 rounded-xl object-cover sm:h-20 sm:w-20"
                     />
                   ) : (
-                    <span className="flex h-20 w-20 items-center justify-center rounded-xl bg-orange-50 text-orange-300">
+                    <span className="flex h-16 w-16 items-center justify-center rounded-xl bg-orange-50 text-orange-300 sm:h-20 sm:w-20">
                       <ImageIcon className="h-7 w-7" aria-hidden />
                     </span>
                   )}
@@ -85,7 +85,7 @@ export default function WorkoutDayModal({ workout, day, onClose }: WorkoutDayMod
                       {formatCategory(exercise.category)}
                     </span>
                   </span>
-                  <span className="flex min-w-32 flex-col items-end gap-2">
+                  <span className="col-start-3 flex flex-col items-start gap-2 sm:col-auto sm:min-w-32 sm:items-end">
                     {exercise.category === 'cardio' ? (
                       <Prescription icon={<Clock3 className="h-4 w-4" />}>
                         {t('minutes', { count: exercise.durationMinutes ?? 0 })}
@@ -104,7 +104,7 @@ export default function WorkoutDayModal({ workout, day, onClose }: WorkoutDayMod
                     )}
                   </span>
                   <ChevronRight
-                    className="h-5 w-5 text-orange-300 transition group-hover:translate-x-0.5 group-hover:text-orange-500"
+                    className="col-start-4 row-start-1 h-5 w-5 text-orange-300 transition group-hover:translate-x-0.5 group-hover:text-orange-500 sm:col-auto sm:row-auto"
                     aria-hidden
                   />
                 </button>
