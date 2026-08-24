@@ -59,19 +59,21 @@ describe('DailyWorkout', () => {
     expect(screen.getByText('Bench Press')).toBeInTheDocument();
     expect(screen.getByText('4 × 8')).toBeInTheDocument();
 
-    const previous = screen.getByRole('button', { name: 'View yesterday' });
+    const previous = screen.getAllByRole('button', { name: 'View yesterday' })[0];
     fireEvent.click(previous);
     expect(previous).toBeDisabled();
     expect(screen.getByText('Yesterday')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Rest day' })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: 'View tomorrow' }));
+    fireEvent.click(screen.getAllByRole('button', { name: 'View tomorrow' })[0]);
     expect(screen.getByText('Today')).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'View tomorrow' }));
+    fireEvent.click(screen.getAllByRole('button', { name: 'View tomorrow' })[0]);
     expect(screen.getByText('Tomorrow')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Cardio Day' })).toBeInTheDocument();
     expect(screen.getByText('30 min')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'View tomorrow' })).toBeDisabled();
+    screen
+      .getAllByRole('button', { name: 'View tomorrow' })
+      .forEach((button) => expect(button).toBeDisabled());
   });
 
   it('shows an error state and supports retrying', async () => {

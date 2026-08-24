@@ -74,7 +74,7 @@ export default function DailyWorkout({
   }).format(selectedDate);
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
+    <main className="mx-auto max-w-6xl px-4 pb-24 pt-6 sm:px-6 sm:pt-8 lg:px-10 lg:py-10">
       <header className="mb-6 lg:mb-8">
         <h1 className="sr-only">{t('title')}</h1>
         <div className="mb-2 flex items-center gap-2.5 text-orange-600 sm:mb-3 sm:gap-3">
@@ -105,7 +105,7 @@ export default function DailyWorkout({
           />
         </PageState>
       ) : (
-        <section className="grid grid-cols-2 items-center gap-3 sm:gap-4 lg:grid-cols-[3.5rem_minmax(0,1fr)_3.5rem] lg:gap-5">
+        <section className="lg:grid lg:grid-cols-[3.5rem_minmax(0,1fr)_3.5rem] lg:items-center lg:gap-5">
           <IconButton
             icon={<ChevronLeft className="h-6 w-6" />}
             label={t('previous')}
@@ -113,10 +113,10 @@ export default function DailyWorkout({
             variant="outline"
             disabled={offset === -1}
             onClick={() => setOffset((value) => Math.max(-1, value - 1))}
-            className="order-2 h-12 w-full !p-0 sm:h-14 lg:order-1 lg:w-14"
+            className="hidden h-14 w-14 !p-0 lg:flex"
           />
 
-          <article className="order-1 col-span-2 min-w-0 overflow-hidden rounded-2xl border border-orange-200 bg-white shadow-sm sm:rounded-3xl lg:order-2 lg:col-span-1">
+          <article className="min-w-0 overflow-hidden rounded-2xl border border-orange-200 bg-white shadow-sm sm:rounded-3xl">
             <header className="flex flex-col items-start gap-4 bg-[var(--color-brand-soft)] px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-6">
               <div>
                 <span className="text-xs font-black uppercase tracking-[0.18em] text-orange-600 sm:text-sm">
@@ -141,7 +141,7 @@ export default function DailyWorkout({
                 <h2 className="text-2xl font-black text-[var(--color-brand-ink)] sm:text-3xl">
                   {workout.name || schedule('unnamed-workout')}
                 </h2>
-                <ul className="mt-4 max-h-[25rem] space-y-3 overflow-y-auto sm:mt-6 sm:pr-2">
+                <ul className="mt-4 space-y-3 sm:mt-6 xl:max-h-[25rem] xl:overflow-y-auto xl:pr-2">
                   {workout.exercises.map((exercise) => (
                     <li
                       key={exercise.exerciseId}
@@ -205,9 +205,32 @@ export default function DailyWorkout({
             variant="outline"
             disabled={offset === 1}
             onClick={() => setOffset((value) => Math.min(1, value + 1))}
-            className="order-3 h-12 w-full !p-0 sm:h-14 lg:w-14"
+            className="hidden h-14 w-14 !p-0 lg:flex"
           />
         </section>
+      )}
+
+      {!loading && !error && (
+        <div className="fixed bottom-0 left-20 right-0 z-30 grid grid-cols-2 gap-3 border-t border-orange-200 bg-[var(--color-brand-soft)]/95 p-3 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] backdrop-blur min-[769px]:left-64 lg:hidden">
+          <IconButton
+            icon={<ChevronLeft className="h-6 w-6" />}
+            label={t('previous')}
+            iconOnly
+            variant="outline"
+            disabled={offset === -1}
+            onClick={() => setOffset((value) => Math.max(-1, value - 1))}
+            className="h-12 w-full justify-center !p-0 sm:h-14"
+          />
+          <IconButton
+            icon={<ChevronRight className="h-6 w-6" />}
+            label={t('next')}
+            iconOnly
+            variant="outline"
+            disabled={offset === 1}
+            onClick={() => setOffset((value) => Math.min(1, value + 1))}
+            className="h-12 w-full justify-center !p-0 sm:h-14"
+          />
+        </div>
       )}
     </main>
   );
