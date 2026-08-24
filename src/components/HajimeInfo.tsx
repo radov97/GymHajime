@@ -5,6 +5,7 @@ import { CircleHelp } from 'lucide-react';
 import ModalPopup from './ModalPopup';
 import { ButtonRank, ButtonType, HajimeInfoSection } from '@/lib/enums';
 import { useTranslations } from 'next-intl';
+import IconButton from './IconButton';
 
 const sections = [
   {
@@ -40,19 +41,18 @@ export default function HajimeInfo({ iconOnly = false }: HajimeInfoProps) {
 
   return (
     <>
-      <button
-        type="button"
+      <IconButton
+        icon={<CircleHelp className={iconOnly ? 'h-6 w-6' : 'h-4 w-4'} />}
+        label={t('trigger')}
+        iconOnly={iconOnly}
+        variant="ghost"
         onClick={() => setIsOpen(true)}
-        aria-label={iconOnly ? t('trigger') : undefined}
         className={
           iconOnly
-            ? 'inline-flex h-10 w-10 items-center justify-center rounded-full text-[var(--color-brand-dark)] transition-colors hover:bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer'
-            : 'inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-brand-dark)] underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer'
+            ? '!h-10 !w-10 !rounded-full !p-0 text-[var(--color-brand-dark)] hover:!bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white'
+            : '!w-auto !rounded-sm !p-0 text-[var(--color-brand-dark)] underline-offset-4 hover:!bg-transparent hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white'
         }
-      >
-        {!iconOnly && t('trigger')}
-        <CircleHelp className={iconOnly ? 'h-6 w-6' : 'h-4 w-4'} aria-hidden />
-      </button>
+      />
 
       <ModalPopup
         isOpen={isOpen}
@@ -80,12 +80,8 @@ export default function HajimeInfo({ iconOnly = false }: HajimeInfoProps) {
                 em: (chunks) => <em>{chunks}</em>,
               })}
             </p>
-            <p>
-              {t('introduction.idea')}
-            </p>
-            <p>
-              {t('introduction.build')}
-            </p>
+            <p>{t('introduction.idea')}</p>
+            <p>{t('introduction.build')}</p>
           </section>
 
           <div className="border-t border-orange-300" aria-hidden />
@@ -102,9 +98,7 @@ export default function HajimeInfo({ iconOnly = false }: HajimeInfoProps) {
           ))}
 
           <div className="border-t border-orange-300" aria-hidden />
-          <p className="text-center font-bold text-[var(--color-brand-ink)]">
-            {t('closing')}
-          </p>
+          <p className="text-center font-bold text-[var(--color-brand-ink)]">{t('closing')}</p>
         </div>
       </ModalPopup>
     </>

@@ -180,13 +180,13 @@ export default function LoginPage() {
               setIsTyping={setIsTyping}
             />
 
-            <button
-              type="button"
+            <Button
+              text={t('login.forgot-password')}
+              type={ButtonType.Button}
+              rank={ButtonRank.Link}
               onClick={() => setShowForgotModal(true)}
-              className="text-[var(--color-brand)] text-sm font-medium hover:underline text-left cursor-pointer"
-            >
-              {t('login.forgot-password')}
-            </button>
+              className="!w-auto !border-0 !bg-transparent !p-0 text-left font-medium hover:underline"
+            />
 
             <Button
               type={ButtonType.Submit}

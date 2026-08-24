@@ -1,5 +1,6 @@
 import { X } from 'lucide-react';
 import type { ReactNode } from 'react';
+import IconButton from './IconButton';
 
 export interface TextInputProps {
   value: string;
@@ -55,15 +56,15 @@ export default function TextInput({
         className={`w-full rounded-xl border border-orange-100 bg-white py-2.5 text-sm font-normal text-neutral-900 shadow-sm outline-none transition placeholder:text-neutral-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 disabled:cursor-not-allowed disabled:bg-neutral-50 disabled:text-neutral-400 ${leadingIcon ? 'pl-10' : 'pl-3'} ${onClear ? 'pr-10' : 'pr-3'}`}
       />
       {onClear && value && (
-        <button
-          type="button"
+        <IconButton
+          icon={<X className="h-5 w-5" />}
+          label={clearLabel ?? 'Clear'}
+          iconOnly
+          variant="ghost"
           onClick={onClear}
-          aria-label={clearLabel ?? 'Clear'}
           disabled={disabled}
-          className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-neutral-400 hover:text-neutral-900 disabled:cursor-not-allowed"
-        >
-          <X className="h-5 w-5" />
-        </button>
+          className="absolute right-2 top-1/2 -translate-y-1/2 !p-1 text-neutral-400 hover:!bg-transparent hover:text-neutral-900"
+        />
       )}
     </div>
   );

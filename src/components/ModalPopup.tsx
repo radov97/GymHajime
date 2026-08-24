@@ -5,6 +5,7 @@ import { useEffect, useId, type ReactNode } from 'react';
 import Button, { type ButtonProps } from './Button';
 import FormContainer from './FormContainer';
 import { X } from 'lucide-react';
+import IconButton from './IconButton';
 
 export interface ModalButton extends Omit<ButtonProps, 'text'> {
   text: string;
@@ -65,14 +66,14 @@ export default function ModalPopup({
         aria-labelledby={title ? titleId : undefined}
       >
         {onClose && (
-          <button
-            type="button"
-            aria-label={closeLabel}
+          <IconButton
+            icon={<X className="h-5 w-5" />}
+            label={closeLabel}
+            iconOnly
+            variant="ghost"
             onClick={onClose}
-            className="absolute right-4 top-4 rounded-md p-1 text-red-600 hover:bg-red-50 hover:text-red-700 cursor-pointer"
-          >
-            <X className="h-5 w-5" aria-hidden="true" />
-          </button>
+            className="absolute right-4 top-4 !rounded-md !p-1 text-red-600 hover:!bg-red-50 hover:!text-red-700"
+          />
         )}
         {title && (
           <h2

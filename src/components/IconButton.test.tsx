@@ -14,9 +14,15 @@ describe('IconButton', () => {
     ['primary', 'bg-orange-500'],
     ['outline', 'border-orange-300'],
     ['danger', 'border-red-200'],
+    ['ghost', 'border-transparent'],
   ] as const)('applies the %s variant', (variant, expectedClass) => {
     render(<IconButton icon={<Plus />} label="Action" variant={variant} />);
     expect(screen.getByRole('button')).toHaveClass(expectedClass);
+  });
+
+  it('uses the hidden label as the accessible name in icon-only mode', () => {
+    render(<IconButton icon={<Plus />} label="Add" iconOnly variant="ghost" />);
+    expect(screen.getByRole('button', { name: 'Add' })).toHaveTextContent('');
   });
 
   it('forwards interactions and native button properties', () => {

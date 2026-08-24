@@ -1,6 +1,7 @@
 import { Plus, Search, X } from 'lucide-react';
 import Image from 'next/image';
 import TextInput from '@/components/TextInput';
+import IconButton from '@/components/IconButton';
 import type { Exercise } from '@/types/exercises';
 
 interface Props {
@@ -44,14 +45,14 @@ export default function SavedExercisePicker({
           <h2 id="add-exercise-title" className="text-xl font-bold text-[var(--color-brand-ink)]">
             {labels.add}
           </h2>
-          <button
-            type="button"
-            aria-label={labels.close}
+          <IconButton
+            icon={<X className="h-5 w-5" />}
+            label={labels.close}
+            iconOnly
+            variant="ghost"
             onClick={onClose}
-            className="cursor-pointer rounded-lg p-2 hover:bg-orange-100"
-          >
-            <X />
-          </button>
+            className="!rounded-lg !p-2 hover:!bg-orange-100"
+          />
         </div>
         <div className="p-6">
           <TextInput

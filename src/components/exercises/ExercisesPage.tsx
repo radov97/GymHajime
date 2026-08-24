@@ -13,6 +13,8 @@ import ExerciseDetailsDrawer from './ExerciseDetailsDrawer';
 import ExerciseFilters from './ExerciseFilters';
 import WorkoutBuilder from './WorkoutBuilder';
 import ExerciseCategorySelector from './ExerciseCategorySelector';
+import Button from '@/components/Button';
+import { ButtonRank } from '@/lib/enums';
 
 type Tab = 'explore' | 'mine' | 'builder';
 
@@ -281,13 +283,12 @@ export default function ExercisesPage() {
             <Status>
               <AlertCircle className="h-8 w-8 text-red-500" />
               <span>{t('error')}</span>
-              <button
-                type="button"
+              <Button
+                text={t('retry')}
+                rank={ButtonRank.Link}
                 onClick={() => setRetryKey((value) => value + 1)}
-                className="cursor-pointer font-bold text-orange-600"
-              >
-                {t('retry')}
-              </button>
+                className="!w-auto !border-0 !bg-transparent !p-0"
+              />
             </Status>
           ) : exercises.length === 0 ? (
             <Status>
@@ -295,16 +296,15 @@ export default function ExercisesPage() {
               <strong>{search ? t('no-results-search', { search }) : t('no-results')}</strong>
               <span>{t('no-results-help')}</span>
               {(search || category) && (
-                <button
-                  type="button"
+                <Button
+                  text={t('clear-filters')}
+                  rank={ButtonRank.Link}
                   onClick={() => {
                     setSearch('');
                     setCategory('');
                   }}
-                  className="cursor-pointer font-bold text-orange-600"
-                >
-                  {t('clear-filters')}
-                </button>
+                  className="!w-auto !border-0 !bg-transparent !p-0"
+                />
               )}
             </Status>
           ) : (
@@ -314,14 +314,13 @@ export default function ExercisesPage() {
               </div>
               {exercises.length < total && (
                 <div className="flex justify-center">
-                  <button
-                    type="button"
+                  <Button
+                    text={loadingMore ? t('loading') : t('load-more')}
+                    rank={ButtonRank.Secondary}
                     disabled={loadingMore}
                     onClick={() => setPage((value) => value + 1)}
-                    className="cursor-pointer rounded-xl border border-orange-500 bg-white px-7 py-3 font-bold text-orange-600 hover:bg-orange-50 disabled:opacity-60"
-                  >
-                    {loadingMore ? t('loading') : t('load-more')}
-                  </button>
+                    className="!w-auto px-7"
+                  />
                 </div>
               )}
             </>
@@ -338,13 +337,11 @@ export default function ExercisesPage() {
               <BookmarkIcon />
               <strong>{t('empty-title')}</strong>
               <span>{t('empty-description')}</span>
-              <button
-                type="button"
+              <Button
+                text={t('explore-action')}
                 onClick={() => setTab('explore')}
-                className="cursor-pointer rounded-xl bg-orange-500 px-5 py-2.5 font-bold text-white"
-              >
-                {t('explore-action')}
-              </button>
+                className="!w-auto"
+              />
             </Status>
           )}
         </section>

@@ -7,6 +7,7 @@ import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { languageOptions, locales, type Locale } from '@/i18n/i18n';
 import DropdownMenu from './DropdownMenu';
+import IconButton from './IconButton';
 
 export default function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,25 +44,29 @@ export default function LanguageSelector() {
 
   return (
     <div ref={selectorRef} className="relative">
-      <button
-        type="button"
-        aria-label={`Select language. Current language: ${currentLanguage.label}`}
+      <IconButton
+        icon={
+          <>
+            <ReactCountryFlag
+              countryCode={currentLanguage.countryCode}
+              svg
+              aria-label={currentLanguage.label}
+              className="h-4 w-6 rounded-sm object-cover"
+            />
+            <ChevronDown
+              aria-hidden
+              className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            />
+          </>
+        }
+        label={`Select language. Current language: ${currentLanguage.label}`}
+        iconOnly
+        variant="ghost"
         aria-expanded={isOpen}
         aria-haspopup="menu"
         onClick={() => setIsOpen((open) => !open)}
-        className="flex items-center gap-1 rounded-md p-2 hover:bg-black/10 cursor-pointer"
-      >
-        <ReactCountryFlag
-          countryCode={currentLanguage.countryCode}
-          svg
-          aria-label={currentLanguage.label}
-          className="h-4 w-6 rounded-sm object-cover"
-        />
-        <ChevronDown
-          aria-hidden="true"
-          className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-        />
-      </button>
+        className="!rounded-md !p-2 hover:!bg-black/10 [&>span]:gap-1"
+      />
 
       <DropdownMenu
         isOpen={isOpen}

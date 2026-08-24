@@ -1,4 +1,5 @@
 import { ChevronDown } from 'lucide-react';
+import IconButton from './IconButton';
 
 export interface ChevronButtonProps {
   isOpen: boolean;
@@ -8,18 +9,20 @@ export interface ChevronButtonProps {
 
 export default function ChevronButton({ isOpen, onClick, label }: ChevronButtonProps) {
   return (
-    <button
-      type="button"
-      className="rounded-md p-2 hover:bg-black/10 cursor-pointer"
-      aria-label={label}
+    <IconButton
+      icon={
+        <ChevronDown
+          aria-hidden
+          className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+        />
+      }
+      label={label}
+      iconOnly
+      variant="ghost"
+      className="!rounded-md !p-2 hover:!bg-black/10"
       aria-expanded={isOpen}
       aria-haspopup="menu"
       onClick={onClick}
-    >
-      <ChevronDown
-        aria-hidden="true"
-        className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-      />
-    </button>
+    />
   );
 }

@@ -6,6 +6,7 @@ import SelectDropdown from '@/components/SelectDropdown';
 import TextInput from '@/components/TextInput';
 import IconButton from '@/components/IconButton';
 import Button from '@/components/Button';
+import { ButtonRank } from '@/lib/enums';
 import { clearWorkout, getWorkout, moveWorkout, saveWorkout } from '@/api/workouts';
 import type { Exercise } from '@/types/exercises';
 import type { WorkoutExercise } from '@/types/workouts';
@@ -295,25 +296,24 @@ export default function WorkoutBuilder({
         <State>
           <AlertCircle className="h-8 w-8 text-red-500" />
           {error}
-          <button
+          <Button
+            text={labels.retry}
+            rank={ButtonRank.Link}
             onClick={() => setRetry((value) => value + 1)}
-            className="cursor-pointer font-bold text-orange-600"
-          >
-            {labels.retry}
-          </button>
+            className="!w-auto !border-0 !bg-transparent !p-0"
+          />
         </State>
       ) : rows.length === 0 ? (
         <State>
           <span className="font-bold">
             {labels.empty.replace('__DAY__', labels[DAYS[day - 1]])}
           </span>
-          <button
-            type="button"
+          <Button
+            text={labels.add}
+            rank={ButtonRank.Link}
             onClick={() => setModal(true)}
-            className="cursor-pointer font-bold text-orange-600"
-          >
-            {labels.add}
-          </button>
+            className="!w-auto !border-0 !bg-transparent !p-0"
+          />
         </State>
       ) : (
         <WorkoutExerciseTable

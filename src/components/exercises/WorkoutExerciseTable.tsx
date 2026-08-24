@@ -1,7 +1,7 @@
 import { ArrowDown, ArrowUp, Trash2 } from 'lucide-react';
 import Image from 'next/image';
-import type { ReactElement } from 'react';
 import type { WorkoutExercise } from '@/types/workouts';
+import IconButton from '@/components/IconButton';
 
 interface Props {
   exercises: WorkoutExercise[];
@@ -94,22 +94,31 @@ export default function WorkoutExerciseTable({
               <td className="px-3">
                 <div className="flex gap-1">
                   <IconButton
+                    icon={<ArrowUp className="h-5 w-5" />}
                     label={labels.up}
+                    iconOnly
+                    variant="ghost"
                     disabled={index === 0}
                     onClick={() => onMove(index, -1)}
-                  >
-                    <ArrowUp />
-                  </IconButton>
+                    className="!rounded-lg !p-2"
+                  />
                   <IconButton
+                    icon={<ArrowDown className="h-5 w-5" />}
                     label={labels.down}
+                    iconOnly
+                    variant="ghost"
                     disabled={index === exercises.length - 1}
                     onClick={() => onMove(index, 1)}
-                  >
-                    <ArrowDown />
-                  </IconButton>
-                  <IconButton label={labels.remove} onClick={() => onRemove(index)} danger>
-                    <Trash2 />
-                  </IconButton>
+                    className="!rounded-lg !p-2"
+                  />
+                  <IconButton
+                    icon={<Trash2 className="h-5 w-5" />}
+                    label={labels.remove}
+                    iconOnly
+                    variant="danger"
+                    onClick={() => onRemove(index)}
+                    className="!rounded-lg !border-transparent !p-2"
+                  />
                 </div>
               </td>
             </tr>
@@ -143,32 +152,5 @@ function NumberInput({
       onChange={(event) => onChange(Number(event.target.value))}
       className="w-20 rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500"
     />
-  );
-}
-
-function IconButton({
-  label,
-  disabled,
-  onClick,
-  danger,
-  children,
-}: {
-  label: string;
-  disabled?: boolean;
-  onClick: () => void;
-  danger?: boolean;
-  children: ReactElement;
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      title={label}
-      disabled={disabled}
-      onClick={onClick}
-      className={`cursor-pointer rounded-lg p-2 disabled:cursor-not-allowed disabled:opacity-25 ${danger ? 'text-red-500 hover:bg-red-50' : 'text-neutral-500 hover:bg-orange-50 hover:text-orange-600'}`}
-    >
-      {children}
-    </button>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Bookmark, ChevronLeft, ChevronRight, ImageIcon, X } from 'lucide-react';
 import Image from 'next/image';
 import { formatCategory, type Exercise } from '@/lib/exercises';
+import IconButton from '@/components/IconButton';
 
 // The JavaScript unmount delay must match Tailwind's `duration-300` transition duration.
 const DRAWER_TRANSITION_MS = 300;
@@ -140,14 +141,14 @@ export default function ExerciseDetailsDrawer({
           <span className="text-xs font-bold uppercase tracking-widest text-orange-600">
             {categoryLabel ?? formatCategory(renderedExercise.category)}
           </span>
-          <button
-            type="button"
+          <IconButton
+            icon={<X className="h-5 w-5" />}
+            label={labels.close}
+            iconOnly
+            variant="ghost"
             onClick={onClose}
-            aria-label={labels.close}
-            className="cursor-pointer rounded-full bg-white p-2 text-neutral-700 shadow-sm hover:text-orange-600"
-          >
-            <X className="h-5 w-5" />
-          </button>
+            className="!rounded-full !bg-white !p-2 text-neutral-700 shadow-sm"
+          />
         </div>
         <h2 id="exercise-details-title" className="text-3xl font-bold text-neutral-950">
           {renderedExercise.name}
@@ -170,22 +171,22 @@ export default function ExerciseDetailsDrawer({
           )}
           {renderedExercise.images.length > 1 && (
             <>
-              <button
-                type="button"
+              <IconButton
+                icon={<ChevronLeft className="h-6 w-6" />}
+                label={labels.previous}
+                iconOnly
+                variant="ghost"
                 onClick={() => changeImage(-1)}
-                aria-label={labels.previous}
-                className="absolute left-3 top-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-white/90 p-2 shadow"
-              >
-                <ChevronLeft />
-              </button>
-              <button
-                type="button"
+                className="absolute left-3 top-1/2 -translate-y-1/2 !rounded-full !bg-white/90 !p-2 shadow"
+              />
+              <IconButton
+                icon={<ChevronRight className="h-6 w-6" />}
+                label={labels.next}
+                iconOnly
+                variant="ghost"
                 onClick={() => changeImage(1)}
-                aria-label={labels.next}
-                className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-white/90 p-2 shadow"
-              >
-                <ChevronRight />
-              </button>
+                className="absolute right-3 top-1/2 -translate-y-1/2 !rounded-full !bg-white/90 !p-2 shadow"
+              />
             </>
           )}
         </div>
@@ -206,15 +207,13 @@ export default function ExerciseDetailsDrawer({
         <p className="mt-7 whitespace-pre-line leading-7 text-neutral-700">
           {renderedExercise.description || '—'}
         </p>
-        <button
-          type="button"
+        <IconButton
+          icon={<Bookmark className="h-5 w-5" fill={saved ? 'currentColor' : 'none'} />}
+          label={saved ? labels.remove : labels.save}
           disabled={saving}
           onClick={onToggleSave}
-          className="mt-8 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-orange-500 px-5 py-3 font-bold text-white shadow-sm transition hover:bg-orange-600 disabled:cursor-wait disabled:opacity-60"
-        >
-          <Bookmark className="h-5 w-5" fill={saved ? 'currentColor' : 'none'} />
-          {saved ? labels.remove : labels.save}
-        </button>
+          className="mt-8 w-full justify-center shadow-sm disabled:cursor-wait"
+        />
       </aside>
     </div>
   );

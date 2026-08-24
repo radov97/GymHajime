@@ -1,6 +1,7 @@
 import { Bookmark, ImageIcon } from 'lucide-react';
 import Image from 'next/image';
 import { formatCategory, type Exercise } from '@/lib/exercises';
+import IconButton from '@/components/IconButton';
 
 interface Props {
   exercise: Exercise;
@@ -55,16 +56,16 @@ export default function ExerciseCard({
             </p>
             <h2 className="truncate text-lg font-bold text-neutral-900">{exercise.name}</h2>
           </button>
-          <button
-            type="button"
+          <IconButton
+            icon={<Bookmark className="h-5 w-5" fill={saved ? 'currentColor' : 'none'} />}
+            label={saved ? removeLabel : saveLabel}
+            iconOnly
+            variant={saved ? 'primary' : 'ghost'}
             disabled={saving}
             onClick={onToggleSave}
-            aria-label={saved ? removeLabel : saveLabel}
             aria-pressed={saved}
-            className={`cursor-pointer rounded-full p-2 transition disabled:cursor-wait disabled:opacity-50 ${saved ? 'bg-orange-500 text-white' : 'bg-orange-50 text-orange-600 hover:bg-orange-100'}`}
-          >
-            <Bookmark className="h-5 w-5" fill={saved ? 'currentColor' : 'none'} />
-          </button>
+            className={`!rounded-full !p-2 disabled:cursor-wait ${saved ? '' : '!bg-orange-50 !text-orange-600 hover:!bg-orange-100'}`}
+          />
         </div>
         <button
           type="button"

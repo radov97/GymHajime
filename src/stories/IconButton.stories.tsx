@@ -25,6 +25,9 @@ export const Outline: Story = {
 export const Danger: Story = {
   args: { icon: <Trash2 className="h-5 w-5" />, label: 'Clear Day', variant: 'danger' },
 };
+export const IconOnly: Story = {
+  args: { label: 'Add Exercise', variant: 'ghost', iconOnly: true },
+};
 export const Disabled: Story = { args: { disabled: true } };
 export const Interactive: Story = {
   play: async ({ canvasElement, args }) => {

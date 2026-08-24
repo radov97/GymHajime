@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { useMediaQuery } from 'react-responsive';
 import { BREAKPOINTS } from '@/lib/breakpoints';
+import IconButton from './IconButton';
 import {
   CalendarDays,
   ChartNoAxesCombined,
@@ -102,19 +103,21 @@ export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
           </span>
         )}
         {!isCompactViewport && (
-          <button
-            type="button"
+          <IconButton
+            icon={
+              isCollapsed ? (
+                <PanelLeftOpen className="h-5 w-5" />
+              ) : (
+                <PanelLeftClose className="h-5 w-5" />
+              )
+            }
+            label={isCollapsed ? t('expand') : t('collapse')}
+            iconOnly
+            variant="ghost"
             onClick={() => setIsCollapsed((collapsed) => !collapsed)}
-            aria-label={isCollapsed ? t('expand') : t('collapse')}
             aria-expanded={!isCollapsed}
-            className="ml-auto rounded-md p-2 text-gray-600 hover:bg-orange-100 hover:text-[var(--color-brand)] cursor-pointer"
-          >
-            {isCollapsed ? (
-              <PanelLeftOpen className="h-5 w-5" aria-hidden />
-            ) : (
-              <PanelLeftClose className="h-5 w-5" aria-hidden />
-            )}
-          </button>
+            className="ml-auto !rounded-md !p-2 text-gray-600 hover:!bg-orange-100 hover:!text-[var(--color-brand)]"
+          />
         )}
       </div>
 
