@@ -3,6 +3,9 @@ import { describe, expect, it, vi } from 'vitest';
 import { renderWithIntl } from '@/test/render';
 import ExercisesPage from './ExercisesPage';
 
+const navigation = vi.hoisted(() => ({ searchParams: new URLSearchParams() }));
+vi.mock('next/navigation', () => ({ useSearchParams: () => navigation.searchParams }));
+
 vi.mock('@/api/exercises', () => ({
   getExercises: () =>
     Promise.resolve({ exercises: [], categories: ['chest'], total: 0, page: 1, limit: 24 }),
@@ -47,5 +50,13 @@ describe('ExercisesPage', () => {
     screen
       .getAllByRole('button', { name: 'Save Workout' })
       .forEach((button) => expect(button).toBeDisabled());
+  });
+
+  it('opens the requested builder weekday from schedule navigation', async () => {
+    navigation.searchParams = new URLSearchParams('tab=builder&day=4');
+    renderWithIntl(<ExercisesPage />);
+    expect(await screen.findByText('No exercises configured for Thursday.')).toBeInTheDocument();
+    expect(screen.getByRole('combobox', { name: 'Day' })).toHaveValue('4');
+    navigation.searchParams = new URLSearchParams();
   });
 });

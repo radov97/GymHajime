@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import WorkoutBuilder, { type WorkoutBuilderLabels } from './WorkoutBuilder';
 import type { Workout } from '@/types/workouts';
+import { exerciseFixture } from '@/dummy/exerciseFixture';
 
 vi.mock('@/api/workouts', () => ({
   getWorkout: vi.fn(),
@@ -79,6 +80,35 @@ const monday: Workout = {
 };
 
 describe('WorkoutBuilder persisted actions', () => {
+  it('keeps the exercise picker open while adding multiple exercises', async () => {
+    const secondExercise = {
+      ...exerciseFixture,
+      id: 'second-exercise',
+      name: 'Incline Bench Press',
+    };
+
+    render(
+      <WorkoutBuilder
+        locale="en"
+        savedExercises={[exerciseFixture, secondExercise]}
+        categoryLabel={() => 'Chest'}
+        labels={labels}
+        loadWorkout={vi.fn(async () => ({ workout: null }))}
+        persistWorkout={vi.fn()}
+        clearPersistedWorkout={vi.fn()}
+        movePersistedWorkout={vi.fn()}
+      />
+    );
+
+    await screen.findByText('No exercises for Monday.');
+    fireEvent.click(screen.getAllByRole('button', { name: 'Add Exercise' })[0]);
+    fireEvent.click(screen.getByRole('button', { name: /Barbell Bench Press/ }));
+
+    expect(screen.getByRole('dialog', { name: 'Add Exercise' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Incline Bench Press/ }));
+    expect(screen.getByRole('dialog', { name: 'Add Exercise' })).toBeInTheDocument();
+  });
+
   it('opens persisted exercise details without relying on the saved library', async () => {
     const workoutWithDetails = {
       ...monday,

@@ -31,6 +31,7 @@ export interface WorkoutBuilderProps {
   persistWorkout?: typeof saveWorkout;
   clearPersistedWorkout?: typeof clearWorkout;
   movePersistedWorkout?: typeof moveWorkout;
+  initialDay?: number;
 }
 
 const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
@@ -48,8 +49,9 @@ export default function WorkoutBuilder({
   persistWorkout = saveWorkout,
   clearPersistedWorkout = clearWorkout,
   movePersistedWorkout = moveWorkout,
+  initialDay = 1,
 }: WorkoutBuilderProps) {
-  const [day, setDay] = useState(1);
+  const [day, setDay] = useState(initialDay >= 1 && initialDay <= 7 ? initialDay : 1);
   const [rows, setRows] = useState<WorkoutExercise[]>([]);
   const [name, setName] = useState('');
   const [dirty, setDirty] = useState(false);
@@ -145,7 +147,7 @@ export default function WorkoutBuilder({
       },
     ]);
     setDirty(true);
-    setModal(false);
+    // Keep the picker open so users can add several exercises in one session.
     setSearch('');
   }
 

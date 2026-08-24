@@ -181,6 +181,8 @@
     "more-exercises": "+ {count} más",
     "previous-days": "Días anteriores",
     "next-days": "Días siguientes",
+    "edit-workout": "Editar en Workout Builder",
+    "plan-workout": "Planificar en Workout Builder",
     "minutes": "{count} min",
     "sets-reps": "{sets} × {reps}",
     "weight-kilograms": "{weight} kg",

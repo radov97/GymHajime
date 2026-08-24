@@ -4,6 +4,8 @@ import { renderWithIntl } from '@/test/render';
 import WeeklySchedule from './WeeklySchedule';
 import type { Workout } from '@/types/workouts';
 
+const navigation = vi.hoisted(() => ({ push: vi.fn() }));
+vi.mock('next/navigation', () => ({ useRouter: () => ({ push: navigation.push }) }));
 vi.mock('@/api/workouts', () => ({ getWeeklySchedule: vi.fn() }));
 
 const monday: Workout = {
@@ -47,6 +49,8 @@ describe('WeeklySchedule', () => {
     expect(nextDays).toBeEnabled();
     fireEvent.click(nextDays);
     expect(scrollBy).toHaveBeenCalledWith({ left: 340, behavior: 'smooth' });
+    fireEvent.click(screen.getByRole('button', { name: 'Edit in Workout Builder' }));
+    expect(navigation.push).toHaveBeenCalledWith('/en/exercises?tab=builder&day=1');
     fireEvent.click(screen.getByRole('button', { name: 'View Monday workout' }));
     expect(screen.getByRole('dialog', { name: 'Push Day' })).toBeInTheDocument();
     expect(screen.getByText('60 kg')).toBeInTheDocument();
@@ -70,5 +74,14 @@ describe('WeeklySchedule', () => {
     };
     renderWithIntl(<WeeklySchedule loadSchedule={vi.fn(async () => ({ workouts: [cardio] }))} />);
     expect(await screen.findByText('30 min')).toBeInTheDocument();
+  });
+
+  it('opens the builder for an unconfigured rest day', async () => {
+    renderWithIntl(<WeeklySchedule loadSchedule={vi.fn(async () => ({ workouts: [] }))} />);
+    const planButtons = await screen.findAllByRole('button', {
+      name: 'Plan in Workout Builder',
+    });
+    fireEvent.click(planButtons[2]);
+    expect(navigation.push).toHaveBeenCalledWith('/en/exercises?tab=builder&day=3');
   });
 });

@@ -10,8 +10,10 @@ import {
   Dumbbell,
   Loader,
   MoonStar,
+  ArrowUpRight,
 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 import { ButtonRank } from '@/lib/enums';
@@ -28,6 +30,7 @@ export interface WeeklyScheduleProps {
 /** Read-only overview of the user's configured training week and rest days. */
 export default function WeeklySchedule({ loadSchedule = getWeeklySchedule }: WeeklyScheduleProps) {
   const locale = useLocale();
+  const router = useRouter();
   const t = useTranslations('schedule');
   const [workouts, setWorkouts] = useState<Workout[]>([]);
   const [loading, setLoading] = useState(true);
@@ -70,6 +73,7 @@ export default function WeeklySchedule({ loadSchedule = getWeeklySchedule }: Wee
 
   const scrollCards = (direction: -1 | 1) =>
     railRef.current?.scrollBy({ left: direction * 340, behavior: 'smooth' });
+  const editDay = (day: number) => router.push(`/${locale}/exercises?tab=builder&day=${day}`);
 
   const byDay = new Map(workouts.map((workout) => [workout.dayOfWeek, workout]));
 
@@ -137,7 +141,7 @@ export default function WeeklySchedule({ loadSchedule = getWeeklySchedule }: Wee
           <section
             ref={railRef}
             onScroll={updateScrollControls}
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5 xl:flex xl:snap-x xl:snap-mandatory xl:overflow-x-auto xl:scroll-smooth xl:pb-5 xl:pt-2 xl:[scrollbar-color:var(--color-brand)_transparent] xl:[scrollbar-width:thin]"
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 lg:gap-5 xl:flex xl:snap-x xl:snap-mandatory xl:overflow-x-auto xl:scroll-smooth xl:pb-5 xl:pt-2 xl:[scrollbar-color:var(--color-brand)_transparent] xl:[scrollbar-width:thin]"
             aria-label={t('week')}
           >
             {DAYS.map((day, index) => {
@@ -148,9 +152,16 @@ export default function WeeklySchedule({ loadSchedule = getWeeklySchedule }: Wee
                   day={t(`days.${day}`)}
                   workout={workout}
                   onOpen={() => setSelected({ workout, day: t(`days.${day}`) })}
+                  onEdit={() => editDay(index + 1)}
                 />
               ) : (
-                <RestDayCard key={day} day={t(`days.${day}`)} restLabel={t('rest-day')} />
+                <RestDayCard
+                  key={day}
+                  day={t(`days.${day}`)}
+                  restLabel={t('rest-day')}
+                  planLabel={t('plan-workout')}
+                  onPlan={() => editDay(index + 1)}
+                />
               );
             })}
           </section>
@@ -169,10 +180,12 @@ function WorkoutDayCard({
   day,
   workout,
   onOpen,
+  onEdit,
 }: {
   day: string;
   workout: Workout;
   onOpen: () => void;
+  onEdit: () => void;
 }) {
   const t = useTranslations('schedule');
   return (
@@ -182,6 +195,7 @@ function WorkoutDayCard({
       aria-label={t('open-workout', { day })}
       onClick={onOpen}
       onKeyDown={(event) => {
+        if (event.target !== event.currentTarget) return;
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
           onOpen();
@@ -229,21 +243,50 @@ function WorkoutDayCard({
             {t('more-exercises', { count: workout.exercises.length - 3 })}
           </span>
         )}
+        <div className="mt-auto pt-6">
+          <IconButton
+            icon={<ArrowUpRight className="h-4 w-4" />}
+            label={t('edit-workout')}
+            variant="outline"
+            className="w-full justify-center"
+            onClick={(event) => {
+              event.stopPropagation();
+              onEdit();
+            }}
+          />
+        </div>
       </div>
     </article>
   );
 }
 
-function RestDayCard({ day, restLabel }: { day: string; restLabel: string }) {
+function RestDayCard({
+  day,
+  restLabel,
+  planLabel,
+  onPlan,
+}: {
+  day: string;
+  restLabel: string;
+  planLabel: string;
+  onPlan: () => void;
+}) {
   return (
-    <article className="flex min-h-28 w-full flex-col rounded-2xl border border-dashed border-orange-200 bg-white/45 p-5 sm:min-h-52 xl:min-h-80 xl:w-80 xl:shrink-0 xl:snap-start">
+    <article className="flex min-h-28 w-full flex-col gap-4 rounded-2xl border border-dashed border-orange-200 bg-white/45 p-5 sm:min-h-52 xl:min-h-80 xl:w-80 xl:shrink-0 xl:snap-start">
       <span className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">{day}</span>
-      <div className="flex flex-1 items-center justify-center gap-3 text-center sm:flex-col sm:gap-0">
-        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-orange-500 sm:mb-4 sm:h-14 sm:w-14">
+      <div className="flex flex-1 items-center justify-center gap-4 text-center sm:flex-col">
+        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100 text-orange-500 sm:h-14 sm:w-14">
           <MoonStar className="h-7 w-7" aria-hidden />
         </span>
         <h2 className="text-lg font-bold text-[var(--color-brand-ink)]">{restLabel}</h2>
       </div>
+      <IconButton
+        icon={<ArrowUpRight className="h-4 w-4" />}
+        label={planLabel}
+        variant="outline"
+        className="w-full justify-center"
+        onClick={onPlan}
+      />
     </article>
   );
 }

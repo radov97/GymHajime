@@ -15,6 +15,7 @@ import WorkoutBuilder from './WorkoutBuilder';
 import ExerciseCategorySelector from './ExerciseCategorySelector';
 import Button from '@/components/Button';
 import { ButtonRank } from '@/lib/enums';
+import { useSearchParams } from 'next/navigation';
 
 type Tab = 'explore' | 'mine' | 'builder';
 
@@ -40,6 +41,11 @@ export default function ExercisesPage() {
   const t = useTranslations('exercises');
   const rawLocale = useLocale();
   const locale = isLocale(rawLocale) ? rawLocale : 'en';
+  const searchParams = useSearchParams();
+  const requestedTab = searchParams.get('tab');
+  const requestedDay = Number(searchParams.get('day'));
+  const initialBuilderDay =
+    Number.isInteger(requestedDay) && requestedDay >= 1 && requestedDay <= 7 ? requestedDay : 1;
 
   /** Translates known enum values and safely formats any category introduced in the future. */
   const getCategoryLabel = (category: string) => {
@@ -48,7 +54,7 @@ export default function ExercisesPage() {
   };
 
   // Filter and navigation state represents choices made directly by the user.
-  const [tab, setTab] = useState<Tab>('explore');
+  const [tab, setTab] = useState<Tab>(requestedTab === 'builder' ? 'builder' : 'explore');
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [category, setCategory] = useState('');
@@ -348,6 +354,7 @@ export default function ExercisesPage() {
       ) : (
         <WorkoutBuilder
           locale={locale}
+          initialDay={initialBuilderDay}
           savedExercises={mineExercises}
           categoryLabel={getCategoryLabel}
           labels={{

@@ -29,7 +29,7 @@ describe('SavedExercisePicker', () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it('searches, adds an exercise, and closes', () => {
+  it('searches and adds an exercise without closing until requested', () => {
     const onSearchChange = vi.fn();
     const onAdd = vi.fn();
     const onClose = vi.fn();
@@ -49,6 +49,8 @@ describe('SavedExercisePicker', () => {
     expect(screen.getByRole('dialog', { name: 'Add Exercise' })).toBeInTheDocument();
     fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'bench' } });
     fireEvent.click(screen.getByRole('button', { name: /Barbell Bench Press/ }));
+    expect(screen.getByRole('dialog', { name: 'Add Exercise' })).toBeInTheDocument();
+    expect(onClose).not.toHaveBeenCalled();
     fireEvent.click(screen.getByRole('button', { name: 'Close picker' }));
     expect(onSearchChange).toHaveBeenCalledWith('bench');
     expect(onAdd).toHaveBeenCalledWith(exerciseFixture);

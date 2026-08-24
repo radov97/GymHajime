@@ -181,6 +181,8 @@
     "more-exercises": "+ încă {count}",
     "previous-days": "Zilele anterioare",
     "next-days": "Zilele următoare",
+    "edit-workout": "Editează în Workout Builder",
+    "plan-workout": "Planifică în Workout Builder",
     "minutes": "{count} min",
     "sets-reps": "{sets} × {reps}",
     "weight-kilograms": "{weight} kg",

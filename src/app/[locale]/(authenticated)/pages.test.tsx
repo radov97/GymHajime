@@ -9,6 +9,11 @@ import ProgressPage from './progress/page';
 import SchedulePage from './schedule/page';
 import SettingsPage from './settings/page';
 
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn() }),
+  useSearchParams: () => new URLSearchParams(),
+}));
+
 vi.mock('@/api/exercises', () => ({
   getExercises: () =>
     Promise.resolve({ exercises: [], categories: [], total: 0, page: 1, limit: 24 }),
