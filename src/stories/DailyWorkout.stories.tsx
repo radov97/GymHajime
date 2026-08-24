@@ -50,6 +50,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const TrainingDay: Story = {};
+export const Tablet: Story = {
+  parameters: { viewport: { defaultViewport: 'tablet' } },
+};
+export const Phone: Story = {
+  parameters: { viewport: { defaultViewport: 'mobile1' } },
+};
 export const RestDay: Story = {
   args: { loadSchedule: async () => ({ workouts: [] }) },
 };

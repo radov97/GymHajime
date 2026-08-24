@@ -74,14 +74,16 @@ export default function DailyWorkout({
   }).format(selectedDate);
 
   return (
-    <main className="mx-auto max-w-6xl px-10 py-10">
-      <header className="mb-8">
+    <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
+      <header className="mb-6 lg:mb-8">
         <h1 className="sr-only">{t('title')}</h1>
-        <div className="mb-3 flex items-center gap-3 text-orange-600">
-          <CalendarDays className="h-6 w-6" aria-hidden />
-          <span className="text-sm font-black uppercase tracking-[0.18em]">{t('eyebrow')}</span>
+        <div className="mb-2 flex items-center gap-2.5 text-orange-600 sm:mb-3 sm:gap-3">
+          <CalendarDays className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
+          <span className="text-xs font-black uppercase tracking-[0.16em] sm:text-sm sm:tracking-[0.18em]">
+            {t('eyebrow')}
+          </span>
         </div>
-        <p className="max-w-2xl text-lg font-semibold text-[var(--color-brand-ink)]">
+        <p className="max-w-2xl text-base font-semibold text-[var(--color-brand-ink)] sm:text-lg">
           {t('description')}
         </p>
       </header>
@@ -103,7 +105,7 @@ export default function DailyWorkout({
           />
         </PageState>
       ) : (
-        <section className="grid grid-cols-[3.5rem_minmax(0,1fr)_3.5rem] items-center gap-5">
+        <section className="grid grid-cols-2 items-center gap-3 sm:gap-4 lg:grid-cols-[3.5rem_minmax(0,1fr)_3.5rem] lg:gap-5">
           <IconButton
             icon={<ChevronLeft className="h-6 w-6" />}
             label={t('previous')}
@@ -111,21 +113,21 @@ export default function DailyWorkout({
             variant="outline"
             disabled={offset === -1}
             onClick={() => setOffset((value) => Math.max(-1, value - 1))}
-            className="h-14 w-14 !p-0"
+            className="order-2 h-12 w-full !p-0 sm:h-14 lg:order-1 lg:w-14"
           />
 
-          <article className="overflow-hidden rounded-3xl border border-orange-200 bg-white shadow-sm">
-            <header className="flex items-center justify-between bg-[var(--color-brand-soft)] px-8 py-6">
+          <article className="order-1 col-span-2 min-w-0 overflow-hidden rounded-2xl border border-orange-200 bg-white shadow-sm sm:rounded-3xl lg:order-2 lg:col-span-1">
+            <header className="flex flex-col items-start gap-4 bg-[var(--color-brand-soft)] px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-6">
               <div>
-                <span className="text-sm font-black uppercase tracking-[0.18em] text-orange-600">
+                <span className="text-xs font-black uppercase tracking-[0.18em] text-orange-600 sm:text-sm">
                   {relativeLabel}
                 </span>
-                <p className="mt-1 text-2xl font-black capitalize text-[var(--color-brand-ink)]">
+                <p className="mt-1 text-xl font-black capitalize text-[var(--color-brand-ink)] sm:text-2xl">
                   {formattedDate}
                 </p>
               </div>
-              <div className="rounded-2xl bg-white px-4 py-3 text-right shadow-sm">
-                <strong className="block text-2xl text-orange-600">
+              <div className="flex items-center gap-2 rounded-xl bg-white px-3.5 py-2 shadow-sm sm:block sm:rounded-2xl sm:px-4 sm:py-3 sm:text-right">
+                <strong className="block text-xl text-orange-600 sm:text-2xl">
                   {workout?.exercises.length ?? 0}
                 </strong>
                 <span className="text-sm font-semibold text-neutral-500">
@@ -135,23 +137,23 @@ export default function DailyWorkout({
             </header>
 
             {workout ? (
-              <div className="px-8 py-7">
-                <h2 className="text-3xl font-black text-[var(--color-brand-ink)]">
+              <div className="px-4 py-5 sm:px-8 sm:py-7">
+                <h2 className="text-2xl font-black text-[var(--color-brand-ink)] sm:text-3xl">
                   {workout.name || schedule('unnamed-workout')}
                 </h2>
-                <ul className="mt-6 max-h-[25rem] space-y-3 overflow-y-auto pr-2">
+                <ul className="mt-4 max-h-[25rem] space-y-3 overflow-y-auto sm:mt-6 sm:pr-2">
                   {workout.exercises.map((exercise) => (
                     <li
                       key={exercise.exerciseId}
-                      className="flex items-center gap-4 rounded-2xl border border-orange-100 bg-orange-50/40 p-4"
+                      className="flex min-w-0 items-center gap-3 rounded-xl border border-orange-100 bg-orange-50/40 p-3 sm:gap-4 sm:rounded-2xl sm:p-4"
                     >
-                      <div className="relative flex h-16 w-20 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-orange-100 text-orange-500">
+                      <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-orange-100 text-orange-500 sm:h-16 sm:w-20 sm:rounded-xl">
                         {exercise.imageUrl ? (
                           <Image
                             src={exercise.imageUrl}
                             alt=""
                             fill
-                            sizes="80px"
+                            sizes="(max-width: 639px) 56px, 80px"
                             className="object-cover"
                           />
                         ) : (
@@ -159,14 +161,14 @@ export default function DailyWorkout({
                         )}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <strong className="block truncate text-lg text-neutral-900">
+                        <strong className="block truncate text-base text-neutral-900 sm:text-lg">
                           {exercise.name}
                         </strong>
                         <span className="text-sm font-semibold capitalize text-neutral-500">
                           {exercise.category}
                         </span>
                       </div>
-                      <span className="shrink-0 rounded-full bg-white px-4 py-2 text-sm font-black text-orange-700 shadow-sm">
+                      <span className="shrink-0 rounded-full bg-white px-3 py-2 text-xs font-black text-orange-700 shadow-sm sm:px-4 sm:text-sm">
                         {exercise.category === 'cardio' ? (
                           <span className="flex items-center gap-1.5">
                             <Clock3 className="h-4 w-4" aria-hidden />
@@ -184,9 +186,9 @@ export default function DailyWorkout({
                 </ul>
               </div>
             ) : (
-              <div className="flex min-h-80 flex-col items-center justify-center gap-4 px-8 py-12 text-center">
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 text-orange-500">
-                  <MoonStar className="h-8 w-8" aria-hidden />
+              <div className="flex min-h-64 flex-col items-center justify-center gap-4 px-5 py-10 text-center sm:min-h-80 sm:px-8 sm:py-12">
+                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-100 text-orange-500 sm:h-16 sm:w-16">
+                  <MoonStar className="h-7 w-7 sm:h-8 sm:w-8" aria-hidden />
                 </span>
                 <h2 className="text-2xl font-black text-[var(--color-brand-ink)]">
                   {schedule('rest-day')}
@@ -203,7 +205,7 @@ export default function DailyWorkout({
             variant="outline"
             disabled={offset === 1}
             onClick={() => setOffset((value) => Math.min(1, value + 1))}
-            className="h-14 w-14 !p-0"
+            className="order-3 h-12 w-full !p-0 sm:h-14 lg:w-14"
           />
         </section>
       )}
@@ -215,7 +217,7 @@ function PageState({ children }: { children: React.ReactNode }) {
   return (
     <div
       role="status"
-      className="flex min-h-96 flex-col items-center justify-center gap-4 rounded-3xl border border-dashed border-orange-200 bg-white/60 p-8 text-neutral-600"
+      className="flex min-h-72 flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-orange-200 bg-white/60 p-6 text-center text-neutral-600 sm:min-h-96 sm:rounded-3xl sm:p-8"
     >
       {children}
     </div>
