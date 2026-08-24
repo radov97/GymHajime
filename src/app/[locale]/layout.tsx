@@ -50,8 +50,10 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <ResponsiveHeader />
-      {children}
+      <div className="flex h-dvh flex-col overflow-hidden">
+        <ResponsiveHeader />
+        <div className="min-h-0 flex-1 overflow-y-auto">{children}</div>
+      </div>
     </NextIntlClientProvider>
   );
 }

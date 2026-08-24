@@ -41,9 +41,9 @@ export default function AuthenticatedShell({ children }: AuthenticatedShellProps
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-7rem)]">
+    <div className="flex h-full overflow-hidden">
       <Sidebar />
-      <div className="min-w-0 flex-1">{children}</div>
+      <div className="h-full min-w-0 flex-1 overflow-y-auto overscroll-contain">{children}</div>
     </div>
   );
 }

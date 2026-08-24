@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState, type ComponentType } from 'react';
+import { useState, type ComponentType } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { useMediaQuery } from 'react-responsive';
@@ -32,9 +32,8 @@ const primaryItems: SidebarItem[] = [
   { id: 'discover', path: 'discover', icon: Search },
   { id: 'history', path: 'history', icon: History },
   { id: 'progress', path: 'progress', icon: ChartNoAxesCombined },
+  { id: 'settings', path: 'settings', icon: Settings },
 ];
-
-const settingsItem: SidebarItem = { id: 'settings', path: 'settings', icon: Settings };
 
 export interface SidebarProps {
   initiallyCollapsed?: boolean;
@@ -42,27 +41,11 @@ export interface SidebarProps {
 
 export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(initiallyCollapsed);
-  const [isPinnedToViewport, setIsPinnedToViewport] = useState(false);
-  const sidebarRef = useRef<HTMLElement>(null);
   const isCompactViewport = useMediaQuery({ maxWidth: BREAKPOINTS.mobileMax });
   const showCollapsed = isCompactViewport || isCollapsed;
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations('sidebar');
-
-  // The sidebar begins below the site header. Once scrolling makes its sticky top reach the top of
-  // the viewport, it expands from the shell-height calculation to the full dynamic viewport height.
-  useEffect(() => {
-    const updatePinnedState = () => {
-      const sidebar = sidebarRef.current;
-      setIsPinnedToViewport(
-        Boolean(sidebar && window.scrollY > 0 && sidebar.getBoundingClientRect().top <= 0)
-      );
-    };
-    updatePinnedState();
-    window.addEventListener('scroll', updatePinnedState, { passive: true });
-    return () => window.removeEventListener('scroll', updatePinnedState);
-  }, []);
 
   const renderItem = ({ id, path, icon: Icon }: SidebarItem) => {
     const href = `/${locale}/${path}`;
@@ -90,9 +73,8 @@ export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
 
   return (
     <aside
-      ref={sidebarRef}
       aria-label={t('navigation')}
-      className={`sticky top-0 flex shrink-0 self-start flex-col overflow-y-auto border-r border-orange-200 bg-white/80 p-3 shadow-sm backdrop-blur transition-[width,height] duration-200 ${isPinnedToViewport ? 'h-dvh' : 'h-[calc(100dvh-7rem)]'} ${
+      className={`flex h-full shrink-0 flex-col overflow-hidden border-r border-orange-200 bg-white/80 p-3 shadow-sm backdrop-blur transition-[width] duration-200 ${
         showCollapsed ? 'w-20' : 'w-64'
       }`}
     >
@@ -121,11 +103,9 @@ export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
         )}
       </div>
 
-      <nav className="flex flex-1 flex-col gap-1" aria-label={t('primary-navigation')}>
+      <nav className="flex flex-col gap-1" aria-label={t('primary-navigation')}>
         {primaryItems.map(renderItem)}
       </nav>
-
-      <div className="mt-6 border-t border-orange-200 pt-3">{renderItem(settingsItem)}</div>
     </aside>
   );
 }

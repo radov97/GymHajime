@@ -30,10 +30,17 @@ describe('AuthenticatedShell', () => {
 
   it('shows the sidebar and page after confirming an authenticated user', async () => {
     mocks.getUser.mockResolvedValue({ data: { user: { id: 'user-1' } } });
-    renderWithIntl(<AuthenticatedShell>Private page</AuthenticatedShell>);
+    const { container } = renderWithIntl(<AuthenticatedShell>Private page</AuthenticatedShell>);
 
     expect(await screen.findByText('Private page')).toBeInTheDocument();
     expect(screen.getByText('Sidebar')).toBeInTheDocument();
+    const shell = container.firstElementChild;
+    expect(shell).toHaveClass('h-full', 'overflow-hidden');
+    expect(screen.getByText('Private page')).toHaveClass(
+      'h-full',
+      'overflow-y-auto',
+      'overscroll-contain'
+    );
   });
 
   it('hides private content and redirects signed-out visitors', async () => {
