@@ -7,6 +7,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock3,
+  Dumbbell,
   Loader,
   MoonStar,
 } from 'lucide-react';
@@ -130,11 +131,9 @@ export default function DailyWorkout({
                   {formattedDate}
                 </p>
               </div>
-              <div className="flex items-center gap-2 rounded-xl bg-white px-3.5 py-2 shadow-sm sm:block sm:rounded-2xl sm:px-4 sm:py-3 sm:text-right">
-                <strong className="block text-xl text-orange-600 sm:text-2xl">
-                  {workout?.exercises.length ?? 0}
-                </strong>
-                <span className="text-sm font-semibold text-neutral-500">
+              <div className="inline-flex items-center gap-2 rounded-full border border-orange-100 bg-white px-4 py-2.5 text-orange-600 shadow-sm">
+                <Dumbbell className="h-4 w-4 shrink-0" aria-hidden />
+                <span className="whitespace-nowrap text-sm font-bold text-[var(--color-brand-ink)]">
                   {schedule('exercise-count', { count: workout?.exercises.length ?? 0 })}
                 </span>
               </div>
