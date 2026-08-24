@@ -239,7 +239,10 @@ export default function WorkoutBuilder({
   }
 
   return (
-    <section className="mt-6 min-w-0 md:mt-8 md:min-w-[900px]" aria-label={labels.builder}>
+    <section
+      className="mt-6 min-w-0 pb-24 md:mt-8 md:min-w-[900px] md:pb-0"
+      aria-label={labels.builder}
+    >
       <div className="mb-6 grid gap-4 md:flex md:items-end md:justify-between md:gap-8">
         <div className="grid min-w-0 gap-4 sm:grid-cols-2 md:flex md:items-end md:gap-5">
           <SelectDropdown
@@ -265,7 +268,7 @@ export default function WorkoutBuilder({
             className="w-full md:w-72"
           />
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:flex md:shrink-0 md:items-center">
+        <div className="grid grid-cols-2 gap-3 md:flex md:shrink-0 md:items-center">
           <IconButton
             disabled={!workoutId || dirty || acting || loading}
             onClick={openMoveDialog}
@@ -286,7 +289,7 @@ export default function WorkoutBuilder({
             onClick={() => setModal(true)}
             icon={<Plus className="h-5 w-5" />}
             label={labels.add}
-            className="col-span-2 w-full justify-center sm:col-span-1 md:w-auto"
+            className="hidden w-full justify-center md:flex md:w-auto"
           />
         </div>
       </div>
@@ -335,13 +338,28 @@ export default function WorkoutBuilder({
           {error}
         </p>
       )}
-      <div className="mt-6 flex justify-end">
+      <div className="mt-6 hidden justify-end md:flex">
         <Button
           disabled={!dirty || saving || acting || loading}
           onClick={() => void persist()}
           loading={saving}
           text={saving ? labels.saving : labels.save}
           className="w-full px-7 sm:!w-auto"
+        />
+      </div>
+
+      <div className="fixed bottom-0 left-20 right-0 z-30 grid grid-cols-2 gap-3 border-t border-orange-200 bg-[var(--color-brand-soft)]/95 p-3 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] backdrop-blur md:hidden">
+        <IconButton
+          onClick={() => setModal(true)}
+          icon={<Plus className="h-5 w-5" />}
+          label={labels.add}
+          className="w-full justify-center"
+        />
+        <Button
+          disabled={!dirty || saving || acting || loading}
+          onClick={() => void persist()}
+          loading={saving}
+          text={saving ? labels.saving : labels.save}
         />
       </div>
 
