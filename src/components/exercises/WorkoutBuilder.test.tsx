@@ -33,6 +33,8 @@ const labels: WorkoutBuilderLabels = {
   unsaved: 'Unsaved?',
   validation: 'Invalid',
   close: 'Close',
+  previous: 'Previous image',
+  next: 'Next image',
   search: 'Search',
   noMatches: 'No matches',
   noSaved: 'No saved',
@@ -75,6 +77,39 @@ const monday: Workout = {
 };
 
 describe('WorkoutBuilder persisted actions', () => {
+  it('opens persisted exercise details without relying on the saved library', async () => {
+    const workoutWithDetails = {
+      ...monday,
+      exercises: [
+        {
+          ...monday.exercises[0],
+          details: {
+            id: 'bench',
+            name: 'Bench Press',
+            category: 'chest',
+            description: 'A compound chest exercise.',
+            images: [],
+          },
+        },
+      ],
+    };
+    render(
+      <WorkoutBuilder
+        locale="en"
+        savedExercises={[]}
+        categoryLabel={() => 'Chest'}
+        labels={labels}
+        loadWorkout={vi.fn(async () => ({ workout: workoutWithDetails }))}
+        persistWorkout={vi.fn()}
+        clearPersistedWorkout={vi.fn()}
+        movePersistedWorkout={vi.fn()}
+      />
+    );
+    fireEvent.click(await screen.findByRole('button', { name: /Bench Press\s*Chest/i }));
+    expect(screen.getByRole('dialog', { name: 'Bench Press' })).toBeInTheDocument();
+    expect(screen.getByText('A compound chest exercise.')).toBeInTheDocument();
+  });
+
   it('clears the selected persisted workout after confirmation', async () => {
     const clearPersistedWorkout = vi.fn(async () => ({ workout: null }));
     render(

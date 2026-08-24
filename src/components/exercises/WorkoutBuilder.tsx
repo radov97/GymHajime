@@ -14,6 +14,7 @@ import type { WorkoutExercise } from '@/types/workouts';
 import SavedExercisePicker from './SavedExercisePicker';
 import WorkoutExerciseTable from './WorkoutExerciseTable';
 import MoveWorkoutDialog from './MoveWorkoutDialog';
+import ExerciseDetailsDrawer from './ExerciseDetailsDrawer';
 
 /** Text is supplied by ExercisesPage so the builder remains independent of next-intl. */
 export interface WorkoutBuilderLabels {
@@ -63,6 +64,7 @@ export default function WorkoutBuilder({
   const [moveOpen, setMoveOpen] = useState(false);
   const [clearOpen, setClearOpen] = useState(false);
   const [targetDay, setTargetDay] = useState(2);
+  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
 
   useEffect(() => {
     let current = true;
@@ -137,6 +139,7 @@ export default function WorkoutBuilder({
         reps: 10,
         weight: null,
         sortOrder: current.length + 1,
+        details: exercise,
       },
     ]);
     setDirty(true);
@@ -330,6 +333,13 @@ export default function WorkoutBuilder({
           onUpdate={update}
           onMove={move}
           onRemove={remove}
+          onOpenExercise={(workoutExercise) =>
+            setSelectedExercise(
+              workoutExercise.details ??
+                savedExercises.find((exercise) => exercise.id === workoutExercise.exerciseId) ??
+                null
+            )
+          }
         />
       )}
       {error && rows.length > 0 && (
@@ -406,6 +416,21 @@ export default function WorkoutBuilder({
             onClick: () => void clearSelectedDay(),
           },
         ]}
+      />
+      <ExerciseDetailsDrawer
+        exercise={selectedExercise}
+        categoryLabel={selectedExercise ? categoryLabel(selectedExercise.category) : undefined}
+        saved
+        saving={false}
+        onClose={() => setSelectedExercise(null)}
+        showSaveAction={false}
+        labels={{
+          close: labels.close,
+          previous: labels.previous,
+          next: labels.next,
+          save: labels.save,
+          remove: labels.remove,
+        }}
       />
     </section>
   );

@@ -80,6 +80,23 @@ describe('WorkoutExerciseTable', () => {
     expect(onRemove).toHaveBeenCalledWith(1);
   });
 
+  it('opens exercise details from its image and text area', () => {
+    const onOpenExercise = vi.fn();
+    render(
+      <WorkoutExerciseTable
+        exercises={exercises}
+        categoryLabel={() => 'Chest'}
+        labels={labels}
+        onUpdate={vi.fn()}
+        onMove={vi.fn()}
+        onRemove={vi.fn()}
+        onOpenExercise={onOpenExercise}
+      />
+    );
+    fireEvent.click(screen.getByRole('button', { name: /Bench Press\s*Chest/i }));
+    expect(onOpenExercise).toHaveBeenCalledWith(exercises[0]);
+  });
+
   it('disables ordering controls at the table boundaries', () => {
     render(
       <WorkoutExerciseTable

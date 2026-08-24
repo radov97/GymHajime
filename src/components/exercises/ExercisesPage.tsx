@@ -373,6 +373,8 @@ export default function ExercisesPage() {
             unsaved: t('builder-unsaved'),
             validation: t('builder-validation'),
             close: t('builder-close'),
+            previous: t('previous-image'),
+            next: t('next-image'),
             search: t('builder-search'),
             noMatches: t('builder-no-matches'),
             noSaved: t('builder-no-saved'),

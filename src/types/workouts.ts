@@ -1,3 +1,5 @@
+import type { Exercise } from './exercises';
+
 /** Exercise catalogue data combined with a user's configuration for one workout row. */
 export interface WorkoutExercise {
   id: string;
@@ -9,6 +11,8 @@ export interface WorkoutExercise {
   reps: number;
   weight: number | null;
   sortOrder: number;
+  /** Complete localized catalogue record used by the workout details drawer. */
+  details?: Exercise;
 }
 
 /** Client-facing representation of the authenticated user's workout for one weekday. */

@@ -16,8 +16,10 @@ interface Props {
   saved: boolean;
   saving: boolean;
   onClose: () => void;
-  onToggleSave: () => void;
+  onToggleSave?: () => void;
   labels: { close: string; previous: string; next: string; save: string; remove: string };
+  /** Workout views can use the drawer for read-only details without library actions. */
+  showSaveAction?: boolean;
 }
 
 /**
@@ -36,6 +38,7 @@ export default function ExerciseDetailsDrawer({
   onClose,
   onToggleSave,
   labels,
+  showSaveAction = true,
 }: Props) {
   // `imageIndex` identifies the image currently visible in the three-image carousel.
   const [imageIndex, setImageIndex] = useState(0);
@@ -207,13 +210,15 @@ export default function ExerciseDetailsDrawer({
         <p className="mt-7 whitespace-pre-line leading-7 text-neutral-700">
           {renderedExercise.description || '—'}
         </p>
-        <IconButton
-          icon={<Bookmark className="h-5 w-5" fill={saved ? 'currentColor' : 'none'} />}
-          label={saved ? labels.remove : labels.save}
-          disabled={saving}
-          onClick={onToggleSave}
-          className="mt-8 w-full justify-center shadow-sm disabled:cursor-wait"
-        />
+        {showSaveAction && (
+          <IconButton
+            icon={<Bookmark className="h-5 w-5" fill={saved ? 'currentColor' : 'none'} />}
+            label={saved ? labels.remove : labels.save}
+            disabled={saving}
+            onClick={onToggleSave}
+            className="mt-8 w-full justify-center shadow-sm disabled:cursor-wait"
+          />
+        )}
       </aside>
     </div>
   );

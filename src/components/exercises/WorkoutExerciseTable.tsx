@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp, Trash2 } from 'lucide-react';
+import { ArrowDown, ArrowUp, ChevronRight, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import type { WorkoutExercise } from '@/types/workouts';
 import IconButton from '@/components/IconButton';
@@ -10,6 +10,7 @@ interface Props {
   onUpdate: (index: number, patch: Partial<WorkoutExercise>) => void;
   onMove: (index: number, direction: -1 | 1) => void;
   onRemove: (index: number) => void;
+  onOpenExercise?: (exercise: WorkoutExercise) => void;
 }
 
 /** Responsive prescription editor: stacked cards on mobile and the existing table on desktop. */
@@ -20,6 +21,7 @@ export default function WorkoutExerciseTable({
   onUpdate,
   onMove,
   onRemove,
+  onOpenExercise,
 }: Props) {
   return (
     <div className="md:overflow-hidden md:rounded-2xl md:border md:border-orange-100 md:bg-white md:shadow-sm">
@@ -40,25 +42,35 @@ export default function WorkoutExerciseTable({
               className="block overflow-hidden rounded-2xl border border-orange-100 bg-white p-4 shadow-sm md:table-row md:rounded-none md:border-0 md:p-0 md:shadow-none"
             >
               <td className="block pb-4 md:table-cell md:px-5 md:py-4">
-                <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => onOpenExercise?.(exercise)}
+                  className="group/details -m-2 flex w-full cursor-pointer items-center gap-3 rounded-xl p-2 text-left transition hover:bg-orange-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
+                >
                   {exercise.imageUrl ? (
                     <Image
                       src={exercise.imageUrl}
                       alt=""
                       width={56}
                       height={56}
-                      className="h-14 w-14 rounded-lg object-cover"
+                      className="h-14 w-14 rounded-lg object-cover transition-transform group-hover/details:scale-105"
                     />
                   ) : (
-                    <div className="h-14 w-14 rounded-lg bg-orange-50" />
+                    <div className="h-14 w-14 rounded-lg bg-orange-50 transition-colors group-hover/details:bg-orange-100" />
                   )}
-                  <div>
-                    <strong className="block text-neutral-900">{exercise.name}</strong>
+                  <span>
+                    <strong className="block text-neutral-900 transition-colors group-hover/details:text-orange-600">
+                      {exercise.name}
+                    </strong>
                     <span className="text-sm text-neutral-500">
                       {categoryLabel(exercise.category)}
                     </span>
-                  </div>
-                </div>
+                  </span>
+                  <ChevronRight
+                    className="ml-auto h-5 w-5 shrink-0 text-orange-300 transition group-hover/details:translate-x-0.5 group-hover/details:text-orange-500"
+                    aria-hidden
+                  />
+                </button>
               </td>
               <td className="grid grid-cols-[1fr_7rem] items-center gap-3 border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0">
                 <span className="text-sm font-bold text-neutral-700 md:hidden">{labels.sets}</span>

@@ -64,6 +64,7 @@ async function hydrateWorkout(
             reps: row.reps,
             weight: row.weight,
             sortOrder: row.sort_order,
+            details: exercise,
           },
         ]
       : [];
