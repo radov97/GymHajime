@@ -76,7 +76,6 @@ const monday: Workout = {
 
 describe('WorkoutBuilder persisted actions', () => {
   it('clears the selected persisted workout after confirmation', async () => {
-    vi.spyOn(window, 'confirm').mockReturnValue(true);
     const clearPersistedWorkout = vi.fn(async () => ({ workout: null }));
     render(
       <WorkoutBuilder
@@ -92,6 +91,10 @@ describe('WorkoutBuilder persisted actions', () => {
     );
     await screen.findByText('Bench Press');
     fireEvent.click(screen.getByRole('button', { name: 'Clear Day' }));
+    expect(screen.getByRole('dialog')).toHaveTextContent('Clear Monday?');
+    const clearButtons = screen.getAllByRole('button', { name: 'Clear Day' });
+    expect(clearButtons[1]).toHaveClass('border-red-200');
+    fireEvent.click(clearButtons[1]);
     await waitFor(() => expect(clearPersistedWorkout).toHaveBeenCalledWith(1));
     expect(await screen.findByText('No exercises for Monday.')).toBeInTheDocument();
   });

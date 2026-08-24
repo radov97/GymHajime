@@ -76,10 +76,10 @@ export default function Sidebar({ initiallyCollapsed = false }: SidebarProps) {
         title={showCollapsed ? label : undefined}
         aria-label={showCollapsed ? label : undefined}
         aria-current={isActive ? 'page' : undefined}
-        className={`flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 transition-colors ${
+        className={`flex h-[42px] items-center gap-3 rounded-xl border px-3 text-sm font-bold transition ${
           isActive
-            ? 'bg-[var(--color-brand)] text-white shadow-sm'
-            : 'text-gray-700 hover:bg-orange-100 hover:text-[var(--color-brand-ink)]'
+            ? 'border-[var(--color-brand)] bg-[var(--color-brand)] text-white shadow-sm'
+            : 'border-transparent text-gray-700 hover:border-orange-200 hover:bg-orange-100 hover:text-[var(--color-brand-ink)]'
         }`}
       >
         <Icon className="h-5 w-5 shrink-0" aria-hidden />

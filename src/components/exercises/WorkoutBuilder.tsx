@@ -6,6 +6,7 @@ import SelectDropdown from '@/components/SelectDropdown';
 import TextInput from '@/components/TextInput';
 import IconButton from '@/components/IconButton';
 import Button from '@/components/Button';
+import ModalPopup from '@/components/ModalPopup';
 import { ButtonRank } from '@/lib/enums';
 import { clearWorkout, getWorkout, moveWorkout, saveWorkout } from '@/api/workouts';
 import type { Exercise } from '@/types/exercises';
@@ -60,6 +61,7 @@ export default function WorkoutBuilder({
   const [workoutId, setWorkoutId] = useState<string | null>(null);
   const [acting, setActing] = useState(false);
   const [moveOpen, setMoveOpen] = useState(false);
+  const [clearOpen, setClearOpen] = useState(false);
   const [targetDay, setTargetDay] = useState(2);
 
   useEffect(() => {
@@ -190,10 +192,8 @@ export default function WorkoutBuilder({
     }
   }
 
-  /** Clears both the persisted workout and any local draft after destructive confirmation. */
+  /** Clears both the persisted workout and any local draft after modal confirmation. */
   async function clearSelectedDay() {
-    const dayLabel = labels[DAYS[day - 1]];
-    if (!window.confirm(labels.clearConfirm.replace('__DAY__', dayLabel))) return;
     setActing(true);
     setError(null);
     try {
@@ -202,6 +202,7 @@ export default function WorkoutBuilder({
       setName('');
       setWorkoutId(null);
       setDirty(false);
+      setClearOpen(false);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : labels.clearError);
     } finally {
@@ -274,7 +275,7 @@ export default function WorkoutBuilder({
           />
           <IconButton
             disabled={acting || loading || (!workoutId && !dirty)}
-            onClick={() => void clearSelectedDay()}
+            onClick={() => setClearOpen(true)}
             icon={<Trash2 className="h-5 w-5" />}
             label={labels.clear}
             variant="danger"
@@ -362,6 +363,28 @@ export default function WorkoutBuilder({
         onTargetChange={setTargetDay}
         onCancel={() => setMoveOpen(false)}
         onConfirm={() => void confirmMove()}
+      />
+      <ModalPopup
+        isOpen={clearOpen}
+        title={labels.clear}
+        subtitle={labels.clearConfirm.replace('__DAY__', labels[DAYS[day - 1]])}
+        onClose={acting ? undefined : () => setClearOpen(false)}
+        closeLabel={`${labels.cancel} ${labels.clear}`}
+        closeOnBackdropClick={!acting}
+        buttons={[
+          {
+            text: labels.cancel,
+            rank: ButtonRank.Secondary,
+            disabled: acting,
+            onClick: () => setClearOpen(false),
+          },
+          {
+            text: labels.clear,
+            rank: ButtonRank.Danger,
+            loading: acting,
+            onClick: () => void clearSelectedDay(),
+          },
+        ]}
       />
     </section>
   );
