@@ -29,6 +29,11 @@ export interface WorkoutResponse {
   workout: Workout | null;
 }
 
+/** All configured weekday workouts; omitted weekdays are intentional rest days. */
+export interface WeeklyWorkoutsResponse {
+  workouts: Workout[];
+}
+
 /** Writable fields for one exercise in an explicitly saved workout draft. */
 export interface SaveWorkoutExerciseInput {
   exerciseId: string;

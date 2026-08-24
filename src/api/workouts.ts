@@ -1,5 +1,5 @@
 import { authenticatedHeaders } from './auth';
-import type { SaveWorkoutInput, WorkoutResponse } from '@/types/workouts';
+import type { SaveWorkoutInput, WeeklyWorkoutsResponse, WorkoutResponse } from '@/types/workouts';
 
 /**
  * Executes an authenticated workout request and converts unsuccessful responses into useful
@@ -20,6 +20,18 @@ async function request(url: string, init?: RequestInit): Promise<WorkoutResponse
 /** Loads the authenticated user's localized workout configuration for one weekday. */
 export function getWorkout(day: number, locale: string): Promise<WorkoutResponse> {
   return request(`/api/workouts?day=${day}&locale=${encodeURIComponent(locale)}`);
+}
+
+/** Loads the complete localized Monday-to-Sunday schedule in one request. */
+export async function getWeeklySchedule(locale: string): Promise<WeeklyWorkoutsResponse> {
+  const response = await fetch(`/api/workouts?locale=${encodeURIComponent(locale)}`, {
+    headers: await authenticatedHeaders(false),
+  });
+  if (!response.ok) {
+    const body = (await response.json().catch(() => null)) as { error?: string } | null;
+    throw new Error(body?.error ?? 'Unable to load schedule');
+  }
+  return response.json() as Promise<WeeklyWorkoutsResponse>;
 }
 
 /** Persists a complete weekday draft in one HTTP request. */

@@ -20,6 +20,7 @@ vi.mock('@/api/savedExercises', () => ({
 }));
 vi.mock('@/api/workouts', () => ({
   getWorkout: () => Promise.resolve({ workout: null }),
+  getWeeklySchedule: () => Promise.resolve({ workouts: [] }),
   saveWorkout: vi.fn(),
   clearWorkout: vi.fn(),
   moveWorkout: vi.fn(),

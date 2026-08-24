@@ -171,6 +171,30 @@
       "sunday": "Domingo"
     }
   },
+  "schedule": {
+    "eyebrow": "Plan semanal",
+    "title": "Mi horario",
+    "description": "Toda tu semana de entrenamiento de un vistazo.",
+    "week": "Horario semanal de entrenamiento",
+    "training-days": "{count, plural, one {día de entrenamiento} other {días de entrenamiento}}",
+    "exercise-count": "{count, plural, one {# ejercicio} other {# ejercicios}}",
+    "minutes": "{count} min",
+    "sets-reps": "{sets} × {reps}",
+    "rest-day": "Día de descanso",
+    "unnamed-workout": "Entrenamiento",
+    "loading": "Cargando tu horario...",
+    "error": "No pudimos cargar tu horario.",
+    "retry": "Intentar de nuevo",
+    "days": {
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado",
+      "sunday": "Domingo"
+    }
+  },
   "sidebar": {
     "collapse": "Contraer barra lateral",
     "dashboard": "Panel",

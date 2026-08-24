@@ -91,6 +91,23 @@ export async function getWorkoutByDay(
   return result.data ? hydrateWorkout(supabase, result.data as WorkoutRow, locale) : null;
 }
 
+/** Loads every configured weekday and returns them in Monday-to-Sunday order. */
+export async function getWeeklyWorkouts(
+  supabase: SupabaseClient,
+  userId: string,
+  locale?: string
+): Promise<Workout[]> {
+  const result = await supabase
+    .from('workouts')
+    .select('id,day_of_week,name')
+    .eq('user_id', userId)
+    .order('day_of_week');
+  if (result.error) throw new Error(result.error.message);
+  return Promise.all(
+    (result.data as WorkoutRow[]).map((workout) => hydrateWorkout(supabase, workout, locale))
+  );
+}
+
 /**
  * Reconciles a complete client draft with the workout rows stored for one weekday.
  *

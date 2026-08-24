@@ -171,6 +171,30 @@
       "sunday": "Sonntag"
     }
   },
+  "schedule": {
+    "eyebrow": "Wochenplan",
+    "title": "Mein Trainingsplan",
+    "description": "Deine gesamte Trainingswoche auf einen Blick.",
+    "week": "Wöchentlicher Trainingsplan",
+    "training-days": "{count, plural, one {Trainingstag} other {Trainingstage}}",
+    "exercise-count": "{count, plural, one {# Übung} other {# Übungen}}",
+    "minutes": "{count} Min.",
+    "sets-reps": "{sets} × {reps}",
+    "rest-day": "Ruhetag",
+    "unnamed-workout": "Training",
+    "loading": "Trainingsplan wird geladen...",
+    "error": "Dein Trainingsplan konnte nicht geladen werden.",
+    "retry": "Erneut versuchen",
+    "days": {
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag",
+      "sunday": "Sonntag"
+    }
+  },
   "sidebar": {
     "collapse": "Seitenleiste einklappen",
     "dashboard": "Dashboard",

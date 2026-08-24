@@ -171,6 +171,30 @@
       "sunday": "Domenica"
     }
   },
+  "schedule": {
+    "eyebrow": "Piano settimanale",
+    "title": "Il mio programma",
+    "description": "L'intera settimana di allenamento a colpo d'occhio.",
+    "week": "Programma settimanale di allenamento",
+    "training-days": "{count, plural, one {giorno di allenamento} other {giorni di allenamento}}",
+    "exercise-count": "{count, plural, one {# esercizio} other {# esercizi}}",
+    "minutes": "{count} min",
+    "sets-reps": "{sets} × {reps}",
+    "rest-day": "Giorno di riposo",
+    "unnamed-workout": "Allenamento",
+    "loading": "Caricamento del programma...",
+    "error": "Non è stato possibile caricare il programma.",
+    "retry": "Riprova",
+    "days": {
+      "monday": "Lunedì",
+      "tuesday": "Martedì",
+      "wednesday": "Mercoledì",
+      "thursday": "Giovedì",
+      "friday": "Venerdì",
+      "saturday": "Sabato",
+      "sunday": "Domenica"
+    }
+  },
   "sidebar": {
     "collapse": "Comprimi barra laterale",
     "dashboard": "Dashboard",

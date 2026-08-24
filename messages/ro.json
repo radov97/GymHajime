@@ -171,6 +171,30 @@
       "sunday": "Duminică"
     }
   },
+  "schedule": {
+    "eyebrow": "Plan săptămânal",
+    "title": "Programul meu",
+    "description": "Întreaga săptămână de antrenament dintr-o privire.",
+    "week": "Program săptămânal de antrenament",
+    "training-days": "{count, plural, one {zi de antrenament} other {zile de antrenament}}",
+    "exercise-count": "{count, plural, one {# exercițiu} other {# exerciții}}",
+    "minutes": "{count} min",
+    "sets-reps": "{sets} × {reps}",
+    "rest-day": "Zi de odihnă",
+    "unnamed-workout": "Antrenament",
+    "loading": "Se încarcă programul...",
+    "error": "Nu am putut încărca programul.",
+    "retry": "Încearcă din nou",
+    "days": {
+      "monday": "Luni",
+      "tuesday": "Marți",
+      "wednesday": "Miercuri",
+      "thursday": "Joi",
+      "friday": "Vineri",
+      "saturday": "Sâmbătă",
+      "sunday": "Duminică"
+    }
+  },
   "sidebar": {
     "collapse": "Restrânge bara laterală",
     "dashboard": "Panou de control",

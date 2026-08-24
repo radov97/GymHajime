@@ -171,6 +171,30 @@
       "sunday": "Linggo"
     }
   },
+  "schedule": {
+    "eyebrow": "Lingguhang plano",
+    "title": "Aking Iskedyul",
+    "description": "Ang buong linggo ng iyong training sa isang tingin.",
+    "week": "Lingguhang iskedyul ng workout",
+    "training-days": "{count, plural, one {araw ng training} other {mga araw ng training}}",
+    "exercise-count": "{count, plural, one {# ehersisyo} other {# ehersisyo}}",
+    "minutes": "{count} min",
+    "sets-reps": "{sets} × {reps}",
+    "rest-day": "Araw ng pahinga",
+    "unnamed-workout": "Workout",
+    "loading": "Nilo-load ang iyong iskedyul...",
+    "error": "Hindi namin ma-load ang iyong iskedyul.",
+    "retry": "Subukan muli",
+    "days": {
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miyerkules",
+      "thursday": "Huwebes",
+      "friday": "Biyernes",
+      "saturday": "Sabado",
+      "sunday": "Linggo"
+    }
+  },
   "sidebar": {
     "collapse": "I-collapse ang sidebar",
     "dashboard": "Dashboard",

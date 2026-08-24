@@ -171,6 +171,30 @@
       "sunday": "Sunday"
     }
   },
+  "schedule": {
+    "eyebrow": "Weekly plan",
+    "title": "My Schedule",
+    "description": "Your complete training week at a glance.",
+    "week": "Weekly workout schedule",
+    "training-days": "{count, plural, one {training day} other {training days}}",
+    "exercise-count": "{count, plural, one {# exercise} other {# exercises}}",
+    "minutes": "{count} min",
+    "sets-reps": "{sets} × {reps}",
+    "rest-day": "Rest day",
+    "unnamed-workout": "Workout",
+    "loading": "Loading your schedule...",
+    "error": "We couldn't load your schedule.",
+    "retry": "Try again",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
+  },
   "sidebar": {
     "collapse": "Collapse sidebar",
     "dashboard": "Dashboard",
