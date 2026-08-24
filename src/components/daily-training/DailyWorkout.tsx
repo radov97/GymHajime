@@ -7,17 +7,19 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock3,
-  Dumbbell,
   Loader,
   MoonStar,
 } from 'lucide-react';
-import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
+import ModalPopup from '@/components/ModalPopup';
+import WorkoutExerciseIdentity from '@/components/exercises/WorkoutExerciseIdentity';
+import { WorkoutExerciseDetails } from '@/components/schedule/WorkoutDayModal';
 import { getWeeklySchedule } from '@/api/workouts';
 import { ButtonRank } from '@/lib/enums';
-import type { Workout } from '@/types/workouts';
+import { formatCategory } from '@/lib/exercises';
+import type { Workout, WorkoutExercise } from '@/types/workouts';
 
 export interface DailyWorkoutProps {
   loadSchedule?: typeof getWeeklySchedule;
@@ -35,11 +37,13 @@ export default function DailyWorkout({
   const locale = useLocale();
   const t = useTranslations('daily-training');
   const schedule = useTranslations('schedule');
+  const exerciseT = useTranslations('exercises');
   const [offset, setOffset] = useState(0);
   const [workouts, setWorkouts] = useState<Workout[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [retry, setRetry] = useState(0);
+  const [selectedExercise, setSelectedExercise] = useState<WorkoutExercise | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -143,44 +147,28 @@ export default function DailyWorkout({
                 </h2>
                 <ul className="mt-4 space-y-3 sm:mt-6 xl:max-h-[25rem] xl:overflow-y-auto xl:pr-2">
                   {workout.exercises.map((exercise) => (
-                    <li
-                      key={exercise.exerciseId}
-                      className="flex min-w-0 items-center gap-3 rounded-xl border border-orange-100 bg-orange-50/40 p-3 sm:gap-4 sm:rounded-2xl sm:p-4"
-                    >
-                      <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-orange-100 text-orange-500 sm:h-16 sm:w-20 sm:rounded-xl">
-                        {exercise.imageUrl ? (
-                          <Image
-                            src={exercise.imageUrl}
-                            alt=""
-                            fill
-                            sizes="(max-width: 639px) 56px, 80px"
-                            className="object-cover"
-                          />
-                        ) : (
-                          <Dumbbell className="h-6 w-6" aria-hidden />
-                        )}
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <strong className="block truncate text-base text-neutral-900 sm:text-lg">
-                          {exercise.name}
-                        </strong>
-                        <span className="text-sm font-semibold capitalize text-neutral-500">
-                          {exercise.category}
-                        </span>
-                      </div>
-                      <span className="shrink-0 rounded-full bg-white px-3 py-2 text-xs font-black text-orange-700 shadow-sm sm:px-4 sm:text-sm">
-                        {exercise.category === 'cardio' ? (
-                          <span className="flex items-center gap-1.5">
-                            <Clock3 className="h-4 w-4" aria-hidden />
-                            {schedule('minutes', { count: exercise.durationMinutes ?? 0 })}
+                    <li key={exercise.exerciseId}>
+                      <WorkoutExerciseIdentity
+                        exercise={exercise}
+                        categoryLabel={formatCategory(exercise.category)}
+                        onClick={() => setSelectedExercise(exercise)}
+                        className="border border-orange-100 bg-orange-50/40 p-3 sm:rounded-2xl sm:p-4"
+                        trailing={
+                          <span className="block rounded-full bg-white px-3 py-2 text-xs font-black text-orange-700 shadow-sm sm:px-4 sm:text-sm">
+                            {exercise.category === 'cardio' ? (
+                              <span className="flex items-center gap-1.5">
+                                <Clock3 className="h-4 w-4" aria-hidden />
+                                {schedule('minutes', { count: exercise.durationMinutes ?? 0 })}
+                              </span>
+                            ) : (
+                              schedule('sets-reps', {
+                                sets: exercise.sets ?? 0,
+                                reps: exercise.reps ?? 0,
+                              })
+                            )}
                           </span>
-                        ) : (
-                          schedule('sets-reps', {
-                            sets: exercise.sets ?? 0,
-                            reps: exercise.reps ?? 0,
-                          })
-                        )}
-                      </span>
+                        }
+                      />
                     </li>
                   ))}
                 </ul>
@@ -232,6 +220,24 @@ export default function DailyWorkout({
           />
         </div>
       )}
+
+      <ModalPopup
+        isOpen={Boolean(selectedExercise)}
+        size="wide"
+        title={selectedExercise?.name}
+        subtitle={selectedExercise ? formatCategory(selectedExercise.category) : undefined}
+        onClose={() => setSelectedExercise(null)}
+        closeLabel={schedule('close-details')}
+        closeOnBackdropClick
+      >
+        {selectedExercise && (
+          <WorkoutExerciseDetails
+            exercise={selectedExercise}
+            previousLabel={exerciseT('previous-image')}
+            nextLabel={exerciseT('next-image')}
+          />
+        )}
+      </ModalPopup>
     </main>
   );
 }

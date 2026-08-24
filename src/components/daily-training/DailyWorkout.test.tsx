@@ -58,6 +58,9 @@ describe('DailyWorkout', () => {
     expect(screen.getByText('Today')).toBeInTheDocument();
     expect(screen.getByText('Bench Press')).toBeInTheDocument();
     expect(screen.getByText('4 × 8')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Bench Press\s*Chest\s*4 × 8/i }));
+    expect(screen.getByRole('dialog', { name: 'Bench Press' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Close workout details' }));
 
     const previous = screen.getAllByRole('button', { name: 'View yesterday' })[0];
     fireEvent.click(previous);

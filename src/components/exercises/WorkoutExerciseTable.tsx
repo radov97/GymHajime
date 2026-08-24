@@ -1,7 +1,7 @@
-import { ArrowDown, ArrowUp, ChevronRight, Trash2 } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowDown, ArrowUp, Trash2 } from 'lucide-react';
 import type { WorkoutExercise } from '@/types/workouts';
 import IconButton from '@/components/IconButton';
+import WorkoutExerciseIdentity from './WorkoutExerciseIdentity';
 
 interface Props {
   exercises: WorkoutExercise[];
@@ -42,35 +42,12 @@ export default function WorkoutExerciseTable({
               className="block overflow-hidden rounded-2xl border border-orange-100 bg-white p-4 shadow-sm md:table-row md:rounded-none md:border-0 md:p-0 md:shadow-none"
             >
               <td className="block pb-4 md:table-cell md:px-5 md:py-4">
-                <button
-                  type="button"
+                <WorkoutExerciseIdentity
+                  exercise={exercise}
+                  categoryLabel={categoryLabel(exercise.category)}
                   onClick={() => onOpenExercise?.(exercise)}
                   className="group/details -m-2 flex w-full cursor-pointer items-center gap-3 rounded-xl p-2 text-left transition hover:bg-orange-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
-                >
-                  {exercise.imageUrl ? (
-                    <Image
-                      src={exercise.imageUrl}
-                      alt=""
-                      width={56}
-                      height={56}
-                      className="h-14 w-14 rounded-lg object-cover transition-transform group-hover/details:scale-105"
-                    />
-                  ) : (
-                    <div className="h-14 w-14 rounded-lg bg-orange-50 transition-colors group-hover/details:bg-orange-100" />
-                  )}
-                  <span>
-                    <strong className="block text-neutral-900 transition-colors group-hover/details:text-orange-600">
-                      {exercise.name}
-                    </strong>
-                    <span className="text-sm text-neutral-500">
-                      {categoryLabel(exercise.category)}
-                    </span>
-                  </span>
-                  <ChevronRight
-                    className="ml-auto h-5 w-5 shrink-0 text-orange-300 transition group-hover/details:translate-x-0.5 group-hover/details:text-orange-500"
-                    aria-hidden
-                  />
-                </button>
+                />
               </td>
               {exercise.category === 'cardio' ? (
                 <td

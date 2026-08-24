@@ -43,7 +43,7 @@ export default function WorkoutDayModal({ workout, day, onClose }: WorkoutDayMod
       closeOnBackdropClick
     >
       {workout && selectedExercise ? (
-        <ExerciseStage
+        <WorkoutExerciseDetails
           exercise={selectedExercise}
           previousLabel={exerciseT('previous-image')}
           nextLabel={exerciseT('next-image')}
@@ -117,7 +117,7 @@ export default function WorkoutDayModal({ workout, day, onClose }: WorkoutDayMod
   );
 }
 
-function ExerciseStage({
+export function WorkoutExerciseDetails({
   exercise,
   previousLabel,
   nextLabel,
@@ -127,8 +127,8 @@ function ExerciseStage({
   exercise: WorkoutExercise;
   previousLabel: string;
   nextLabel: string;
-  backLabel: string;
-  onBack: () => void;
+  backLabel?: string;
+  onBack?: () => void;
 }) {
   const t = useTranslations('schedule');
   const [imageIndex, setImageIndex] = useState(0);
@@ -154,13 +154,15 @@ function ExerciseStage({
 
   return (
     <div>
-      <IconButton
-        icon={<ArrowLeft className="h-4 w-4" />}
-        label={backLabel}
-        variant="ghost"
-        onClick={onBack}
-        className="mb-5 !w-auto !p-0 hover:!bg-transparent"
-      />
+      {backLabel && onBack && (
+        <IconButton
+          icon={<ArrowLeft className="h-4 w-4" />}
+          label={backLabel}
+          variant="ghost"
+          onClick={onBack}
+          className="mb-5 !w-auto !p-0 hover:!bg-transparent"
+        />
+      )}
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(16rem,0.65fr)]">
         <div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-orange-100 bg-white">
