@@ -49,6 +49,11 @@ describe('ModalPopup', () => {
     expect(onClose).toHaveBeenCalledOnce();
   });
 
+  it('supports a wide presentation', () => {
+    render(<ModalPopup isOpen title="Weekly workout" size="wide" />);
+    expect(screen.getByRole('dialog')).toHaveClass('!max-w-4xl');
+  });
+
   it('does not close from the backdrop by default', () => {
     const onClose = vi.fn();
     render(

@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { renderWithIntl } from '@/test/render';
 import WeeklySchedule from './WeeklySchedule';
@@ -34,6 +34,9 @@ describe('WeeklySchedule', () => {
     expect(screen.getByText('4 × 8')).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { name: 'Rest day' })).toHaveLength(6);
     expect(screen.getByText('training day')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'View Monday workout' }));
+    expect(screen.getByRole('dialog', { name: 'Push Day' })).toBeInTheDocument();
+    expect(screen.getByText('60 kg')).toBeInTheDocument();
   });
 
   it('renders duration for cardio prescriptions', async () => {

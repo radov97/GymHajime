@@ -7,6 +7,7 @@ import Button from '@/components/Button';
 import { ButtonRank } from '@/lib/enums';
 import { getWeeklySchedule } from '@/api/workouts';
 import type { Workout } from '@/types/workouts';
+import WorkoutDayModal from './WorkoutDayModal';
 
 const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
@@ -22,6 +23,7 @@ export default function WeeklySchedule({ loadSchedule = getWeeklySchedule }: Wee
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [retry, setRetry] = useState(0);
+  const [selected, setSelected] = useState<{ workout: Workout; day: string } | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -89,26 +91,58 @@ export default function WeeklySchedule({ loadSchedule = getWeeklySchedule }: Wee
           {DAYS.map((day, index) => {
             const workout = byDay.get(index + 1);
             return workout ? (
-              <WorkoutDayCard key={day} day={t(`days.${day}`)} workout={workout} />
+              <WorkoutDayCard
+                key={day}
+                day={t(`days.${day}`)}
+                workout={workout}
+                onOpen={() => setSelected({ workout, day: t(`days.${day}`) })}
+              />
             ) : (
               <RestDayCard key={day} day={t(`days.${day}`)} restLabel={t('rest-day')} />
             );
           })}
         </section>
       )}
+      <WorkoutDayModal
+        workout={selected?.workout ?? null}
+        day={selected?.day ?? ''}
+        onClose={() => setSelected(null)}
+      />
     </main>
   );
 }
 
-function WorkoutDayCard({ day, workout }: { day: string; workout: Workout }) {
+function WorkoutDayCard({
+  day,
+  workout,
+  onOpen,
+}: {
+  day: string;
+  workout: Workout;
+  onOpen: () => void;
+}) {
   const t = useTranslations('schedule');
   return (
-    <article className="flex min-h-80 w-80 shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-orange-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+    <article
+      role="button"
+      tabIndex={0}
+      aria-label={t('open-workout', { day })}
+      onClick={onOpen}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onOpen();
+        }
+      }}
+      className="group flex min-h-80 w-80 shrink-0 cursor-pointer snap-start flex-col overflow-hidden rounded-2xl border border-orange-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-orange-400 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
+    >
       <header className="bg-[var(--color-brand)] px-5 py-4 text-white">
         <span className="text-xs font-black uppercase tracking-[0.18em] text-orange-100">
           {day}
         </span>
-        <h2 className="mt-1 truncate text-xl font-bold">{workout.name || t('unnamed-workout')}</h2>
+        <h2 className="mt-1 truncate text-xl font-bold group-hover:underline">
+          {workout.name || t('unnamed-workout')}
+        </h2>
       </header>
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-neutral-500">

@@ -20,6 +20,7 @@ export interface ModalPopupProps {
   onClose?: () => void;
   closeLabel?: string;
   closeOnBackdropClick?: boolean;
+  size?: 'default' | 'wide';
 }
 
 export default function ModalPopup({
@@ -31,6 +32,7 @@ export default function ModalPopup({
   onClose,
   closeLabel = 'Close modal',
   closeOnBackdropClick = false,
+  size = 'default',
 }: ModalPopupProps) {
   const titleId = useId();
   useEffect(() => {
@@ -59,7 +61,7 @@ export default function ModalPopup({
       data-testid="modal-backdrop"
     >
       <FormContainer
-        className="relative max-h-[calc(100vh-2rem)] overflow-y-auto bg-[var(--color-brand-modal-bg)]"
+        className={`relative max-h-[calc(100vh-2rem)] overflow-y-auto bg-[var(--color-brand-modal-bg)] ${size === 'wide' ? '!max-w-4xl' : ''}`}
         noBg={true}
         role="dialog"
         aria-modal="true"
