@@ -22,6 +22,6 @@ describe('AuthCallbackPage', () => {
     expect(screen.getByText('Signing you in...')).toBeInTheDocument();
     expect(replaceState).toHaveBeenCalled();
     act(() => vi.advanceTimersByTime(1000));
-    expect(router.push).toHaveBeenCalledWith('/en/dashboard');
+    expect(router.push).toHaveBeenCalledWith('/en/daily-training');
   });
 });

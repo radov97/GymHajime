@@ -73,39 +73,39 @@ export function AuthNavigationView({
         />
 
         <DropdownMenu
-        isOpen={isOpen}
-        options={[
-          {
-            id: 'logout',
-            label: t('logout'),
-            onClick: () => {
-              setIsOpen(false);
-              setShowLogoutModal(true);
+          isOpen={isOpen}
+          options={[
+            {
+              id: 'logout',
+              label: t('logout'),
+              onClick: () => {
+                setIsOpen(false);
+                setShowLogoutModal(true);
+              },
             },
-          },
-        ]}
+          ]}
         />
         <ModalPopup
-        isOpen={showLogoutModal}
-        title={t('logout-title')}
-        subtitle={t('logout-message')}
-        onClose={() => setShowLogoutModal(false)}
-        buttons={[
-          {
-            text: t('logout-cancel'),
-            rank: ButtonRank.Secondary,
-            type: ButtonType.Button,
-            onClick: () => setShowLogoutModal(false),
-            disabled: isLoggingOut,
-          },
-          {
-            text: t('logout-confirm'),
-            rank: ButtonRank.Danger,
-            type: ButtonType.Button,
-            onClick: confirmLogout,
-            loading: isLoggingOut,
-          },
-        ]}
+          isOpen={showLogoutModal}
+          title={t('logout-title')}
+          subtitle={t('logout-message')}
+          onClose={() => setShowLogoutModal(false)}
+          buttons={[
+            {
+              text: t('logout-cancel'),
+              rank: ButtonRank.Secondary,
+              type: ButtonType.Button,
+              onClick: () => setShowLogoutModal(false),
+              disabled: isLoggingOut,
+            },
+            {
+              text: t('logout-confirm'),
+              rank: ButtonRank.Danger,
+              type: ButtonType.Button,
+              onClick: confirmLogout,
+              loading: isLoggingOut,
+            },
+          ]}
         />
       </div>
       <LanguageSelector />

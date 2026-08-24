@@ -16,7 +16,7 @@ export interface BrandLogoProps {
 
 export interface BrandLogoViewProps extends BrandLogoProps {
   isAuthenticated: boolean;
-  isCurrentDashboard?: boolean;
+  isCurrentDailyTraining?: boolean;
   locale: string;
 }
 
@@ -26,7 +26,7 @@ export function BrandLogoView({
   className,
   priority = false,
   isAuthenticated,
-  isCurrentDashboard = false,
+  isCurrentDailyTraining = false,
   locale,
 }: BrandLogoViewProps) {
   const logo = (
@@ -36,7 +36,7 @@ export function BrandLogoView({
       width={width}
       height={height}
       className={`${className ?? ''} ${
-        isAuthenticated && !isCurrentDashboard
+        isAuthenticated && !isCurrentDailyTraining
           ? 'transition-all duration-200 ease-out group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:brightness-110 group-hover:shadow-xl'
           : ''
       }`}
@@ -44,12 +44,12 @@ export function BrandLogoView({
     />
   );
 
-  if (!isAuthenticated || isCurrentDashboard) return logo;
+  if (!isAuthenticated || isCurrentDailyTraining) return logo;
 
   return (
     <Link
-      href={`/${locale}/dashboard`}
-      aria-label="Go to dashboard"
+      href={`/${locale}/daily-training`}
+      aria-label="Go to Daily Training"
       className="group inline-block rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-brand)]"
     >
       {logo}
@@ -57,12 +57,7 @@ export function BrandLogoView({
   );
 }
 
-export default function BrandLogo({
-  width,
-  height,
-  className,
-  priority = false,
-}: BrandLogoProps) {
+export default function BrandLogo({ width, height, className, priority = false }: BrandLogoProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const locale = useLocale();
   const pathname = usePathname();
@@ -84,7 +79,7 @@ export default function BrandLogo({
       className={className}
       priority={priority}
       isAuthenticated={isAuthenticated}
-      isCurrentDashboard={pathname === `/${locale}/dashboard`}
+      isCurrentDailyTraining={pathname === `/${locale}/daily-training`}
       locale={locale}
     />
   );

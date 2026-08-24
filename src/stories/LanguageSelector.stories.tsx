@@ -13,7 +13,7 @@ const meta = {
     ),
   ],
   parameters: {
-    nextjs: { navigation: { pathname: '/en/dashboard' } },
+    nextjs: { navigation: { pathname: '/en/daily-training' } },
   },
 } satisfies Meta<typeof LanguageSelector>;
 
@@ -33,5 +33,5 @@ export const MenuOpen: Story = {
 
 export const Romanian: Story = {
   globals: { locale: 'ro' },
-  parameters: { nextjs: { navigation: { pathname: '/ro/dashboard' } } },
+  parameters: { nextjs: { navigation: { pathname: '/ro/daily-training' } } },
 };

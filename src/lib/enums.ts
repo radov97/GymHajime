@@ -30,12 +30,11 @@ export const LoginFailureCodes = {
 } as const;
 
 export const HajimeInfoSection = {
-  Dashboard: 'dashboard',
+  DailyTraining: 'daily-training',
   Plan: 'plan',
   Train: 'train',
   Progress: 'progress',
   Discover: 'discover',
 } as const;
 
-export type HajimeInfoSectionValue =
-  (typeof HajimeInfoSection)[keyof typeof HajimeInfoSection];
+export type HajimeInfoSectionValue = (typeof HajimeInfoSection)[keyof typeof HajimeInfoSection];

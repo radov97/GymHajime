@@ -5,7 +5,7 @@ const mocks = vi.hoisted(() => ({ push: vi.fn(), refresh: vi.fn() }));
 
 vi.mock('next-intl', () => ({ useLocale: () => 'en' }));
 vi.mock('next/navigation', () => ({
-  usePathname: () => '/en/dashboard',
+  usePathname: () => '/en/daily-training',
   useRouter: () => ({ push: mocks.push, refresh: mocks.refresh }),
 }));
 
@@ -30,7 +30,7 @@ describe('LanguageSelector', () => {
     fireEvent.click(screen.getByRole('menuitem', { name: 'Română' }));
 
     expect(document.cookie).toContain('NEXT_LOCALE=ro');
-    expect(mocks.push).toHaveBeenCalledWith('/ro/dashboard');
+    expect(mocks.push).toHaveBeenCalledWith('/ro/daily-training');
     expect(mocks.refresh).toHaveBeenCalled();
   });
 

@@ -46,7 +46,7 @@ export default function SignUpPage() {
     // it manually. replace() also prevents Back from returning to signup.
     void supabase.auth.getUser().then(({ data }) => {
       if (data.user) {
-        router.replace(`/${locale}/dashboard`);
+        router.replace(`/${locale}/daily-training`);
         return;
       }
 
@@ -93,7 +93,7 @@ export default function SignUpPage() {
   async function signInWithGoogle() {
     setIsLoading(true);
     setError(false);
-    const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/auth/callback`; // go to dashboard when ready
+    const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/auth/callback`; // go to Daily Training when ready
     const { error: oauthError } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {

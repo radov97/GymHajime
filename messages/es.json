@@ -57,11 +57,11 @@
       "verb": "Del verbo japonés <em>hajimeru</em> (始める): «comenzar» o «empezar»."
     },
     "sections": {
-      "dashboard": {
+      "daily-training": {
         "paragraph-1": "Concéntrate en lo que importa ahora.",
         "paragraph-2": "Consulta de un vistazo el entrenamiento de ayer, el de hoy y el plan de mañana.",
         "paragraph-3": "Úsalo como recordatorio diario de dónde has estado, qué toca hoy y qué viene después.",
-        "title": "PANEL"
+        "title": "ENTRENAMIENTO DIARIO"
       },
       "discover": {
         "paragraph-1": "No tienes que crear tu rutina en solitario.",
@@ -171,10 +171,24 @@
       "sunday": "Domingo"
     }
   },
+  "daily-training": {
+    "eyebrow": "Tu enfoque de entrenamiento",
+    "title": "Entrenamiento diario",
+    "description": "Revisa ayer, concéntrate en hoy y conoce lo que viene mañana",
+    "yesterday": "Ayer",
+    "today": "Hoy",
+    "tomorrow": "Mañana",
+    "previous": "Ver ayer",
+    "next": "Ver mañana",
+    "rest-message": "La recuperación forma parte del plan.",
+    "loading": "Cargando tu entrenamiento diario...",
+    "error": "No pudimos cargar tu entrenamiento.",
+    "retry": "Intentar de nuevo"
+  },
   "schedule": {
     "eyebrow": "Plan semanal",
     "title": "Mi horario",
-    "description": "Toda tu semana de entrenamiento de un vistazo.",
+    "description": "Toda tu semana de entrenamiento de un vistazo",
     "week": "Horario semanal de entrenamiento",
     "training-days": "{count, plural, one {día de entrenamiento} other {días de entrenamiento}}",
     "exercise-count": "{count, plural, one {# ejercicio} other {# ejercicios}}",
@@ -207,7 +221,7 @@
   },
   "sidebar": {
     "collapse": "Contraer barra lateral",
-    "dashboard": "Panel",
+    "daily-training": "Entrenamiento diario",
     "discover": "Descubrir",
     "exercises": "Ejercicios",
     "expand": "Expandir barra lateral",

@@ -57,11 +57,11 @@
       "verb": "From the Japanese verb <em>hajimeru</em> (始める): “to begin” or “to start.”"
     },
     "sections": {
-      "dashboard": {
+      "daily-training": {
         "paragraph-1": "Stay focused on what matters right now.",
         "paragraph-2": "See yesterday’s workout, today’s training, and tomorrow’s plan at a glance.",
         "paragraph-3": "Use it as your daily reminder of where you’ve been, what you need to do today, and what comes next.",
-        "title": "DASHBOARD"
+        "title": "DAILY TRAINING"
       },
       "discover": {
         "paragraph-1": "You don’t have to build your routine alone.",
@@ -171,10 +171,24 @@
       "sunday": "Sunday"
     }
   },
+  "daily-training": {
+    "eyebrow": "Your training focus",
+    "title": "Daily Training",
+    "description": "Review yesterday, focus on today, and know what comes tomorrow",
+    "yesterday": "Yesterday",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "previous": "View yesterday",
+    "next": "View tomorrow",
+    "rest-message": "Recovery is part of the plan.",
+    "loading": "Loading your daily training...",
+    "error": "We couldn't load your training.",
+    "retry": "Try again"
+  },
   "schedule": {
     "eyebrow": "Weekly plan",
     "title": "My Schedule",
-    "description": "Your complete training week at a glance.",
+    "description": "Your complete training week at a glance",
     "week": "Weekly workout schedule",
     "training-days": "{count, plural, one {training day} other {training days}}",
     "exercise-count": "{count, plural, one {# exercise} other {# exercises}}",
@@ -207,7 +221,7 @@
   },
   "sidebar": {
     "collapse": "Collapse sidebar",
-    "dashboard": "Dashboard",
+    "daily-training": "Daily Training",
     "discover": "Discover",
     "exercises": "Exercises",
     "expand": "Expand sidebar",

@@ -57,11 +57,11 @@
       "verb": "Du verbe japonais <em>hajimeru</em> (始める) : « commencer »."
     },
     "sections": {
-      "dashboard": {
+      "daily-training": {
         "paragraph-1": "Restez concentré sur ce qui compte maintenant.",
         "paragraph-2": "Voyez en un coup d’œil l’entraînement d’hier, celui d’aujourd’hui et le programme de demain.",
         "paragraph-3": "Utilisez-le comme rappel quotidien de votre parcours, de ce qui vous attend aujourd’hui et de la suite.",
-        "title": "TABLEAU DE BORD"
+        "title": "ENTRAÎNEMENT DU JOUR"
       },
       "discover": {
         "paragraph-1": "Vous n’avez pas à créer votre routine seul.",
@@ -171,10 +171,24 @@
       "sunday": "Dimanche"
     }
   },
+  "daily-training": {
+    "eyebrow": "Votre priorité d’entraînement",
+    "title": "Entraînement du jour",
+    "description": "Revoyez hier, concentrez-vous sur aujourd’hui et anticipez demain",
+    "yesterday": "Hier",
+    "today": "Aujourd’hui",
+    "tomorrow": "Demain",
+    "previous": "Voir hier",
+    "next": "Voir demain",
+    "rest-message": "La récupération fait partie du programme.",
+    "loading": "Chargement de votre entraînement...",
+    "error": "Impossible de charger votre entraînement.",
+    "retry": "Réessayer"
+  },
   "schedule": {
     "eyebrow": "Programme hebdomadaire",
     "title": "Mon programme",
-    "description": "Toute votre semaine d'entraînement en un coup d'œil.",
+    "description": "Toute votre semaine d'entraînement en un coup d'œil",
     "week": "Programme d'entraînement hebdomadaire",
     "training-days": "{count, plural, one {jour d'entraînement} other {jours d'entraînement}}",
     "exercise-count": "{count, plural, one {# exercice} other {# exercices}}",
@@ -207,7 +221,7 @@
   },
   "sidebar": {
     "collapse": "Réduire la barre latérale",
-    "dashboard": "Tableau de bord",
+    "daily-training": "Entraînement du jour",
     "discover": "Découvrir",
     "exercises": "Exercices",
     "expand": "Développer la barre latérale",

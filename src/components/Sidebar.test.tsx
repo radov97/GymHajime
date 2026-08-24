@@ -4,7 +4,7 @@ import { renderWithIntl } from '../test/render';
 import { Context as ResponsiveContext } from 'react-responsive';
 import { BREAKPOINTS } from '../lib/breakpoints';
 
-const navigation = vi.hoisted(() => ({ pathname: '/en/dashboard' }));
+const navigation = vi.hoisted(() => ({ pathname: '/en/daily-training' }));
 
 vi.mock('next/navigation', () => ({ usePathname: () => navigation.pathname }));
 vi.mock('next-intl', async (importOriginal) => {
@@ -24,7 +24,10 @@ describe('Sidebar', () => {
       'h-[calc(100dvh-7rem)]',
       'overflow-y-auto'
     );
-    expect(screen.getByRole('link', { name: 'Dashboard' })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('link', { name: 'Daily Training' })).toHaveAttribute(
+      'aria-current',
+      'page'
+    );
     expect(screen.getByRole('link', { name: 'Settings' })).toHaveAttribute('href', '/en/settings');
     expect(screen.getAllByRole('link')).toHaveLength(7);
   });
@@ -42,7 +45,10 @@ describe('Sidebar', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Collapse sidebar' }));
     expect(screen.queryByText('GYMHAJIME')).not.toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Dashboard' })).toHaveAttribute('title', 'Dashboard');
+    expect(screen.getByRole('link', { name: 'Daily Training' })).toHaveAttribute(
+      'title',
+      'Daily Training'
+    );
 
     fireEvent.click(screen.getByRole('button', { name: 'Expand sidebar' }));
     expect(screen.getByText('GYMHAJIME')).toBeInTheDocument();
@@ -57,6 +63,9 @@ describe('Sidebar', () => {
 
     expect(screen.queryByText('GYMHAJIME')).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /sidebar/i })).not.toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Dashboard' })).toHaveAttribute('title', 'Dashboard');
+    expect(screen.getByRole('link', { name: 'Daily Training' })).toHaveAttribute(
+      'title',
+      'Daily Training'
+    );
   });
 });

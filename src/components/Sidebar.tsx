@@ -12,7 +12,7 @@ import {
   ChartNoAxesCombined,
   Dumbbell,
   History,
-  LayoutDashboard,
+  CalendarClock,
   PanelLeftClose,
   PanelLeftOpen,
   Search,
@@ -26,7 +26,7 @@ interface SidebarItem {
 }
 
 const primaryItems: SidebarItem[] = [
-  { id: 'dashboard', path: 'dashboard', icon: LayoutDashboard },
+  { id: 'daily-training', path: 'daily-training', icon: CalendarClock },
   { id: 'schedule', path: 'schedule', icon: CalendarDays },
   { id: 'exercises', path: 'exercises', icon: Dumbbell },
   { id: 'discover', path: 'discover', icon: Search },

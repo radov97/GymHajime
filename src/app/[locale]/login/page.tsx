@@ -42,7 +42,7 @@ export default function LoginPage() {
     // it manually. replace() also prevents Back from returning to the login page.
     void supabase.auth.getUser().then(({ data }) => {
       if (data.user) {
-        router.replace(`/${locale}/dashboard`);
+        router.replace(`/${locale}/daily-training`);
         return;
       }
 
@@ -112,7 +112,7 @@ export default function LoginPage() {
           break;
       }
     } else {
-      router.push(`/${locale}/dashboard`);
+      router.push(`/${locale}/daily-training`);
     }
 
     setLoading(false);
@@ -121,7 +121,7 @@ export default function LoginPage() {
   async function signInWithGoogle() {
     setLoading(true);
     setLoginErrorText('');
-    const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/auth/callback`; // go to dashboard when ready
+    const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/auth/callback`; // go to Daily Training when ready
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',

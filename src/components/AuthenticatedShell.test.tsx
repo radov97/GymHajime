@@ -3,7 +3,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderWithIntl } from '../test/render';
 
 const mocks = vi.hoisted(() => ({
-  getUser: vi.fn(), replace: vi.fn(), onAuthStateChange: vi.fn(), unsubscribe: vi.fn(),
+  getUser: vi.fn(),
+  replace: vi.fn(),
+  onAuthStateChange: vi.fn(),
+  unsubscribe: vi.fn(),
 }));
 
 vi.mock('next/navigation', () => ({ useRouter: () => ({ replace: mocks.replace }) }));

@@ -34,16 +34,16 @@ describe('BrandLogo', () => {
 
     await waitFor(() => expect(mocks.getUser).toHaveBeenCalled());
     expect(screen.getByRole('img', { name: 'GymHajime logo' })).toBeInTheDocument();
-    expect(screen.queryByRole('link', { name: 'Go to dashboard' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Go to Daily Training' })).not.toBeInTheDocument();
   });
 
-  it('links to the localized dashboard while signed in', async () => {
+  it('links to localized Daily Training while signed in', async () => {
     mocks.getUser.mockResolvedValue({ data: { user: { id: 'user-1' } } });
     renderWithIntl(<BrandLogo width={48} height={48} />);
 
-    expect(await screen.findByRole('link', { name: 'Go to dashboard' })).toHaveAttribute(
+    expect(await screen.findByRole('link', { name: 'Go to Daily Training' })).toHaveAttribute(
       'href',
-      '/en/dashboard'
+      '/en/daily-training'
     );
     expect(screen.getByRole('img', { name: 'GymHajime logo' })).toHaveClass(
       'group-hover:scale-105',
@@ -51,13 +51,13 @@ describe('BrandLogo', () => {
     );
   });
 
-  it('remains static without hover effects on the dashboard', async () => {
-    mocks.pathname = '/en/dashboard';
+  it('remains static without hover effects on Daily Training', async () => {
+    mocks.pathname = '/en/daily-training';
     mocks.getUser.mockResolvedValue({ data: { user: { id: 'user-1' } } });
     renderWithIntl(<BrandLogo width={48} height={48} />);
 
     await waitFor(() => expect(mocks.getUser).toHaveBeenCalled());
-    expect(screen.queryByRole('link', { name: 'Go to dashboard' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Go to Daily Training' })).not.toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'GymHajime logo' })).not.toHaveClass(
       'group-hover:scale-105'
     );

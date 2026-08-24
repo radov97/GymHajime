@@ -9,17 +9,17 @@ const meta = {
   component: Sidebar,
   parameters: {
     layout: 'fullscreen',
-    nextjs: { navigation: { pathname: '/en/dashboard' } },
+    nextjs: { navigation: { pathname: '/en/daily-training' } },
   },
 } satisfies Meta<typeof Sidebar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DashboardActive: Story = {
+export const DailyTrainingActive: Story = {
   play: async ({ canvasElement }) => {
-    const dashboard = within(canvasElement).getByRole('link', { name: 'Dashboard' });
-    await expect(dashboard).toHaveAttribute('aria-current', 'page');
+    const dailyTraining = within(canvasElement).getByRole('link', { name: 'Daily Training' });
+    await expect(dailyTraining).toHaveAttribute('aria-current', 'page');
   },
 };
 
@@ -37,7 +37,7 @@ export const InteractiveCollapse: Story = {
 
 export const Romanian: Story = {
   globals: { locale: 'ro' },
-  parameters: { nextjs: { navigation: { pathname: '/ro/dashboard' } } },
+  parameters: { nextjs: { navigation: { pathname: '/ro/daily-training' } } },
 };
 
 export const SettingsActive: Story = {

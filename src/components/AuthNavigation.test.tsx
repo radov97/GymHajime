@@ -3,8 +3,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderWithIntl } from '../test/render';
 
 const mocks = vi.hoisted(() => ({
-  getUser: vi.fn(), onAuthStateChange: vi.fn(), signOut: vi.fn(),
-  push: vi.fn(), refresh: vi.fn(), unsubscribe: vi.fn(),
+  getUser: vi.fn(),
+  onAuthStateChange: vi.fn(),
+  signOut: vi.fn(),
+  push: vi.fn(),
+  refresh: vi.fn(),
+  unsubscribe: vi.fn(),
 }));
 
 vi.mock('next/navigation', () => ({
@@ -15,11 +19,13 @@ vi.mock('next-intl', async (importOriginal) => {
   return { ...actual, useLocale: () => 'en' };
 });
 vi.mock('../lib/supabaseClient', () => ({
-  default: { auth: {
-    getUser: mocks.getUser,
-    onAuthStateChange: mocks.onAuthStateChange,
-    signOut: mocks.signOut,
-  } },
+  default: {
+    auth: {
+      getUser: mocks.getUser,
+      onAuthStateChange: mocks.onAuthStateChange,
+      signOut: mocks.signOut,
+    },
+  },
 }));
 vi.mock('./LanguageSelector', () => ({ default: () => <button type="button">Language</button> }));
 
@@ -43,7 +49,9 @@ describe('AuthNavigation', () => {
 
   it('shows the user name and logs out from the dropdown', async () => {
     mocks.getUser.mockResolvedValue({
-      data: { user: { email: 'athlete@example.com', user_metadata: { full_name: 'Test Athlete' } } },
+      data: {
+        user: { email: 'athlete@example.com', user_metadata: { full_name: 'Test Athlete' } },
+      },
     });
     renderWithIntl(<AuthNavigation />);
 
@@ -61,7 +69,9 @@ describe('AuthNavigation', () => {
 
   it('cancels logout without ending the session', async () => {
     mocks.getUser.mockResolvedValue({
-      data: { user: { email: 'athlete@example.com', user_metadata: { full_name: 'Test Athlete' } } },
+      data: {
+        user: { email: 'athlete@example.com', user_metadata: { full_name: 'Test Athlete' } },
+      },
     });
     renderWithIntl(<AuthNavigation />);
 
@@ -75,7 +85,9 @@ describe('AuthNavigation', () => {
 
   it('closes the logout confirmation from the X button', async () => {
     mocks.getUser.mockResolvedValue({
-      data: { user: { email: 'athlete@example.com', user_metadata: { full_name: 'Test Athlete' } } },
+      data: {
+        user: { email: 'athlete@example.com', user_metadata: { full_name: 'Test Athlete' } },
+      },
     });
     renderWithIntl(<AuthNavigation />);
 
@@ -89,7 +101,9 @@ describe('AuthNavigation', () => {
 
   it('closes the dropdown when clicking outside the account navigation', async () => {
     mocks.getUser.mockResolvedValue({
-      data: { user: { email: 'athlete@example.com', user_metadata: { full_name: 'Test Athlete' } } },
+      data: {
+        user: { email: 'athlete@example.com', user_metadata: { full_name: 'Test Athlete' } },
+      },
     });
     renderWithIntl(
       <>

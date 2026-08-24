@@ -27,19 +27,18 @@ export const SignedOut: Story = {
 export const SignedIn: Story = {
   args: { isAuthenticated: true },
   play: async ({ canvasElement }) => {
-    await expect(within(canvasElement).getByRole('link', { name: 'Go to dashboard' })).toHaveAttribute(
-      'href',
-      '/en/dashboard'
-    );
+    await expect(
+      within(canvasElement).getByRole('link', { name: 'Go to Daily Training' })
+    ).toHaveAttribute('href', '/en/daily-training');
   },
 };
 
-export const RomanianDashboard: Story = {
+export const RomanianDailyTraining: Story = {
   args: { isAuthenticated: true, locale: 'ro' },
 };
 
-export const CurrentDashboard: Story = {
-  args: { isAuthenticated: true, isCurrentDashboard: true },
+export const CurrentDailyTraining: Story = {
+  args: { isAuthenticated: true, isCurrentDailyTraining: true },
   play: async ({ canvasElement }) => {
     await expect(within(canvasElement).queryByRole('link')).not.toBeInTheDocument();
   },

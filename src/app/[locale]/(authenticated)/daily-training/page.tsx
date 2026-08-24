@@ -1,4 +1,4 @@
-import PlaceholderPage from '@/components/PlaceholderPage';
+import DailyWorkout from '@/components/daily-training/DailyWorkout';
 
 /**
  * Quick view of the user's immediate training schedule.
@@ -7,6 +7,6 @@ import PlaceholderPage from '@/components/PlaceholderPage';
  * Today shows the workout, exercises, and a Start Workout action.
  * Tomorrow previews the next planned workout.
  */
-export default function DashboardPage() {
-  return <PlaceholderPage titleKey="dashboard" />;
+export default function DailyTrainingPage() {
+  return <DailyWorkout />;
 }

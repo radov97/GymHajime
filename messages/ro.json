@@ -57,11 +57,11 @@
       "verb": "Din verbul japonez <em>hajimeru</em> (始める): „a începe”."
     },
     "sections": {
-      "dashboard": {
+      "daily-training": {
         "paragraph-1": "Concentrează-te pe ceea ce contează acum.",
         "paragraph-2": "Vezi dintr-o privire antrenamentul de ieri, antrenamentul de astăzi și planul de mâine.",
         "paragraph-3": "Folosește-l ca memento zilnic pentru ce ai făcut, ce ai de făcut astăzi și ce urmează.",
-        "title": "PANOU DE CONTROL"
+        "title": "ANTRENAMENTUL ZILNIC"
       },
       "discover": {
         "paragraph-1": "Nu trebuie să-ți construiești rutina singur.",
@@ -171,10 +171,24 @@
       "sunday": "Duminică"
     }
   },
+  "daily-training": {
+    "eyebrow": "Obiectivul antrenamentului",
+    "title": "Antrenamentul zilnic",
+    "description": "Revizuiește ziua de ieri, concentrează-te pe azi și află ce urmează mâine",
+    "yesterday": "Ieri",
+    "today": "Astăzi",
+    "tomorrow": "Mâine",
+    "previous": "Vezi ziua de ieri",
+    "next": "Vezi ziua de mâine",
+    "rest-message": "Recuperarea face parte din plan.",
+    "loading": "Se încarcă antrenamentul zilnic...",
+    "error": "Nu am putut încărca antrenamentul.",
+    "retry": "Încearcă din nou"
+  },
   "schedule": {
     "eyebrow": "Plan săptămânal",
     "title": "Programul meu",
-    "description": "Întreaga săptămână de antrenament dintr-o privire.",
+    "description": "Întreaga săptămână de antrenament dintr-o privire",
     "week": "Program săptămânal de antrenament",
     "training-days": "{count, plural, one {zi de antrenament} other {zile de antrenament}}",
     "exercise-count": "{count, plural, one {# exercițiu} other {# exerciții}}",
@@ -207,7 +221,7 @@
   },
   "sidebar": {
     "collapse": "Restrânge bara laterală",
-    "dashboard": "Panou de control",
+    "daily-training": "Antrenamentul zilnic",
     "discover": "Descoperă",
     "exercises": "Exerciții",
     "expand": "Extinde bara laterală",

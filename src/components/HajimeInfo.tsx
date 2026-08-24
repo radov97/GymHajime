@@ -9,7 +9,7 @@ import IconButton from './IconButton';
 
 const sections = [
   {
-    id: HajimeInfoSection.Dashboard,
+    id: HajimeInfoSection.DailyTraining,
     paragraphs: ['paragraph-1', 'paragraph-2', 'paragraph-3'],
   },
   {

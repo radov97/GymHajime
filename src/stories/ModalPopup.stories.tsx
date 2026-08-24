@@ -41,9 +41,7 @@ export const Default: Story = {
     isOpen: true,
     title: 'Reset Password',
     subtitle: 'Enter your email to receive a password reset link.',
-    children: (
-      <Input type="email" placeholder="you@example.com" className="text-sm" />
-    ),
+    children: <Input type="email" placeholder="you@example.com" className="text-sm" />,
     buttons: [
       { text: 'Cancel', rank: ButtonRank.Secondary },
       { text: 'Send Reset Link', type: ButtonType.Button, rank: ButtonRank.Primary },

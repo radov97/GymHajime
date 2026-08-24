@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { renderWithIntl } from '../../../test/render';
-import DashboardPage from './dashboard/page';
+import DailyTrainingPage from './daily-training/page';
 import DiscoverPage from './discover/page';
 import ExercisesPage from './exercises/page';
 import HistoryPage from './history/page';
@@ -33,7 +33,7 @@ vi.mock('@/api/workouts', () => ({
 
 describe('authenticated placeholder pages', () => {
   it.each([
-    ['Dashboard', DashboardPage],
+    ['Daily Training', DailyTrainingPage],
     ['Discover', DiscoverPage],
     ['Workout History', HistoryPage],
     ['Progress', ProgressPage],

@@ -57,11 +57,11 @@
       "verb": "Vom japanischen Verb <em>hajimeru</em> (始める): „beginnen“ oder „starten“."
     },
     "sections": {
-      "dashboard": {
+      "daily-training": {
         "paragraph-1": "Konzentriere dich auf das, was jetzt zählt.",
         "paragraph-2": "Sieh das Training von gestern, das heutige Training und den Plan für morgen auf einen Blick.",
         "paragraph-3": "Nutze es als tägliche Erinnerung daran, wo du warst, was heute ansteht und was als Nächstes kommt.",
-        "title": "DASHBOARD"
+        "title": "TÄGLICHES TRAINING"
       },
       "discover": {
         "paragraph-1": "Du musst deine Routine nicht allein erstellen.",
@@ -171,10 +171,24 @@
       "sunday": "Sonntag"
     }
   },
+  "daily-training": {
+    "eyebrow": "Dein Trainingsfokus",
+    "title": "Tägliches Training",
+    "description": "Blicke auf gestern zurück, konzentriere dich auf heute und plane morgen",
+    "yesterday": "Gestern",
+    "today": "Heute",
+    "tomorrow": "Morgen",
+    "previous": "Gestern anzeigen",
+    "next": "Morgen anzeigen",
+    "rest-message": "Erholung ist Teil des Plans.",
+    "loading": "Tägliches Training wird geladen...",
+    "error": "Dein Training konnte nicht geladen werden.",
+    "retry": "Erneut versuchen"
+  },
   "schedule": {
     "eyebrow": "Wochenplan",
     "title": "Mein Trainingsplan",
-    "description": "Deine gesamte Trainingswoche auf einen Blick.",
+    "description": "Deine gesamte Trainingswoche auf einen Blick",
     "week": "Wöchentlicher Trainingsplan",
     "training-days": "{count, plural, one {Trainingstag} other {Trainingstage}}",
     "exercise-count": "{count, plural, one {# Übung} other {# Übungen}}",
@@ -207,7 +221,7 @@
   },
   "sidebar": {
     "collapse": "Seitenleiste einklappen",
-    "dashboard": "Dashboard",
+    "daily-training": "Tägliches Training",
     "discover": "Entdecken",
     "exercises": "Übungen",
     "expand": "Seitenleiste ausklappen",

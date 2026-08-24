@@ -65,7 +65,7 @@ describe('LoginPage', () => {
         password: 'StrongPass1!',
       })
     );
-    expect(mocks.push).toHaveBeenCalledWith('/en/dashboard');
+    expect(mocks.push).toHaveBeenCalledWith('/en/daily-training');
   });
 
   it('shows a useful invalid-credentials message', async () => {
@@ -101,6 +101,6 @@ describe('LoginPage', () => {
     expect(screen.queryByRole('heading', { name: 'Login' })).not.toBeInTheDocument();
     vi.useRealTimers();
 
-    await waitFor(() => expect(mocks.replace).toHaveBeenCalledWith('/en/dashboard'));
+    await waitFor(() => expect(mocks.replace).toHaveBeenCalledWith('/en/daily-training'));
   });
 });

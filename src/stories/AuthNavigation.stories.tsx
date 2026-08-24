@@ -25,7 +25,10 @@ export const SignedOut: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole('link', { name: 'Login' })).toHaveAttribute('href', '/en/login');
-    await expect(canvas.getByRole('link', { name: 'Sign Up' })).toHaveAttribute('href', '/en/signup');
+    await expect(canvas.getByRole('link', { name: 'Sign Up' })).toHaveAttribute(
+      'href',
+      '/en/signup'
+    );
   },
 };
 

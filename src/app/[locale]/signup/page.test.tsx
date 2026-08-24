@@ -105,6 +105,6 @@ describe('SignUpPage', () => {
     expect(screen.queryByRole('heading', { name: 'New Account' })).not.toBeInTheDocument();
     vi.useRealTimers();
 
-    await waitFor(() => expect(mocks.replace).toHaveBeenCalledWith('/en/dashboard'));
+    await waitFor(() => expect(mocks.replace).toHaveBeenCalledWith('/en/daily-training'));
   });
 });

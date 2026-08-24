@@ -1,12 +1,14 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const mocks = vi.hoisted(() => ({ redirect: vi.fn(), savedLocale: undefined as string | undefined }));
+const mocks = vi.hoisted(() => ({
+  redirect: vi.fn(),
+  savedLocale: undefined as string | undefined,
+}));
 vi.mock('next/navigation', () => ({ redirect: mocks.redirect }));
 vi.mock('next/headers', () => ({
   cookies: async () => ({
-    get: (name: string) => (name === 'NEXT_LOCALE' && mocks.savedLocale
-      ? { value: mocks.savedLocale }
-      : undefined),
+    get: (name: string) =>
+      name === 'NEXT_LOCALE' && mocks.savedLocale ? { value: mocks.savedLocale } : undefined,
   }),
 }));
 

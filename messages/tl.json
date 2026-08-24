@@ -57,11 +57,11 @@
       "verb": "Mula sa salitang Hapones na <em>hajimeru</em> (始める): “magsimula.”"
     },
     "sections": {
-      "dashboard": {
+      "daily-training": {
         "paragraph-1": "Manatiling nakatuon sa pinakamahalaga ngayon.",
         "paragraph-2": "Tingnan agad ang workout kahapon, pagsasanay ngayon, at plano para bukas.",
         "paragraph-3": "Gamitin ito bilang araw-araw na paalala ng iyong nagawa, gagawin ngayon, at susunod na hakbang.",
-        "title": "DASHBOARD"
+        "title": "PANG-ARAW-ARAW NA PAGSASANAY"
       },
       "discover": {
         "paragraph-1": "Hindi mo kailangang bumuo ng routine nang mag-isa.",
@@ -171,10 +171,24 @@
       "sunday": "Linggo"
     }
   },
+  "daily-training": {
+    "eyebrow": "Pokus ng iyong pagsasanay",
+    "title": "Pang-araw-araw na Pagsasanay",
+    "description": "Balikan ang kahapon, tumuon sa ngayon, at alamin ang nakalaan bukas",
+    "yesterday": "Kahapon",
+    "today": "Ngayon",
+    "tomorrow": "Bukas",
+    "previous": "Tingnan ang kahapon",
+    "next": "Tingnan ang bukas",
+    "rest-message": "Bahagi ng plano ang pagpapahinga.",
+    "loading": "Nilo-load ang iyong pagsasanay...",
+    "error": "Hindi namin ma-load ang iyong pagsasanay.",
+    "retry": "Subukan muli"
+  },
   "schedule": {
     "eyebrow": "Lingguhang plano",
     "title": "Aking Iskedyul",
-    "description": "Ang buong linggo ng iyong training sa isang tingin.",
+    "description": "Ang buong linggo ng iyong training sa isang tingin",
     "week": "Lingguhang iskedyul ng workout",
     "training-days": "{count, plural, one {araw ng training} other {mga araw ng training}}",
     "exercise-count": "{count, plural, one {# ehersisyo} other {# ehersisyo}}",
@@ -207,7 +221,7 @@
   },
   "sidebar": {
     "collapse": "I-collapse ang sidebar",
-    "dashboard": "Dashboard",
+    "daily-training": "Pang-araw-araw na Pagsasanay",
     "discover": "Tuklasin",
     "exercises": "Mga Ehersisyo",
     "expand": "I-expand ang sidebar",

@@ -11,7 +11,7 @@ describe('HajimeInfo', () => {
     fireEvent.click(screen.getByRole('button', { name: 'What is Hajime?' }));
     expect(screen.getByRole('heading', { name: '始め' })).toBeInTheDocument();
     expect(screen.getByText('HAJIME — BEGIN')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'DASHBOARD' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'DAILY TRAINING' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'DISCOVER' })).toBeInTheDocument();
     expect(screen.getByText('Your routine. Your progress. Your Hajime.')).toBeInTheDocument();
 
