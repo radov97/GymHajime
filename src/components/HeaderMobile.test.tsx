@@ -11,6 +11,7 @@ vi.mock('./BrandLogo', () => ({
 describe('HeaderMobile', () => {
   it('renders compact GymHajime branding', () => {
     renderWithIntl(<HeaderMobile />);
+    expect(screen.getByRole('banner')).toHaveClass('py-2', 'shadow-sm');
     expect(screen.getByRole('img', { name: 'GymHajime logo' })).toBeInTheDocument();
     expect(screen.getByText('Account navigation')).toBeInTheDocument();
     expect(screen.getByText('GymHajime')).toBeInTheDocument();

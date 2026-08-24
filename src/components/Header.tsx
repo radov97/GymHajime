@@ -8,27 +8,28 @@ export default function Header() {
   const t = useTranslations('header');
 
   return (
-    <header className="bg-[var(--color-brand)] px-6 py-4 shadow-md">
-      <div className="max-w-screen-xl mx-auto flex items-center gap-6 justify-between">
-        <div className="flex items-center gap-4">
+    <header className="shrink-0 border-b border-orange-600/40 bg-[var(--color-brand)] px-5 py-2 shadow-sm">
+      <div className="mx-auto flex h-12 max-w-[1500px] items-center justify-between gap-6">
+        <div className="flex min-w-0 items-center gap-3">
           <BrandLogo
-            width={120}
-            height={120}
-            className="h-20 w-auto rounded-md shadow-lg bg-[var(--color-brand-light)]"
+            width={48}
+            height={48}
+            className="h-11 w-11 rounded-lg bg-[var(--color-brand-light)] shadow-sm ring-1 ring-white/30"
             priority
           />
-          <div className="text-[var(--color-brand-soft)]">
-            <h1 className="text-2xl font-bold leading-tight cursor-default">GymHajime</h1>
-            <div className="flex flex-col items-start gap-1">
-              <p className="text-sm font-semibold text-[var(--color-brand-dark)] cursor-default">
-                {t('header-tagline')}
-              </p>
-              <HajimeInfo />
-            </div>
+          <div className="min-w-0 cursor-default leading-tight">
+            <h1 className="truncate text-lg font-black tracking-tight text-white">GymHajime</h1>
+            <p className="truncate text-xs font-semibold text-[var(--color-brand-dark)]">
+              {t('header-tagline')}
+            </p>
           </div>
+          <span className="ml-1 h-7 w-px bg-black/10" aria-hidden />
+          <HajimeInfo iconOnly />
         </div>
 
-        <AuthNavigation />
+        <div className="shrink-0">
+          <AuthNavigation />
+        </div>
       </div>
     </header>
   );

@@ -12,7 +12,7 @@ export default function NavLink({ href, text }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className="text-[var(--color-brand-light)] text-sm font-semibold px-3 py-1 rounded-md transition-all duration-200 ease-in-out hover:text-[17px] hover:bg-[var(--color-brand-accent)] hover:text-[var(--color-brand-ink)]"
+      className="inline-flex h-10 items-center rounded-lg px-2.5 text-sm font-bold text-[var(--color-brand-light)] transition-colors hover:bg-black/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:px-3"
     >
       {text}
     </Link>

@@ -15,8 +15,10 @@ vi.mock('./BrandLogo', () => ({
 describe('Header', () => {
   it('renders branding, translated copy, and localized links', () => {
     renderWithIntl(<Header />);
+    expect(screen.getByRole('banner')).toHaveClass('py-2', 'shadow-sm');
     expect(screen.getByRole('heading', { name: 'GymHajime' })).toBeInTheDocument();
     expect(screen.getByText('Train with purpose')).toBeInTheDocument();
     expect(screen.getByText('Account navigation')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'What is Hajime?' })).toBeInTheDocument();
   });
 });

@@ -9,6 +9,7 @@ describe('HajimeInfo', () => {
     renderWithIntl(<HajimeInfo />);
 
     fireEvent.click(screen.getByRole('button', { name: 'What is Hajime?' }));
+    expect(screen.getByRole('dialog')).toHaveClass('!max-w-4xl');
     expect(screen.getByRole('heading', { name: '始め' })).toBeInTheDocument();
     expect(screen.getByText('HAJIME — BEGIN')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'DAILY TRAINING' })).toBeInTheDocument();

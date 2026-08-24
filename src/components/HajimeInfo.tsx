@@ -62,6 +62,7 @@ export default function HajimeInfo({ iconOnly = false }: HajimeInfoProps) {
             {t('subtitle')}
           </span>
         }
+        size="wide"
         onClose={closeModal}
         closeOnBackdropClick
         buttons={[
@@ -73,8 +74,8 @@ export default function HajimeInfo({ iconOnly = false }: HajimeInfoProps) {
           },
         ]}
       >
-        <div className="space-y-6 text-left text-sm leading-6 text-gray-700 sm:text-base">
-          <section className="space-y-3">
+        <div className="space-y-5 text-left text-sm leading-6 text-gray-700 sm:text-base">
+          <section className="grid gap-3 lg:grid-cols-3 lg:gap-6">
             <p>
               {t.rich('introduction.verb', {
                 em: (chunks) => <em>{chunks}</em>,
@@ -86,16 +87,21 @@ export default function HajimeInfo({ iconOnly = false }: HajimeInfoProps) {
 
           <div className="border-t border-orange-300" aria-hidden />
 
-          {sections.map((section) => (
-            <section key={section.id} className="space-y-2">
-              <h3 className="font-black tracking-wider text-[var(--color-brand-ink)]">
-                {t(`sections.${section.id}.title`)}
-              </h3>
-              {section.paragraphs.map((paragraphKey) => (
-                <p key={paragraphKey}>{t(`sections.${section.id}.${paragraphKey}`)}</p>
-              ))}
-            </section>
-          ))}
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {sections.map((section) => (
+              <section
+                key={section.id}
+                className="space-y-2 rounded-2xl border border-orange-100 bg-white/70 p-4"
+              >
+                <h3 className="font-black tracking-wider text-[var(--color-brand-ink)]">
+                  {t(`sections.${section.id}.title`)}
+                </h3>
+                {section.paragraphs.map((paragraphKey) => (
+                  <p key={paragraphKey}>{t(`sections.${section.id}.${paragraphKey}`)}</p>
+                ))}
+              </section>
+            ))}
+          </div>
 
           <div className="border-t border-orange-300" aria-hidden />
           <p className="text-center font-bold text-[var(--color-brand-ink)]">{t('closing')}</p>

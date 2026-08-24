@@ -11,6 +11,7 @@ import ModalPopup from './ModalPopup';
 import { ButtonRank, ButtonType } from '@/lib/enums';
 import DropdownMenu from './DropdownMenu';
 import LanguageSelector from './LanguageSelector';
+import UserInitials from './UserInitials';
 
 export interface AuthNavigationViewProps {
   userName?: string | null;
@@ -52,8 +53,8 @@ export function AuthNavigationView({
 
   if (!userName) {
     return (
-      <div className="flex items-center gap-3 text-[var(--color-brand-soft)]">
-        <nav className="flex gap-4" aria-label="Account">
+      <div className="flex items-center gap-1 text-[var(--color-brand-soft)] sm:gap-2">
+        <nav className="flex gap-1" aria-label="Account">
           <NavLink href={`/${locale}/login`} text={t('login')} />
           <NavLink href={`/${locale}/signup`} text={t('signup')} />
         </nav>
@@ -63,9 +64,10 @@ export function AuthNavigationView({
   }
 
   return (
-    <div className="flex items-center gap-3 text-[var(--color-brand-soft)]">
+    <div className="flex min-w-0 items-center gap-1 text-[var(--color-brand-soft)] sm:gap-2">
       <div ref={navigationRef} className="relative flex items-center gap-1">
-        <span className="font-semibold">{userName}</span>
+        <UserInitials name={userName} className="md:hidden" />
+        <span className="hidden max-w-48 truncate text-sm font-bold md:block">{userName}</span>
         <ChevronButton
           isOpen={isOpen}
           onClick={() => setIsOpen((open) => !open)}
