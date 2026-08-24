@@ -72,45 +72,70 @@ export default function WorkoutExerciseTable({
                   />
                 </button>
               </td>
-              <td className="grid grid-cols-[1fr_7rem] items-center gap-3 border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0">
-                <span className="text-sm font-bold text-neutral-700 md:hidden">{labels.sets}</span>
-                <NumberInput
-                  label={`${exercise.name} ${labels.sets}`}
-                  value={exercise.sets}
-                  min={1}
-                  step={1}
-                  onChange={(value) => onUpdate(index, { sets: value })}
-                />
-              </td>
-              <td className="grid grid-cols-[1fr_7rem] items-center gap-3 border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0">
-                <span className="text-sm font-bold text-neutral-700 md:hidden">{labels.reps}</span>
-                <NumberInput
-                  label={`${exercise.name} ${labels.reps}`}
-                  value={exercise.reps}
-                  min={1}
-                  step={1}
-                  onChange={(value) => onUpdate(index, { reps: value })}
-                />
-              </td>
-              <td className="grid grid-cols-[1fr_7rem] items-center gap-3 border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0">
-                <span className="text-sm font-bold text-neutral-700 md:hidden">
-                  {labels.weight}
-                </span>
-                <input
-                  aria-label={`${exercise.name} ${labels.weight}`}
-                  type="number"
-                  min="0"
-                  step="0.25"
-                  value={exercise.weight ?? ''}
-                  placeholder="—"
-                  onChange={(event) =>
-                    onUpdate(index, {
-                      weight: event.target.value === '' ? null : Number(event.target.value),
-                    })
-                  }
-                  className="w-full rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500 md:w-24"
-                />
-              </td>
+              {exercise.category === 'cardio' ? (
+                <td
+                  colSpan={3}
+                  className="block border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0"
+                >
+                  <div className="grid grid-cols-[1fr_7rem] items-center gap-3 md:flex md:justify-center md:gap-5">
+                    <span className="text-sm font-bold text-neutral-700">{labels.duration}</span>
+                    <NumberInput
+                      label={`${exercise.name} ${labels.duration}`}
+                      value={exercise.durationMinutes}
+                      min={1}
+                      step={1}
+                      onChange={(value) => onUpdate(index, { durationMinutes: value })}
+                      className="md:w-28"
+                    />
+                  </div>
+                </td>
+              ) : (
+                <>
+                  <td className="grid grid-cols-[1fr_7rem] items-center gap-3 border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0">
+                    <span className="text-sm font-bold text-neutral-700 md:hidden">
+                      {labels.sets}
+                    </span>
+                    <NumberInput
+                      label={`${exercise.name} ${labels.sets}`}
+                      value={exercise.sets}
+                      min={1}
+                      step={1}
+                      onChange={(value) => onUpdate(index, { sets: value })}
+                    />
+                  </td>
+                  <td className="grid grid-cols-[1fr_7rem] items-center gap-3 border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0">
+                    <span className="text-sm font-bold text-neutral-700 md:hidden">
+                      {labels.reps}
+                    </span>
+                    <NumberInput
+                      label={`${exercise.name} ${labels.reps}`}
+                      value={exercise.reps}
+                      min={1}
+                      step={1}
+                      onChange={(value) => onUpdate(index, { reps: value })}
+                    />
+                  </td>
+                  <td className="grid grid-cols-[1fr_7rem] items-center gap-3 border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0">
+                    <span className="text-sm font-bold text-neutral-700 md:hidden">
+                      {labels.weight}
+                    </span>
+                    <input
+                      aria-label={`${exercise.name} ${labels.weight}`}
+                      type="number"
+                      min="0"
+                      step="0.25"
+                      value={exercise.weight ?? ''}
+                      placeholder="—"
+                      onChange={(event) =>
+                        onUpdate(index, {
+                          weight: event.target.value === '' ? null : Number(event.target.value),
+                        })
+                      }
+                      className="w-full rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500 md:w-24"
+                    />
+                  </td>
+                </>
+              )}
               <td className="block border-t border-orange-100 pt-3 md:table-cell md:border-0 md:px-3 md:pt-0">
                 <div className="flex items-center justify-end gap-1 md:justify-start">
                   <span className="mr-auto text-sm font-bold text-neutral-700 md:hidden">
@@ -158,22 +183,24 @@ function NumberInput({
   min,
   step,
   onChange,
+  className = '',
 }: {
   label: string;
-  value: number;
+  value: number | null;
   min: number;
   step: number;
   onChange: (value: number) => void;
+  className?: string;
 }) {
   return (
     <input
       aria-label={label}
       type="number"
-      value={value}
+      value={value ?? ''}
       min={min}
       step={step}
       onChange={(event) => onChange(Number(event.target.value))}
-      className="w-full rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500 md:w-20"
+      className={`w-full rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500 md:w-20 ${className}`}
     />
   );
 }

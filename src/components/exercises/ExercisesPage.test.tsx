@@ -44,6 +44,8 @@ describe('ExercisesPage', () => {
     renderWithIntl(<ExercisesPage />);
     fireEvent.click(screen.getByRole('tab', { name: 'Workout Builder' }));
     expect(await screen.findByText('No exercises configured for Monday.')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Save Workout' })).toBeDisabled();
+    screen
+      .getAllByRole('button', { name: 'Save Workout' })
+      .forEach((button) => expect(button).toBeDisabled());
   });
 });

@@ -7,9 +7,10 @@ export interface WorkoutExercise {
   name: string;
   category: string;
   imageUrl: string | null;
-  sets: number;
-  reps: number;
+  sets: number | null;
+  reps: number | null;
   weight: number | null;
+  durationMinutes: number | null;
   sortOrder: number;
   /** Complete localized catalogue record used by the workout details drawer. */
   details?: Exercise;
@@ -31,9 +32,10 @@ export interface WorkoutResponse {
 /** Writable fields for one exercise in an explicitly saved workout draft. */
 export interface SaveWorkoutExerciseInput {
   exerciseId: string;
-  sets: number;
-  reps: number;
+  sets: number | null;
+  reps: number | null;
   weight: number | null;
+  durationMinutes: number | null;
   sortOrder: number;
 }
 

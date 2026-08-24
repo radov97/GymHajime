@@ -364,6 +364,7 @@ export default function ExercisesPage() {
             sets: t('builder-sets'),
             reps: t('builder-reps'),
             weight: t('builder-weight'),
+            duration: t('builder-duration'),
             actions: t('builder-actions'),
             up: t('builder-up'),
             down: t('builder-down'),

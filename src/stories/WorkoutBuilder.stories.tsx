@@ -43,6 +43,7 @@ const labels: WorkoutBuilderLabels = {
   sets: 'Sets',
   reps: 'Reps',
   weight: 'Weight (kg)',
+  duration: 'Duration (minutes)',
   actions: 'Actions',
   up: 'Move up',
   down: 'Move down',
@@ -89,6 +90,7 @@ const configuredWorkout: Workout = {
     sets: index === 0 ? 4 : 3,
     reps: index === 0 ? 8 : 10,
     weight: index === 0 ? 60 : 22.5,
+    durationMinutes: null,
     sortOrder: index + 1,
   })),
 };

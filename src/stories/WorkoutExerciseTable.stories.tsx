@@ -13,6 +13,7 @@ const exercises: WorkoutExercise[] = [
     sets: 4,
     reps: 8,
     weight: 60,
+    durationMinutes: null,
     sortOrder: 1,
   },
   {
@@ -24,6 +25,7 @@ const exercises: WorkoutExercise[] = [
     sets: 3,
     reps: 10,
     weight: 22.5,
+    durationMinutes: null,
     sortOrder: 2,
   },
 ];
@@ -32,6 +34,7 @@ const labels = {
   sets: 'Sets',
   reps: 'Reps',
   weight: 'Weight (kg)',
+  duration: 'Duration (minutes)',
   actions: 'Actions',
   up: 'Move up',
   down: 'Move down',
@@ -61,3 +64,22 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 export const Configured: Story = {};
 export const SingleExercise: Story = { args: { exercises: exercises.slice(0, 1) } };
+export const WithCardio: Story = {
+  args: {
+    exercises: [
+      ...exercises,
+      {
+        ...exercises[0],
+        id: '3',
+        exerciseId: 'run',
+        name: 'Treadmill Run',
+        category: 'cardio',
+        sets: null,
+        reps: null,
+        weight: null,
+        durationMinutes: 25,
+        sortOrder: 3,
+      },
+    ],
+  },
+};

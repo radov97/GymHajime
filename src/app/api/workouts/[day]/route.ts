@@ -16,15 +16,24 @@ const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-
 function validExercise(value: unknown): value is SaveWorkoutExerciseInput {
   if (typeof value !== 'object' || value === null) return false;
   const row = value as Record<string, unknown>;
-  return (
-    typeof row.exerciseId === 'string' &&
-    uuid.test(row.exerciseId) &&
+  const repetitionPrescription =
     Number.isInteger(row.sets) &&
     Number(row.sets) > 0 &&
     Number.isInteger(row.reps) &&
     Number(row.reps) > 0 &&
     (row.weight === null ||
       (typeof row.weight === 'number' && Number.isFinite(row.weight) && row.weight >= 0)) &&
+    row.durationMinutes === null;
+  const durationPrescription =
+    row.sets === null &&
+    row.reps === null &&
+    row.weight === null &&
+    Number.isInteger(row.durationMinutes) &&
+    Number(row.durationMinutes) > 0;
+  return (
+    typeof row.exerciseId === 'string' &&
+    uuid.test(row.exerciseId) &&
+    (repetitionPrescription || durationPrescription) &&
     Number.isInteger(row.sortOrder) &&
     Number(row.sortOrder) > 0
   );

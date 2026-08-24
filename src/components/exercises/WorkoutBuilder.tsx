@@ -127,6 +127,7 @@ export default function WorkoutBuilder({
   }
 
   function add(exercise: Exercise) {
+    const usesDuration = exercise.category === 'cardio';
     setRows((current) => [
       ...current,
       {
@@ -135,9 +136,10 @@ export default function WorkoutBuilder({
         name: exercise.name,
         category: exercise.category,
         imageUrl: exercise.images[0]?.url ?? null,
-        sets: 3,
-        reps: 10,
+        sets: usesDuration ? null : 3,
+        reps: usesDuration ? null : 10,
         weight: null,
+        durationMinutes: null,
         sortOrder: current.length + 1,
         details: exercise,
       },
@@ -159,13 +161,14 @@ export default function WorkoutBuilder({
   /** Validates and sends the complete normalized draft rather than saving individual keystrokes. */
   async function persist() {
     if (
-      rows.some(
-        (row) =>
-          !Number.isInteger(row.sets) ||
-          row.sets < 1 ||
-          !Number.isInteger(row.reps) ||
-          row.reps < 1 ||
-          (row.weight !== null && row.weight < 0)
+      rows.some((row) =>
+        row.category === 'cardio'
+          ? !Number.isInteger(row.durationMinutes) || Number(row.durationMinutes) < 1
+          : !Number.isInteger(row.sets) ||
+            Number(row.sets) < 1 ||
+            !Number.isInteger(row.reps) ||
+            Number(row.reps) < 1 ||
+            (row.weight !== null && row.weight < 0)
       )
     ) {
       setError(labels.validation);
@@ -181,6 +184,7 @@ export default function WorkoutBuilder({
           sets: row.sets,
           reps: row.reps,
           weight: row.weight,
+          durationMinutes: row.durationMinutes,
           sortOrder: index + 1,
         })),
       });

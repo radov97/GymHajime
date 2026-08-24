@@ -13,9 +13,10 @@ interface WorkoutRow {
 interface WorkoutExerciseRow {
   id: string;
   exercise_id: string;
-  sets: number;
-  reps: number;
+  sets: number | null;
+  reps: number | null;
   weight: number | null;
+  duration_minutes: number | null;
   sort_order: number;
 }
 
@@ -31,7 +32,7 @@ async function hydrateWorkout(
   const locale: Locale = requestedLocale && isLocale(requestedLocale) ? requestedLocale : 'en';
   const rows = await supabase
     .from('workout_exercises')
-    .select('id,exercise_id,sets,reps,weight,sort_order')
+    .select('id,exercise_id,sets,reps,weight,duration_minutes,sort_order')
     .eq('workout_id', workout.id)
     .order('sort_order');
   if (rows.error) throw new Error(rows.error.message);
@@ -63,6 +64,7 @@ async function hydrateWorkout(
             sets: row.sets,
             reps: row.reps,
             weight: row.weight,
+            durationMinutes: row.duration_minutes,
             sortOrder: row.sort_order,
             details: exercise,
           },
@@ -104,6 +106,28 @@ export async function saveWorkoutByDay(
   input: SaveWorkoutInput,
   locale?: string
 ): Promise<Workout | null> {
+  if (input.exercises.length) {
+    const catalogueResult = await supabase
+      .from('exercises')
+      .select('id,category')
+      .in(
+        'id',
+        input.exercises.map((exercise) => exercise.exerciseId)
+      );
+    if (catalogueResult.error) throw new Error(catalogueResult.error.message);
+    const categories = new Map(
+      catalogueResult.data.map((exercise) => [String(exercise.id), String(exercise.category)])
+    );
+    const invalidPrescription = input.exercises.some((exercise) => {
+      const category = categories.get(exercise.exerciseId);
+      if (!category) return true;
+      return category === 'cardio'
+        ? exercise.durationMinutes === null
+        : exercise.durationMinutes !== null;
+    });
+    if (invalidPrescription) throw new Error('Exercise prescription does not match its category');
+  }
+
   const existing = await supabase
     .from('workouts')
     .select('id,day_of_week,name')
@@ -150,6 +174,7 @@ export async function saveWorkoutByDay(
         sets: exercise.sets,
         reps: exercise.reps,
         weight: exercise.weight,
+        duration_minutes: exercise.durationMinutes,
         sort_order: exercise.sortOrder,
       })),
       { onConflict: 'workout_id,exercise_id' }

@@ -13,6 +13,7 @@ const exercises: WorkoutExercise[] = [
     sets: 4,
     reps: 8,
     weight: 60,
+    durationMinutes: null,
     sortOrder: 1,
   },
   {
@@ -24,6 +25,7 @@ const exercises: WorkoutExercise[] = [
     sets: 3,
     reps: 12,
     weight: null,
+    durationMinutes: null,
     sortOrder: 2,
   },
 ];
@@ -32,6 +34,7 @@ const labels = {
   sets: 'Sets',
   reps: 'Reps',
   weight: 'Weight',
+  duration: 'Duration (minutes)',
   actions: 'Actions',
   up: 'Move up',
   down: 'Move down',
@@ -95,6 +98,39 @@ describe('WorkoutExerciseTable', () => {
     );
     fireEvent.click(screen.getByRole('button', { name: /Bench Press\s*Chest/i }));
     expect(onOpenExercise).toHaveBeenCalledWith(exercises[0]);
+  });
+
+  it('replaces strength fields with duration for cardio exercises', () => {
+    const onUpdate = vi.fn();
+    const cardio: WorkoutExercise = {
+      ...exercises[0],
+      exerciseId: 'run',
+      name: 'Treadmill Run',
+      category: 'cardio',
+      sets: null,
+      reps: null,
+      weight: null,
+      durationMinutes: 20,
+    };
+    render(
+      <WorkoutExerciseTable
+        exercises={[cardio]}
+        categoryLabel={() => 'Cardio'}
+        labels={labels}
+        onUpdate={onUpdate}
+        onMove={vi.fn()}
+        onRemove={vi.fn()}
+      />
+    );
+    expect(
+      screen.queryByRole('spinbutton', { name: 'Treadmill Run Sets' })
+    ).not.toBeInTheDocument();
+    const duration = screen.getByRole('spinbutton', {
+      name: 'Treadmill Run Duration (minutes)',
+    });
+    expect(duration).toHaveValue(20);
+    fireEvent.change(duration, { target: { value: '35' } });
+    expect(onUpdate).toHaveBeenCalledWith(0, { durationMinutes: 35 });
   });
 
   it('disables ordering controls at the table boundaries', () => {
