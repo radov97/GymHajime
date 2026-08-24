@@ -1,7 +1,7 @@
 'use client';
 
 import { ButtonRank, ButtonType } from '../lib/enums';
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useId, type ReactNode } from 'react';
 import Button, { type ButtonProps } from './Button';
 import FormContainer from './FormContainer';
 import { X } from 'lucide-react';
@@ -31,6 +31,7 @@ export default function ModalPopup({
   closeLabel = 'Close modal',
   closeOnBackdropClick = false,
 }: ModalPopupProps) {
+  const titleId = useId();
   useEffect(() => {
     if (!isOpen) return;
 
@@ -59,6 +60,9 @@ export default function ModalPopup({
       <FormContainer
         className="relative max-h-[calc(100vh-2rem)] overflow-y-auto bg-[var(--color-brand-modal-bg)]"
         noBg={true}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? titleId : undefined}
       >
         {onClose && (
           <button
@@ -71,7 +75,10 @@ export default function ModalPopup({
           </button>
         )}
         {title && (
-          <h2 className="pr-8 text-2xl font-bold text-[var(--color-brand-ink)] mb-2 text-left cursor-default">
+          <h2
+            id={titleId}
+            className="pr-8 text-2xl font-bold text-[var(--color-brand-ink)] mb-2 text-left cursor-default"
+          >
             {title}
           </h2>
         )}

@@ -15,6 +15,8 @@ vi.mock('@/api/savedExercises', () => ({
 vi.mock('@/api/workouts', () => ({
   getWorkout: () => Promise.resolve({ workout: null }),
   saveWorkout: vi.fn(),
+  clearWorkout: vi.fn(),
+  moveWorkout: vi.fn(),
 }));
 
 describe('ExercisesPage', () => {

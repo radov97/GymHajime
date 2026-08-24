@@ -1,14 +1,17 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { AlertCircle, Loader, Plus } from 'lucide-react';
+import { AlertCircle, ArrowRightLeft, Loader, Plus, Trash2 } from 'lucide-react';
 import SelectDropdown from '@/components/SelectDropdown';
 import TextInput from '@/components/TextInput';
-import { getWorkout, saveWorkout } from '@/api/workouts';
+import IconButton from '@/components/IconButton';
+import Button from '@/components/Button';
+import { clearWorkout, getWorkout, moveWorkout, saveWorkout } from '@/api/workouts';
 import type { Exercise } from '@/types/exercises';
 import type { WorkoutExercise } from '@/types/workouts';
 import SavedExercisePicker from './SavedExercisePicker';
 import WorkoutExerciseTable from './WorkoutExerciseTable';
+import MoveWorkoutDialog from './MoveWorkoutDialog';
 
 /** Text is supplied by ExercisesPage so the builder remains independent of next-intl. */
 export interface WorkoutBuilderLabels {
@@ -23,6 +26,8 @@ export interface WorkoutBuilderProps {
   /** Injectable API boundaries keep stories deterministic while production uses HTTP helpers. */
   loadWorkout?: typeof getWorkout;
   persistWorkout?: typeof saveWorkout;
+  clearPersistedWorkout?: typeof clearWorkout;
+  movePersistedWorkout?: typeof moveWorkout;
 }
 
 const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
@@ -38,6 +43,8 @@ export default function WorkoutBuilder({
   labels,
   loadWorkout = getWorkout,
   persistWorkout = saveWorkout,
+  clearPersistedWorkout = clearWorkout,
+  movePersistedWorkout = moveWorkout,
 }: WorkoutBuilderProps) {
   const [day, setDay] = useState(1);
   const [rows, setRows] = useState<WorkoutExercise[]>([]);
@@ -49,6 +56,10 @@ export default function WorkoutBuilder({
   const [modal, setModal] = useState(false);
   const [search, setSearch] = useState('');
   const [retry, setRetry] = useState(0);
+  const [workoutId, setWorkoutId] = useState<string | null>(null);
+  const [acting, setActing] = useState(false);
+  const [moveOpen, setMoveOpen] = useState(false);
+  const [targetDay, setTargetDay] = useState(2);
 
   useEffect(() => {
     let current = true;
@@ -59,6 +70,7 @@ export default function WorkoutBuilder({
         if (!current) return;
         setRows(workout?.exercises ?? []);
         setName(workout?.name ?? '');
+        setWorkoutId(workout?.id ?? null);
         setDirty(false);
       })
       .catch(
@@ -168,11 +180,59 @@ export default function WorkoutBuilder({
       });
       setRows(result.workout?.exercises ?? []);
       setName(result.workout?.name ?? '');
+      setWorkoutId(result.workout?.id ?? null);
       setDirty(false);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : labels.error);
     } finally {
       setSaving(false);
+    }
+  }
+
+  /** Clears both the persisted workout and any local draft after destructive confirmation. */
+  async function clearSelectedDay() {
+    const dayLabel = labels[DAYS[day - 1]];
+    if (!window.confirm(labels.clearConfirm.replace('__DAY__', dayLabel))) return;
+    setActing(true);
+    setError(null);
+    try {
+      if (workoutId) await clearPersistedWorkout(day);
+      setRows([]);
+      setName('');
+      setWorkoutId(null);
+      setDirty(false);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : labels.clearError);
+    } finally {
+      setActing(false);
+    }
+  }
+
+  function openMoveDialog() {
+    if (dirty) {
+      setError(labels.moveUnsaved);
+      return;
+    }
+    setTargetDay(day === 7 ? 1 : day + 1);
+    setMoveOpen(true);
+  }
+
+  /** Moves the persisted container, then switches the builder to its new weekday. */
+  async function confirmMove() {
+    setActing(true);
+    setError(null);
+    try {
+      const result = await movePersistedWorkout(day, targetDay, locale);
+      setMoveOpen(false);
+      setDay(targetDay);
+      setRows(result.workout?.exercises ?? []);
+      setName(result.workout?.name ?? '');
+      setWorkoutId(result.workout?.id ?? null);
+      setDirty(false);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : labels.moveError);
+    } finally {
+      setActing(false);
     }
   }
 
@@ -203,14 +263,27 @@ export default function WorkoutBuilder({
             className="w-72"
           />
         </div>
-        <button
-          type="button"
-          onClick={() => setModal(true)}
-          className="flex cursor-pointer items-center gap-2 rounded-xl bg-orange-500 px-5 py-3 font-bold text-white hover:bg-orange-600"
-        >
-          <Plus className="h-5 w-5" />
-          {labels.add}
-        </button>
+        <div className="flex items-center gap-3">
+          <IconButton
+            disabled={!workoutId || dirty || acting || loading}
+            onClick={openMoveDialog}
+            icon={<ArrowRightLeft className="h-5 w-5" />}
+            label={labels.move}
+            variant="outline"
+          />
+          <IconButton
+            disabled={acting || loading || (!workoutId && !dirty)}
+            onClick={() => void clearSelectedDay()}
+            icon={<Trash2 className="h-5 w-5" />}
+            label={labels.clear}
+            variant="danger"
+          />
+          <IconButton
+            onClick={() => setModal(true)}
+            icon={<Plus className="h-5 w-5" />}
+            label={labels.add}
+          />
+        </div>
       </div>
 
       {loading ? (
@@ -259,14 +332,13 @@ export default function WorkoutBuilder({
         </p>
       )}
       <div className="mt-6 flex justify-end">
-        <button
-          type="button"
-          disabled={!dirty || saving || loading}
+        <Button
+          disabled={!dirty || saving || acting || loading}
           onClick={() => void persist()}
-          className="cursor-pointer rounded-xl bg-orange-500 px-7 py-3 font-bold text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {saving ? labels.saving : labels.save}
-        </button>
+          loading={saving}
+          text={saving ? labels.saving : labels.save}
+          className="!w-auto px-7"
+        />
       </div>
 
       <SavedExercisePicker
@@ -279,6 +351,17 @@ export default function WorkoutBuilder({
         onSearchChange={setSearch}
         onAdd={add}
         onClose={() => setModal(false)}
+      />
+      <MoveWorkoutDialog
+        open={moveOpen}
+        sourceDay={day}
+        targetDay={targetDay}
+        dayLabels={DAYS.map((key) => labels[key])}
+        labels={labels}
+        moving={acting}
+        onTargetChange={setTargetDay}
+        onCancel={() => setMoveOpen(false)}
+        onConfirm={() => void confirmMove()}
       />
     </section>
   );

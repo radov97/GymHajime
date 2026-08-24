@@ -170,3 +170,65 @@ export async function saveWorkoutByDay(
   }
   return hydrateWorkout(supabase, workout, locale);
 }
+
+/** Deletes a weekday workout and its exercise rows without relying on foreign-key cascade setup. */
+export async function deleteWorkoutByDay(
+  supabase: SupabaseClient,
+  userId: string,
+  day: number
+): Promise<void> {
+  const workout = await supabase
+    .from('workouts')
+    .select('id')
+    .eq('user_id', userId)
+    .eq('day_of_week', day)
+    .maybeSingle();
+  if (workout.error) throw new Error(workout.error.message);
+  if (!workout.data) return;
+
+  const exercises = await supabase
+    .from('workout_exercises')
+    .delete()
+    .eq('workout_id', workout.data.id);
+  if (exercises.error) throw new Error(exercises.error.message);
+  const deleted = await supabase
+    .from('workouts')
+    .delete()
+    .eq('user_id', userId)
+    .eq('id', workout.data.id);
+  if (deleted.error) throw new Error(deleted.error.message);
+}
+
+/**
+ * Moves a workout container and all related exercise rows to another weekday.
+ * Any target workout is deleted first because `(user_id, day_of_week)` is unique. These calls are
+ * not transactional through Supabase's data API; a database RPC is required for atomic rollback.
+ */
+export async function moveWorkoutToDay(
+  supabase: SupabaseClient,
+  userId: string,
+  sourceDay: number,
+  targetDay: number,
+  locale?: string
+): Promise<Workout | null> {
+  const source = await supabase
+    .from('workouts')
+    .select('id,day_of_week,name')
+    .eq('user_id', userId)
+    .eq('day_of_week', sourceDay)
+    .maybeSingle();
+  if (source.error) throw new Error(source.error.message);
+  if (!source.data) return null;
+  if (sourceDay === targetDay) return hydrateWorkout(supabase, source.data as WorkoutRow, locale);
+
+  await deleteWorkoutByDay(supabase, userId, targetDay);
+  const moved = await supabase
+    .from('workouts')
+    .update({ day_of_week: targetDay })
+    .eq('id', source.data.id)
+    .eq('user_id', userId)
+    .select('id,day_of_week,name')
+    .single();
+  if (moved.error) throw new Error(moved.error.message);
+  return hydrateWorkout(supabase, moved.data as WorkoutRow, locale);
+}

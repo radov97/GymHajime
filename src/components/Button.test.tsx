@@ -17,7 +17,7 @@ describe('Button', () => {
     const button = screen.getByRole('button', { name: 'Reset' });
 
     expect(button).toHaveAttribute('type', 'reset');
-    expect(button).toHaveClass('border-[var(--color-brand)]');
+    expect(button).toHaveClass('border-orange-300', 'rounded-xl', 'py-2.5');
   });
 
   it('disables interaction while loading', () => {
@@ -28,6 +28,10 @@ describe('Button', () => {
 
   it('uses destructive styling for danger actions', () => {
     render(<Button text="Delete" rank={ButtonRank.Danger} />);
-    expect(screen.getByRole('button', { name: 'Delete' })).toHaveClass('bg-red-600', 'text-white');
+    expect(screen.getByRole('button', { name: 'Delete' })).toHaveClass(
+      'border-red-200',
+      'bg-white',
+      'text-red-600'
+    );
   });
 });

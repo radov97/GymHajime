@@ -21,36 +21,34 @@ export default function Button({
   className = '',
   ...props
 }: ButtonProps) {
-  const baseStyles = 'w-full font-semibold py-2 rounded transition-all duration-200 ease-in-out';
+  const baseStyles =
+    'w-full cursor-pointer rounded-xl border px-5 py-2.5 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-40';
   const getRankStyles = (rank: ButtonRankValue) => {
     switch (rank) {
       case ButtonRank.Primary:
-        return 'bg-[var(--color-brand)] text-white';
+        return 'border-orange-500 bg-orange-500 text-white hover:bg-orange-600';
       case ButtonRank.Secondary:
-        return 'bg-gray-200 text-gray-800';
+        return 'border-orange-300 bg-white text-orange-600 hover:bg-orange-50';
       case ButtonRank.Danger:
-        return 'bg-red-600 text-white';
+        return 'border-red-200 bg-white text-red-600 hover:bg-red-50';
       case ButtonRank.Link:
-        return 'bg-[var(--color-brand-soft)] text-[var(--color-brand)] border border-[var(--color-brand)]';
+        return 'border-orange-300 bg-[var(--color-brand-soft)] text-orange-600 hover:bg-orange-50';
       default:
         return '';
     }
   };
 
-  const isInteractive = !disabled && !loading;
-
-  const computedClasses = [
-    baseStyles,
-    getRankStyles(rank),
-    className,
-    isInteractive
-      ? 'cursor-pointer hover:opacity-90 hover:brightness-110 hover:scale-[1.01] hover:shadow-md'
-      : 'opacity-60 cursor-not-allowed',
-  ].join(' ');
+  const computedClasses = [baseStyles, getRankStyles(rank), className].join(' ');
 
   return (
-    <button type={type} disabled={disabled || loading} className={computedClasses} {...props}>
-      {loading ? <Loader className="animate-spin w-5 h-5 mx-auto" /> : text}
+    <button
+      type={type}
+      disabled={disabled || loading}
+      className={computedClasses}
+      aria-label={loading && typeof text === 'string' ? text : undefined}
+      {...props}
+    >
+      {loading ? <Loader className="animate-spin w-5 h-5 mx-auto" aria-hidden /> : text}
     </button>
   );
 }

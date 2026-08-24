@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import { bearerToken, createServerSupabaseClient } from '@/lib/supabase/server';
-import { saveWorkoutByDay } from '@/services/workouts/workouts';
+import {
+  deleteWorkoutByDay,
+  moveWorkoutToDay,
+  saveWorkoutByDay,
+} from '@/services/workouts/workouts';
 import type { SaveWorkoutExerciseInput, SaveWorkoutInput } from '@/types/workouts';
 
 interface Context {
@@ -70,5 +74,64 @@ export async function PUT(request: Request, context: Context) {
     });
   } catch {
     return NextResponse.json({ error: 'Unable to save workout' }, { status: 500 });
+  }
+}
+
+/** Deletes all persisted workout data for the authenticated user's selected weekday. */
+export async function DELETE(request: Request, context: Context) {
+  const token = bearerToken(request);
+  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const supabase = createServerSupabaseClient(token);
+  const auth = await supabase.auth.getUser(token);
+  if (auth.error || !auth.data.user)
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const day = Number((await context.params).day);
+  if (!Number.isInteger(day) || day < 1 || day > 7)
+    return NextResponse.json({ error: 'Invalid weekday' }, { status: 400 });
+  try {
+    await deleteWorkoutByDay(supabase, auth.data.user.id, day);
+    return NextResponse.json({ workout: null });
+  } catch {
+    return NextResponse.json({ error: 'Unable to clear workout' }, { status: 500 });
+  }
+}
+
+/** Moves a persisted workout to `targetDay`, replacing the target weekday's current workout. */
+export async function PATCH(request: Request, context: Context) {
+  const token = bearerToken(request);
+  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const supabase = createServerSupabaseClient(token);
+  const auth = await supabase.auth.getUser(token);
+  if (auth.error || !auth.data.user)
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const sourceDay = Number((await context.params).day);
+  const body: unknown = await request.json().catch(() => null);
+  const targetDay =
+    typeof body === 'object' && body !== null && 'targetDay' in body
+      ? Number((body as { targetDay: unknown }).targetDay)
+      : NaN;
+  if (
+    !Number.isInteger(sourceDay) ||
+    sourceDay < 1 ||
+    sourceDay > 7 ||
+    !Number.isInteger(targetDay) ||
+    targetDay < 1 ||
+    targetDay > 7 ||
+    targetDay === sourceDay
+  )
+    return NextResponse.json({ error: 'A different target weekday is required' }, { status: 400 });
+  try {
+    const locale = new URL(request.url).searchParams.get('locale') ?? undefined;
+    const workout = await moveWorkoutToDay(
+      supabase,
+      auth.data.user.id,
+      sourceDay,
+      targetDay,
+      locale
+    );
+    if (!workout) return NextResponse.json({ error: 'Workout not found' }, { status: 404 });
+    return NextResponse.json({ workout });
+  } catch {
+    return NextResponse.json({ error: 'Unable to move workout' }, { status: 500 });
   }
 }

@@ -33,3 +33,20 @@ export function saveWorkout(
     body: JSON.stringify(workout),
   });
 }
+
+/** Deletes the authenticated user's complete workout configuration for one weekday. */
+export function clearWorkout(day: number): Promise<WorkoutResponse> {
+  return request(`/api/workouts/${day}`, { method: 'DELETE' });
+}
+
+/** Moves a persisted workout to another weekday, replacing any workout already at the target. */
+export function moveWorkout(
+  day: number,
+  targetDay: number,
+  locale: string
+): Promise<WorkoutResponse> {
+  return request(`/api/workouts/${day}?locale=${encodeURIComponent(locale)}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ targetDay }),
+  });
+}

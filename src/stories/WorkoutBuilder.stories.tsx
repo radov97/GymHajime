@@ -10,6 +10,8 @@ import type { Workout } from '@/types/workouts';
 
 type LoadWorkout = NonNullable<WorkoutBuilderProps['loadWorkout']>;
 type PersistWorkout = NonNullable<WorkoutBuilderProps['persistWorkout']>;
+type ClearWorkout = NonNullable<WorkoutBuilderProps['clearPersistedWorkout']>;
+type MoveWorkout = NonNullable<WorkoutBuilderProps['movePersistedWorkout']>;
 
 const savedExercises: Exercise[] = [
   exerciseFixture,
@@ -53,6 +55,18 @@ const labels: WorkoutBuilderLabels = {
   search: 'Search saved exercises...',
   noMatches: 'No matching saved exercises.',
   noSaved: 'Save exercises in My Exercises before adding them to a workout.',
+  move: 'Move Workout',
+  moveTarget: 'Move to day',
+  moveWarning:
+    'This moves the entire workout. Any workout already saved for the target day will be permanently replaced.',
+  confirmMove: 'Move Workout',
+  moving: 'Moving...',
+  moveUnsaved: 'Save or discard your unsaved changes before moving this workout.',
+  moveError: "We couldn't move the workout.",
+  clear: 'Clear Day',
+  clearConfirm: 'Permanently clear all workout data saved for __DAY__?',
+  clearError: "We couldn't clear the workout.",
+  cancel: 'Cancel',
   monday: 'Monday',
   tuesday: 'Tuesday',
   wednesday: 'Wednesday',
@@ -97,6 +111,10 @@ const meta = {
     labels,
     loadWorkout: fn(async () => ({ workout: null })) as LoadWorkout,
     persistWorkout: fn(async () => ({ workout: configuredWorkout })) as PersistWorkout,
+    clearPersistedWorkout: fn(async () => ({ workout: null })) as ClearWorkout,
+    movePersistedWorkout: fn(async () => ({
+      workout: { ...configuredWorkout, dayOfWeek: 2 },
+    })) as MoveWorkout,
   },
 } satisfies Meta<typeof WorkoutBuilder>;
 
