@@ -22,7 +22,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    'w-full cursor-pointer rounded-xl border px-5 py-2.5 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-40';
+    'w-full cursor-pointer whitespace-nowrap rounded-xl border px-5 py-2.5 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-40';
   const getRankStyles = (rank: ButtonRankValue) => {
     switch (rank) {
       case ButtonRank.Primary:

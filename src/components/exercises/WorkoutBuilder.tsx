@@ -239,15 +239,15 @@ export default function WorkoutBuilder({
   }
 
   return (
-    <section className="mt-8 min-w-[900px]" aria-label={labels.builder}>
-      <div className="mb-6 flex items-end justify-between gap-8">
-        <div className="flex items-end gap-5">
+    <section className="mt-6 min-w-0 md:mt-8 md:min-w-[900px]" aria-label={labels.builder}>
+      <div className="mb-6 grid gap-4 md:flex md:items-end md:justify-between md:gap-8">
+        <div className="grid min-w-0 gap-4 sm:grid-cols-2 md:flex md:items-end md:gap-5">
           <SelectDropdown
             value={String(day)}
             onChange={(value) => changeDay(Number(value))}
             ariaLabel={labels.day}
             label={labels.day}
-            className="min-w-56"
+            className="w-full md:min-w-56 md:w-auto"
             options={DAYS.map((key, index) => ({
               value: String(index + 1),
               label: labels[key],
@@ -262,16 +262,17 @@ export default function WorkoutBuilder({
             ariaLabel={labels.workoutName}
             label={labels.workoutName}
             placeholder={labels.namePlaceholder}
-            className="w-72"
+            className="w-full md:w-72"
           />
         </div>
-        <div className="flex items-center gap-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:flex md:shrink-0 md:items-center">
           <IconButton
             disabled={!workoutId || dirty || acting || loading}
             onClick={openMoveDialog}
             icon={<ArrowRightLeft className="h-5 w-5" />}
             label={labels.move}
             variant="outline"
+            className="w-full justify-center md:w-auto"
           />
           <IconButton
             disabled={acting || loading || (!workoutId && !dirty)}
@@ -279,11 +280,13 @@ export default function WorkoutBuilder({
             icon={<Trash2 className="h-5 w-5" />}
             label={labels.clear}
             variant="danger"
+            className="w-full justify-center md:w-auto"
           />
           <IconButton
             onClick={() => setModal(true)}
             icon={<Plus className="h-5 w-5" />}
             label={labels.add}
+            className="col-span-2 w-full justify-center sm:col-span-1 md:w-auto"
           />
         </div>
       </div>
@@ -338,7 +341,7 @@ export default function WorkoutBuilder({
           onClick={() => void persist()}
           loading={saving}
           text={saving ? labels.saving : labels.save}
-          className="!w-auto px-7"
+          className="w-full px-7 sm:!w-auto"
         />
       </div>
 

@@ -32,7 +32,7 @@ export default function IconButton({
     <button
       type="button"
       aria-label={iconOnly ? label : props['aria-label']}
-      className={`flex cursor-pointer items-center rounded-xl border py-2.5 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-40 ${iconOnly ? 'justify-center' : 'gap-2'} ${variantClasses[variant]} ${className}`}
+      className={`flex cursor-pointer items-center whitespace-nowrap rounded-xl border py-2.5 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-40 ${iconOnly ? 'justify-center' : 'gap-2'} ${variantClasses[variant]} ${className}`}
       {...props}
     >
       <span className="flex items-center justify-center" aria-hidden>

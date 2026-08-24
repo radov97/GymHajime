@@ -31,7 +31,7 @@ export default function SavedExercisePicker({
   if (!open) return null;
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 p-8"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 p-4 sm:p-8"
       role="presentation"
       onMouseDown={(event) => event.target === event.currentTarget && onClose()}
     >
@@ -39,7 +39,7 @@ export default function SavedExercisePicker({
         role="dialog"
         aria-modal="true"
         aria-labelledby="add-exercise-title"
-        className="max-h-[78vh] w-[720px] overflow-hidden rounded-2xl bg-[var(--color-brand-soft)] shadow-2xl"
+        className="max-h-[calc(100dvh-2rem)] w-full max-w-[720px] overflow-hidden rounded-2xl bg-[var(--color-brand-soft)] shadow-2xl sm:max-h-[78vh]"
       >
         <div className="flex items-center justify-between border-b border-orange-100 px-6 py-5">
           <h2 id="add-exercise-title" className="text-xl font-bold text-[var(--color-brand-ink)]">
@@ -54,7 +54,7 @@ export default function SavedExercisePicker({
             className="!rounded-lg !p-2 hover:!bg-orange-100"
           />
         </div>
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           <TextInput
             type="search"
             autoFocus

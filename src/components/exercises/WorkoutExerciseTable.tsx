@@ -12,7 +12,7 @@ interface Props {
   onRemove: (index: number) => void;
 }
 
-/** Editable desktop table for exercise prescription values, ordering, and removal. */
+/** Responsive prescription editor: stacked cards on mobile and the existing table on desktop. */
 export default function WorkoutExerciseTable({
   exercises,
   categoryLabel,
@@ -22,9 +22,9 @@ export default function WorkoutExerciseTable({
   onRemove,
 }: Props) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-sm">
-      <table className="w-full table-fixed text-left">
-        <thead className="bg-[var(--color-brand)] text-xs uppercase tracking-wide text-[var(--color-brand-soft)]">
+    <div className="md:overflow-hidden md:rounded-2xl md:border md:border-orange-100 md:bg-white md:shadow-sm">
+      <table className="block w-full text-left md:table md:table-fixed">
+        <thead className="hidden bg-[var(--color-brand)] text-xs uppercase tracking-wide text-[var(--color-brand-soft)] md:table-header-group">
           <tr>
             <th className="w-[42%] px-5 py-4">{labels.exercise}</th>
             <th className="w-[12%] px-3 py-4">{labels.sets}</th>
@@ -33,10 +33,13 @@ export default function WorkoutExerciseTable({
             <th className="px-3 py-4">{labels.actions}</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-orange-100">
+        <tbody className="block space-y-4 md:table-row-group md:divide-y md:divide-orange-100 md:space-y-0">
           {exercises.map((exercise, index) => (
-            <tr key={exercise.exerciseId}>
-              <td className="px-5 py-4">
+            <tr
+              key={exercise.exerciseId}
+              className="block overflow-hidden rounded-2xl border border-orange-100 bg-white p-4 shadow-sm md:table-row md:rounded-none md:border-0 md:p-0 md:shadow-none"
+            >
+              <td className="block pb-4 md:table-cell md:px-5 md:py-4">
                 <div className="flex items-center gap-3">
                   {exercise.imageUrl ? (
                     <Image
@@ -57,7 +60,8 @@ export default function WorkoutExerciseTable({
                   </div>
                 </div>
               </td>
-              <td className="px-3">
+              <td className="grid grid-cols-[1fr_7rem] items-center gap-3 border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0">
+                <span className="text-sm font-bold text-neutral-700 md:hidden">{labels.sets}</span>
                 <NumberInput
                   label={`${exercise.name} ${labels.sets}`}
                   value={exercise.sets}
@@ -66,7 +70,8 @@ export default function WorkoutExerciseTable({
                   onChange={(value) => onUpdate(index, { sets: value })}
                 />
               </td>
-              <td className="px-3">
+              <td className="grid grid-cols-[1fr_7rem] items-center gap-3 border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0">
+                <span className="text-sm font-bold text-neutral-700 md:hidden">{labels.reps}</span>
                 <NumberInput
                   label={`${exercise.name} ${labels.reps}`}
                   value={exercise.reps}
@@ -75,7 +80,10 @@ export default function WorkoutExerciseTable({
                   onChange={(value) => onUpdate(index, { reps: value })}
                 />
               </td>
-              <td className="px-3">
+              <td className="grid grid-cols-[1fr_7rem] items-center gap-3 border-t border-orange-100 py-3 md:table-cell md:border-0 md:px-3 md:py-0">
+                <span className="text-sm font-bold text-neutral-700 md:hidden">
+                  {labels.weight}
+                </span>
                 <input
                   aria-label={`${exercise.name} ${labels.weight}`}
                   type="number"
@@ -88,11 +96,14 @@ export default function WorkoutExerciseTable({
                       weight: event.target.value === '' ? null : Number(event.target.value),
                     })
                   }
-                  className="w-24 rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500"
+                  className="w-full rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500 md:w-24"
                 />
               </td>
-              <td className="px-3">
-                <div className="flex gap-1">
+              <td className="block border-t border-orange-100 pt-3 md:table-cell md:border-0 md:px-3 md:pt-0">
+                <div className="flex items-center justify-end gap-1 md:justify-start">
+                  <span className="mr-auto text-sm font-bold text-neutral-700 md:hidden">
+                    {labels.actions}
+                  </span>
                   <IconButton
                     icon={<ArrowUp className="h-5 w-5" />}
                     label={labels.up}
@@ -150,7 +161,7 @@ function NumberInput({
       min={min}
       step={step}
       onChange={(event) => onChange(Number(event.target.value))}
-      className="w-20 rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500"
+      className="w-full rounded-lg border border-neutral-200 px-3 py-2 outline-none focus:border-orange-500 md:w-20"
     />
   );
 }
